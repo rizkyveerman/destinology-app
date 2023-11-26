@@ -3,9 +3,11 @@ package com.ch2_ps397.destinology.navigation
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.ch2_ps397.destinology.ui.screen.community.DestinologyCommunityPostDetailScreen
 import com.ch2_ps397.destinology.ui.screen.community.DestinologyCommunityScreen
 import com.ch2_ps397.destinology.ui.screen.home.DestinologyHomeScreen
@@ -45,11 +47,15 @@ fun DestinologyNavigation() {
         composable(DestinologyScreens.DestinologyPlanScreen.name) {
             DestinologyPlanScreen(navController = navController)
         }
-        composable(DestinologyScreens.DestinologyPlanDetailScreen.name) {
-            DestinologyPlanDetailScreen(navController = navController)
+        composable(
+            "${DestinologyScreens.DestinologyPlanDetailScreen.name}/{planId}",
+            arguments = listOf(navArgument("planId") { type = NavType.StringType})
+        ) { navBackStackEntry ->
+            DestinologyPlanDetailScreen(navController = navController, navBackStackEntry = navBackStackEntry.arguments?.getString("planId"))
         }
-        composable(DestinologyScreens.DestinologyTripDetailScreen.name) {
-            DestinologyTripDetailScreen(navController = navController)
+        composable("${ DestinologyScreens.DestinologyTripDetailScreen.name }/tripId", arguments = listOf(
+            navArgument("tripId") { type = NavType.StringType})) { navBackStackEntry ->
+            DestinologyTripDetailScreen(navController = navController, navBackStackEntry = navBackStackEntry.arguments?.getString("tripId"))
         }
         composable(DestinologyScreens.DestinologyCommunityScreen.name) {
             DestinologyCommunityScreen(navController = navController)
