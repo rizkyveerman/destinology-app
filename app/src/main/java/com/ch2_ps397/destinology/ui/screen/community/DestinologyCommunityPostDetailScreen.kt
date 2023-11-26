@@ -4,4 +4,4 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 
 @Composable
-fun DestinologyCommunityScreen(navController: NavController) {}
+fun DestinologyCommunityPostDetailScreen(navController: NavController) {}
