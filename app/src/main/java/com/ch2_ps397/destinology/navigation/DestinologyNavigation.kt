@@ -11,6 +11,7 @@ import androidx.navigation.navArgument
 import com.ch2_ps397.destinology.ui.screen.community.DestinologyCommunityPostDetailScreen
 import com.ch2_ps397.destinology.ui.screen.community.DestinologyCommunityScreen
 import com.ch2_ps397.destinology.ui.screen.home.DestinologyHomeScreen
+import com.ch2_ps397.destinology.ui.screen.onboarding.DestinologyOnboardingScreen
 import com.ch2_ps397.destinology.ui.screen.plan.DestinologyPlanDetailScreen
 import com.ch2_ps397.destinology.ui.screen.plan.DestinologyPlanScreen
 import com.ch2_ps397.destinology.ui.screen.plan.DestinologyTripDetailScreen
@@ -34,6 +35,9 @@ fun DestinologyNavigation() {
     ) {
         composable(DestinologyScreens.DestinologySplashScreen.name) {
             DestinologySplashScreen(navController = navController)
+        }
+        composable(DestinologyScreens.DestionologyOnboardingScreen.name) {
+            DestinologyOnboardingScreen(navController = navController)
         }
         composable(DestinologyScreens.DestinologyUserAuthScreen.name) {
             DestinologyUserAuthScreen(navController = navController)

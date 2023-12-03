@@ -2,6 +2,7 @@ package com.ch2_ps397.destinology.navigation
 
 enum class DestinologyScreens {
     DestinologySplashScreen,
+    DestionologyOnboardingScreen,
     DestinologyUserAuthScreen,
     DestinologyHomeScreen,
     DestinologyRecommendationScreen,
@@ -17,6 +18,7 @@ enum class DestinologyScreens {
         fun fromRoute(route: String) : DestinologyScreens =
             when( route.substringBefore("/")) {
                 DestinologySplashScreen.name -> DestinologySplashScreen
+                DestionologyOnboardingScreen.name -> DestionologyOnboardingScreen
                 DestinologyUserAuthScreen.name -> DestinologyUserAuthScreen
                 DestinologyHomeScreen.name -> DestinologyHomeScreen
                 DestinologyRecommendationScreen.name -> DestinologyRecommendationScreen
