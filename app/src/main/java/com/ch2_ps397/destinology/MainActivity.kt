@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
             DestinologyTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = VeryLightGray
+                    color = VeryLightGray,
                 ) {
                     DestinologyNavigation()
                 }
