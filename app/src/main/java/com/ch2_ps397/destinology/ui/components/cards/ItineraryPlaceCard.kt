@@ -1,7 +1,5 @@
 package com.ch2_ps397.destinology.ui.components.cards
 
-import android.widget.ImageButton
-import android.widget.Space
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -12,7 +10,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
@@ -26,7 +23,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ch2_ps397.destinology.ui.theme.Gray
-import com.ch2_ps397.destinology.ui.theme.LightGray
 import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
