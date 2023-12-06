@@ -3,8 +3,12 @@ package com.ch2_ps397.destinology.ui.components.button
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -20,7 +24,9 @@ fun Button(enabled: Boolean, text: String, onClick: () -> Unit) {
     Button(
         enabled = enabled,
         onClick = onClick,
-        modifier = Modifier.fillMaxWidth().height(48.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(48.dp),
         colors = ButtonDefaults.buttonColors(Orange),
         elevation = ButtonDefaults.buttonElevation(
             defaultElevation = 0.dp,
@@ -44,9 +50,27 @@ fun Button(enabled: Boolean, text: String, onClick: () -> Unit) {
     }
 }
 
+@Composable
+fun DestinologyFloatingButton(
+    content: @Composable () -> Unit,
+    onClick: () -> Unit
+) {
+    FloatingActionButton(
+        onClick = { onClick() },
+        modifier = Modifier
+            .widthIn(min = 48.dp)
+            .height(48.dp)
+        ,
+        containerColor = Orange,
+        contentColor = White,
+        content = content
+    )
+}
+
 @Preview
 @Composable
 fun PreviewButton() {
-    Button(enabled = false, text = "Generate") {
+    DestinologyFloatingButton(content = { Text(text = "Gunakan", Modifier.padding(16.dp)) }) {
+        
     }
 }

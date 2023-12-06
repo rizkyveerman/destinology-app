@@ -8,7 +8,7 @@ enum class DestinologyScreens {
     DestinologyRecommendationScreen,
     DestinologyPlanScreen,
     DestinologyPlanDetailScreen,
-    DestinologyTripDetailScreen,
+    DestinologyScanLandmarkScreen,
     DestinologyCommunityScreen,
     DestinologyCommunityPostDetailScreen,
     DestinologyUserProfileScreen,
@@ -24,7 +24,7 @@ enum class DestinologyScreens {
                 DestinologyRecommendationScreen.name -> DestinologyRecommendationScreen
                 DestinologyPlanScreen.name -> DestinologyPlanScreen
                 DestinologyPlanDetailScreen.name -> DestinologyPlanDetailScreen
-                DestinologyTripDetailScreen.name -> DestinologyTripDetailScreen
+                DestinologyScanLandmarkScreen.name -> DestinologyScanLandmarkScreen
                 DestinologyCommunityScreen.name -> DestinologyCommunityScreen
                 DestinologyCommunityPostDetailScreen.name -> DestinologyCommunityPostDetailScreen
                 DestinologyUserProfileScreen.name -> DestinologyUserProfileScreen
