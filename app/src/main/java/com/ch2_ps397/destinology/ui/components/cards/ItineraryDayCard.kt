@@ -28,7 +28,7 @@ fun ItineraryDayCard(isActive: Boolean, day: String, date: String, onClick: () -
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .widthIn(80.dp, 300.dp)
+            .width(80.dp)
             .height(80.dp)
             .clip(RoundedCornerShape(8.dp))
             .background(if (isActive) Orange else White)
