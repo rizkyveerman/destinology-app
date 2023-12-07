@@ -2,7 +2,7 @@ package com.ch2_ps397.destinology.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.ch2_ps397.destinology.repository.ItineraryRepository
+import com.ch2_ps397.destinology.core.data.repository.ItineraryRepository
 import com.ch2_ps397.destinology.ui.screen.camera.DestinologyCameraScreenViewModel
 
 class ViewModelFactory(

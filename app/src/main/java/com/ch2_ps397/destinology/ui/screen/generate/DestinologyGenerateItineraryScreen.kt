@@ -1,4 +1,4 @@
-package com.ch2_ps397.destinology.ui.screen.home
+package com.ch2_ps397.destinology.ui.screen.generate
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,7 +23,7 @@ import com.ch2_ps397.destinology.ui.components.imagery.ImageBackground
 import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
-fun DestinologyHomeScreen(navController: NavController) {
+fun DestinologyGenerateItineraryScreen(navController: NavController) {
     ImageBackground()
     Box(
         contentAlignment = Alignment.Center,
