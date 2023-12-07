@@ -41,7 +41,7 @@ import kotlinx.coroutines.launch
 fun DestinologyCameraScreen(
     navController: NavController,
     cameraXScreenViewModel: DestinologyCameraScreenViewModel = viewModel(
-        factory = ViewModelFactory(Injection.provideRepository())
+        factory = ViewModelFactory(Injection.provideRepository(LocalContext.current))
     )
 ) {
     val context = LocalContext.current
