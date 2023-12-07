@@ -44,7 +44,7 @@ fun BottomBarNavigation(
             DestinologyBottomNavigationItem(
                 title = "Scan",
                 icon = Icons.Rounded.AddCircle,
-                screen = DestinologyScreens.DestinologyScanLandmarkScreen
+                screen = DestinologyScreens.DestinologyCameraScreen
             ),
             DestinologyBottomNavigationItem(
                 title = "Community",

@@ -79,13 +79,13 @@ fun DestinologyRecommendationScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(vertical = 16.dp)
             ) {
-                ItineraryDayCard(isActive = true, "Day 1", "12 Des") {
+                ItineraryDayCard(isActive = (dayPlanState == 0), "Day 1", "12 Des") {
                     dayPlanState = 0
                 }
-                ItineraryDayCard(isActive = false, "Day 2", "13 Des") {                    dayPlanState = 0
+                ItineraryDayCard(isActive = (dayPlanState == 1), "Day 2", "13 Des") {                    dayPlanState = 0
                     dayPlanState = 1
                 }
-                ItineraryDayCard(isActive = false, "Day 3", "14 Des") {
+                ItineraryDayCard(isActive = (dayPlanState == 2), "Day 3", "14 Des") {
                     dayPlanState = 2
                 }
             }

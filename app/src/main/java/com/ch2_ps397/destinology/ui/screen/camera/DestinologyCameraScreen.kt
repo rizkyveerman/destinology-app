@@ -120,8 +120,8 @@ fun DestinologyCameraScreen(
                     contentAlignment = Alignment.Center,
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.baseline_photo_camera_24),
-                        contentDescription = "open camera"
+                        painter = painterResource(id = R.drawable.baseline_capture_24),
+                        contentDescription = "capture"
                     )
                 }
 
