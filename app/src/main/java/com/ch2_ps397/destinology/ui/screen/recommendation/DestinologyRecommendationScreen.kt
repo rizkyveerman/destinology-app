@@ -15,6 +15,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -30,6 +31,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.ch2_ps397.destinology.navigation.DestinologyScreens
+import com.ch2_ps397.destinology.ui.components.button.DestinologyFloatingButton
 import com.ch2_ps397.destinology.ui.components.cards.ItineraryDayCard
 import com.ch2_ps397.destinology.ui.components.cards.ItineraryPlaceCard
 import com.ch2_ps397.destinology.ui.theme.DarkGray
@@ -42,7 +45,6 @@ fun DestinologyRecommendationScreen(navController: NavController) {
     var dayPlanState by remember {
         mutableIntStateOf(0)
     }
-
     Scaffold(
         topBar = {
             TopAppBar(
@@ -55,6 +57,17 @@ fun DestinologyRecommendationScreen(navController: NavController) {
                 }
             )
         },
+        floatingActionButton = {
+                               DestinologyFloatingButton(
+                                   content = {
+                                       Text(text = "Gunakan", modifier = Modifier.padding(16.dp))
+                                   }
+                               ) {
+                                   //TODO save this plan to ROOM
+                                   navController.navigate(DestinologyScreens.DestinologyPlanScreen.name)
+                               }
+        },
+        floatingActionButtonPosition = FabPosition.End,
         modifier = Modifier.background(VeryLightGray)
     ) { innerPadding ->
         Column(
