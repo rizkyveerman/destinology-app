@@ -6,12 +6,12 @@ data class ItineraryResponse(
     @field:SerializedName("id")
     val id: String,
 
-    @field:SerializedName("id")
+    @field:SerializedName("name")
     val name: String,
 
-    @field:SerializedName("id")
+    @field:SerializedName("description")
     val description: String,
 
-    @field:SerializedName("id")
+    @field:SerializedName("address")
     val address: String,
 )
