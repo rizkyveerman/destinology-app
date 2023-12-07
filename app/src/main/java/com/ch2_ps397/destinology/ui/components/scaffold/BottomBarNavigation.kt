@@ -37,11 +37,6 @@ fun BottomBarNavigation(
     ) {
         val navigationItems = listOf(
             DestinologyBottomNavigationItem(
-                title = "Home",
-                icon = Icons.Default.Home,
-                screen = DestinologyScreens.DestinologyHomeScreen,
-            ),
-            DestinologyBottomNavigationItem(
                 title = "My Plan",
                 icon = Icons.Default.Search,
                 screen = DestinologyScreens.DestinologyPlanScreen

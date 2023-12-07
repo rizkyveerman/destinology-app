@@ -1,5 +1,7 @@
 package com.ch2_ps397.destinology.ui.screen.scan
 
+import android.app.Activity
+import android.content.pm.PackageManager
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -11,8 +13,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -20,9 +24,12 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import com.ch2_ps397.destinology.R
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
@@ -30,6 +37,25 @@ import com.ch2_ps397.destinology.navigation.DestinologyScreens
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DestinologyScanLandmarkScreen(navController: NavController) {
+    val context = LocalContext.current as Activity
+    val cameraXPermissions = arrayOf(
+        android.Manifest.permission.CAMERA,
+        android.Manifest.permission.RECORD_AUDIO
+    )
+
+    val requiredPermissions = cameraXPermissions.all {
+        ContextCompat.checkSelfPermission(
+            context.applicationContext,
+            it
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    if (!requiredPermissions) {
+        ActivityCompat.requestPermissions(
+            context, cameraXPermissions, 0
+        )
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(title = {  }, navigationIcon = { Image(
@@ -38,7 +64,6 @@ fun DestinologyScanLandmarkScreen(navController: NavController) {
             )})
         }
     ) { innerPadding ->
-
         Column(
             modifier = Modifier
                 .fillMaxSize()

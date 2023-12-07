@@ -4,7 +4,7 @@ enum class DestinologyScreens {
     DestinologySplashScreen,
     DestionologyOnboardingScreen,
     DestinologyUserAuthScreen,
-    DestinologyHomeScreen,
+    DestinologyGenerateItineraryScreen,
     DestinologyRecommendationScreen,
     DestinologyPlanScreen,
     DestinologyPlanDetailScreen,
@@ -21,7 +21,7 @@ enum class DestinologyScreens {
                 DestinologySplashScreen.name -> DestinologySplashScreen
                 DestionologyOnboardingScreen.name -> DestionologyOnboardingScreen
                 DestinologyUserAuthScreen.name -> DestinologyUserAuthScreen
-                DestinologyHomeScreen.name -> DestinologyHomeScreen
+                DestinologyGenerateItineraryScreen.name -> DestinologyGenerateItineraryScreen
                 DestinologyRecommendationScreen.name -> DestinologyRecommendationScreen
                 DestinologyPlanScreen.name -> DestinologyPlanScreen
                 DestinologyPlanDetailScreen.name -> DestinologyPlanDetailScreen
