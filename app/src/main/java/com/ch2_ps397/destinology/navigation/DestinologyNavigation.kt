@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.ch2_ps397.destinology.ui.screen.camera.DestinologyCameraScreen
 import com.ch2_ps397.destinology.ui.screen.community.DestinologyCommunityPostDetailScreen
 import com.ch2_ps397.destinology.ui.screen.community.DestinologyCommunityScreen
 import com.ch2_ps397.destinology.ui.screen.home.DestinologyHomeScreen
@@ -59,6 +60,9 @@ fun DestinologyNavigation() {
         }
         composable(DestinologyScreens.DestinologyScanLandmarkScreen.name) {
             DestinologyScanLandmarkScreen(navController = navController)
+        }
+        composable(DestinologyScreens.DestinologyCameraScreen.name) {
+            DestinologyCameraScreen(navController)
         }
         composable(DestinologyScreens.DestinologyCommunityScreen.name) {
             DestinologyCommunityScreen(navController = navController)
