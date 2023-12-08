@@ -1,5 +1,7 @@
 package com.ch2_ps397.destinology.ui.screen.camera
 
+import android.app.Activity
+import android.content.pm.PackageManager
 import androidx.camera.core.CameraSelector
 import androidx.camera.view.CameraController
 import androidx.camera.view.LifecycleCameraController
@@ -27,10 +29,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.ch2_ps397.destinology.R
 import com.ch2_ps397.destinology.core.di.Injection
+import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.ViewModelFactory
 import com.ch2_ps397.destinology.ui.components.camera.CameraPreview
 import com.ch2_ps397.destinology.ui.components.sheets.PhotoBottomSheetContent
@@ -44,8 +49,27 @@ fun DestinologyCameraScreen(
         factory = ViewModelFactory(Injection.provideRepository(LocalContext.current))
     )
 ) {
-    val context = LocalContext.current
     val scaffoldState = rememberBottomSheetScaffoldState()
+    val context = LocalContext.current as Activity
+    val cameraXPermissions = arrayOf(
+        android.Manifest.permission.CAMERA,
+        android.Manifest.permission.RECORD_AUDIO
+    )
+
+    val requiredPermissions = cameraXPermissions.all {
+        ContextCompat.checkSelfPermission(
+            context.applicationContext,
+            it
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    if (!requiredPermissions) {
+        ActivityCompat.requestPermissions(
+            context, cameraXPermissions, 0
+        )
+    }
+
+
     val controller = remember {
         LifecycleCameraController(context.applicationContext).apply {
             setEnabledUseCases(
@@ -114,8 +138,10 @@ fun DestinologyCameraScreen(
                             takePhoto(
                                 applicationContext = context.applicationContext,
                                 controller = controller,
-                                onPhotoTaken = cameraXScreenViewModel::onTakePhoto
-                            )
+                            ) { bitmap ->
+                                cameraXScreenViewModel.onTakePhoto(bitmap)
+                                navController.navigate(DestinologyScreens.ScanActivity.name)
+                            }
                         },
                     contentAlignment = Alignment.Center,
                 ) {

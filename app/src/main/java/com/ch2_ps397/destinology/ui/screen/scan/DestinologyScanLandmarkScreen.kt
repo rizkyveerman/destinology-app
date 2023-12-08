@@ -30,31 +30,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.ch2_ps397.destinology.R
+import com.ch2_ps397.destinology.core.di.Injection
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
+import com.ch2_ps397.destinology.ui.ViewModelFactory
+import com.ch2_ps397.destinology.ui.screen.camera.DestinologyCameraScreenViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DestinologyScanLandmarkScreen(navController: NavController) {
-    val context = LocalContext.current as Activity
-    val cameraXPermissions = arrayOf(
-        android.Manifest.permission.CAMERA,
-        android.Manifest.permission.RECORD_AUDIO
+fun DestinologyScanLandmarkScreen(
+    navController: NavController,
+    cameraXScreenViewModel: DestinologyCameraScreenViewModel = viewModel(
+        factory = ViewModelFactory(Injection.provideRepository(LocalContext.current))
     )
-
-    val requiredPermissions = cameraXPermissions.all {
-        ContextCompat.checkSelfPermission(
-            context.applicationContext,
-            it
-        ) == PackageManager.PERMISSION_GRANTED
-    }
-
-    if (!requiredPermissions) {
-        ActivityCompat.requestPermissions(
-            context, cameraXPermissions, 0
-        )
-    }
+) {
 
     Scaffold(
         topBar = {

@@ -11,7 +11,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
@@ -30,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -37,7 +40,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
+import com.ch2_ps397.destinology.ui.components.button.SmallButton
 import com.ch2_ps397.destinology.ui.components.scaffold.BottomBarNavigation
+import com.ch2_ps397.destinology.ui.theme.Black
 import com.ch2_ps397.destinology.ui.theme.DarkGray
 import com.ch2_ps397.destinology.ui.theme.Gray
 import com.ch2_ps397.destinology.ui.theme.VeryLightGray
@@ -74,14 +79,14 @@ fun DestinologyUserProfileScreen(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 32.dp)
+                    .padding(16.dp, 32.dp, 16.dp, 0.dp)
             ) {
                 AsyncImage(
-                    model = "https://unsplash.com/photos/man-in-black-button-up-shirt-ZHvM3XIOHoE",
+                    model = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fHww",
                     contentDescription = null,
                     modifier = Modifier
-                        .width(48.dp)
-                        .height(48.dp)
+                        .width(96.dp)
+                        .height(96.dp)
                         .clip(CircleShape)
                 )
                 Row(
@@ -93,46 +98,61 @@ fun DestinologyUserProfileScreen(navController: NavController) {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Text(text = "32", fontWeight = FontWeight.Bold, color = DarkGray)
-                        Text(text = "Post", fontSize = 12.sp, color = Gray)
+                        Text(
+                            text = "32",
+                            fontWeight = FontWeight.Bold,
+                            color = DarkGray,
+                            fontSize = 20.sp
+                        )
+                        Text(text = "Post", color = Gray)
                     }
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Text(text = "1300", fontWeight = FontWeight.Bold, color = DarkGray)
-                        Text(text = "Followers", fontSize = 12.sp, color = Gray)
+                        Text(
+                            text = "1300",
+                            fontWeight = FontWeight.Bold,
+                            color = DarkGray,
+                            fontSize = 20.sp
+                        )
+                        Text(text = "Followers", color = Gray)
                     }
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Text(text = "568", fontWeight = FontWeight.Bold, color = DarkGray)
-                        Text(text = "Following", fontSize = 12.sp, color = Gray)
+                        Text(
+                            text = "568",
+                            fontWeight = FontWeight.Bold,
+                            color = DarkGray,
+                            fontSize = 20.sp
+                        )
+                        Text(text = "Following", color = Gray)
                     }
                 }
             }
-            Button(
-                onClick = { /*TODO*/ },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
+            Column(
+                modifier = Modifier.padding(16.dp, 16.dp, 16.dp)
             ) {
-                Row {
-                    Image(imageVector = Icons.Default.Edit, contentDescription = "Edit profile")
-                    Spacer(modifier = Modifier.width(16.dp))
-                    Text(text = "Edit Profile")
+                SmallButton(text = "Edit profile") {
+
                 }
             }
             Column(
                 modifier = Modifier.padding(16.dp)
             ) {
-                Text(text = "Maharani Bahar")
+                Text(
+                    text = "Rizky F",
+                    fontWeight = FontWeight.Bold,
+                    color = Black
+                )
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Image(
                         imageVector = Icons.Default.Place,
                         contentDescription = "Address",
-                        colorFilter = ColorFilter.tint(Gray)
+                        colorFilter = ColorFilter.tint(Gray),
+                        modifier = Modifier.size(16.dp)
                     )
                     Text(
                         text = "Jakarta, Indonesia",
@@ -148,6 +168,21 @@ fun DestinologyUserProfileScreen(navController: NavController) {
                 )
             }
             Divider()
+            LazyColumn(
+                verticalArrangement = Arrangement.Center,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ) {
+                item {
+                    Text(
+                        text = "No post yet",
+                        fontWeight = FontWeight.Bold,
+                        color = Gray,
+                        textAlign = TextAlign.Center
+                    )
+                }
+            }   
         }
     }
 }

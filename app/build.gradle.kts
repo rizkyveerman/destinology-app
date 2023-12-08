@@ -52,6 +52,9 @@ android {
 dependencies {
 
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.10.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
 
     // Coroutine
