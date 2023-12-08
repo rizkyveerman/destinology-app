@@ -1,14 +1,9 @@
 package com.ch2_ps397.destinology.ui.screen.recommendation
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import androidx.datastore.dataStore
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ch2_ps397.destinology.core.data.repository.ItineraryRepository
-import com.ch2_ps397.destinology.core.data.source.remote.response.ItineraryResponse
 import com.ch2_ps397.destinology.core.model.MItinerary
 import com.ch2_ps397.destinology.core.utils.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
