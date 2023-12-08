@@ -10,10 +10,13 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.navigation.NavController
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.components.scaffold.BottomBarNavigation
 import com.ch2_ps397.destinology.ui.components.scaffold.DestinologySearchBar
+import com.ch2_ps397.destinology.ui.theme.Orange
+import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
 fun DestinologyPlanScreen(navController: NavController) {
@@ -25,11 +28,18 @@ fun DestinologyPlanScreen(navController: NavController) {
             BottomBarNavigation(navController = navController)
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = { navController.navigate(DestinologyScreens.DestinologyGenerateItineraryScreen.name) }) {
-                Row {
-                    Image(imageVector = Icons.Default.Add, contentDescription = "New itinerary")
-                    Text(text = "Plan Baru")
-                }
+            FloatingActionButton(
+                onClick = { navController.navigate(DestinologyScreens.DestinologyGenerateItineraryScreen.name) },
+                containerColor = Orange,
+                contentColor = White,
+            ) {
+                Image(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = "New itinerary",
+                    colorFilter = ColorFilter.tint(
+                        White
+                    )
+                )
             }
         }
     ) { paddingValues ->

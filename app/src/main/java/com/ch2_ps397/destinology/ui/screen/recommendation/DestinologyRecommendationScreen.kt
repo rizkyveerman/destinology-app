@@ -2,6 +2,7 @@ package com.ch2_ps397.destinology.ui.screen.recommendation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -52,7 +53,14 @@ fun DestinologyRecommendationScreen(navController: NavController) {
                 navigationIcon = {
                     Image(
                         contentDescription = "arrow back",
-                        imageVector = Icons.Default.ArrowBack
+                        imageVector = Icons.Default.ArrowBack,
+                        modifier = Modifier.clickable {
+                            navController.navigate(DestinologyScreens.DestinologyGenerateItineraryScreen.name) {
+                                popUpTo(navController.graph.id) {
+                                    inclusive = true
+                                }
+                            }
+                        }
                     )
                 }
             )
@@ -71,7 +79,7 @@ fun DestinologyRecommendationScreen(navController: NavController) {
         modifier = Modifier.background(VeryLightGray)
     ) { innerPadding ->
         Column(
-            modifier = Modifier.padding(innerPadding)
+            modifier = Modifier.background(VeryLightGray).padding(innerPadding)
         ) {
             Row(
                 horizontalArrangement = Arrangement.SpaceAround,
@@ -99,34 +107,77 @@ fun DestinologyRecommendationScreen(navController: NavController) {
                 Text(text = "Timeline", fontWeight = FontWeight.Bold, color = DarkGray)
                 Spacer(modifier = Modifier.height(24.dp))
 
-                LazyColumn(
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    for (i in 1..4) {
-                        item {
-                            Row(
-                                horizontalArrangement = Arrangement.SpaceBetween,
-                                verticalAlignment = Alignment.CenterVertically,
-                                modifier = Modifier.fillMaxWidth()
-                            ) {
-                                Text(text = "10.00 AM", color = Gray)
-                                Spacer(modifier = Modifier.width(8.dp))
-                                ItineraryPlaceCard(
-                                    title = "Museum Ulen Sentalu",
-                                    description = "Museum keren kalo mau liat patung Squidward bisa kesini.",
-                                    address = "Jl. Boyong KM.25 Kaliurang, Hargobinangun, Yogyakarta"
-                                )
+                when (dayPlanState) {
+                    0 -> {
+                        LazyColumn(
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            for (i in 1..4) {
+                                item {
+                                    Row(
+                                        horizontalArrangement = Arrangement.SpaceBetween,
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        modifier = Modifier.fillMaxWidth()
+                                    ) {
+                                        Text(text = "10.00 AM", color = Gray)
+                                        Spacer(modifier = Modifier.width(8.dp))
+                                        ItineraryPlaceCard(
+                                            title = "Museum Ulen Sentalu 1",
+                                            description = "Museum keren kalo mau liat patung Squidward bisa kesini.",
+                                            address = "Jl. Boyong KM.25 Kaliurang, Hargobinangun, Yogyakarta"
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    1 -> {
+                        LazyColumn(
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            for (i in 1..4) {
+                                item {
+                                    Row(
+                                        horizontalArrangement = Arrangement.SpaceBetween,
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        modifier = Modifier.fillMaxWidth()
+                                    ) {
+                                        Text(text = "10.00 AM", color = Gray)
+                                        Spacer(modifier = Modifier.width(8.dp))
+                                        ItineraryPlaceCard(
+                                            title = "Museum Ulen Sentalu 2",
+                                            description = "Museum keren kalo mau liat patung Squidward bisa kesini.",
+                                            address = "Jl. Boyong KM.25 Kaliurang, Hargobinangun, Yogyakarta"
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    2 -> {
+                        LazyColumn(
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            for (i in 1..4) {
+                                item {
+                                    Row(
+                                        horizontalArrangement = Arrangement.SpaceBetween,
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        modifier = Modifier.fillMaxWidth()
+                                    ) {
+                                        Text(text = "10.00 AM", color = Gray)
+                                        Spacer(modifier = Modifier.width(8.dp))
+                                        ItineraryPlaceCard(
+                                            title = "Museum Ulen Sentalu 3",
+                                            description = "Museum keren kalo mau liat patung Squidward bisa kesini.",
+                                            address = "Jl. Boyong KM.25 Kaliurang, Hargobinangun, Yogyakarta"
+                                        )
+                                    }
+                                }
                             }
                         }
                     }
                 }
-
-
-//                when (dayPlanState) {
-//                    0 -> Text(text = "Plan Day ${dayPlanState + 1}")
-//                    1 -> Text(text = "Plan Day ${dayPlanState + 1}")
-//                    2 -> Text(text = "Plan Day ${dayPlanState + 1}")
-//                }
             }
         }
     }

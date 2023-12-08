@@ -52,7 +52,11 @@ fun DestinologyOnboardingContent(navController: NavController) {
         )
         Spacer(modifier = Modifier.height(32.dp))
         Button(enabled = true, text = "Get Started") {
-            navController.navigate(DestinologyScreens.DestinologyGenerateItineraryScreen.name)
+            navController.navigate(DestinologyScreens.DestinologyGenerateItineraryScreen.name) {
+                popUpTo(navController.graph.id) {
+                    inclusive = true
+                }
+            }
         }
     }
 }
