@@ -2,22 +2,22 @@
 
 ## Project Overview
 
-Destinology is an innovative Android application designed to address Indonesia's Middle Income Trap challenge by leveraging technology to boost its tourism sector. The project focuses on answering the question: "How can innovation revitalize Indonesia's tourism for sustainable economic growth?" The solution is Destinology, a machine learning-based app for personalized travel planning, providing detailed destination information, landmark detection, and tailored recommendations to enhance tourist experiences. The goal is to drive long-term economic stability by transforming Indonesia's rich natural and cultural assets into sustainable economic drivers.
+Indonesia has a lot of potential with its tourism sector. There's a lot improvement that can be done and we come up with an app that can enhance user experience before and during travel. We conclude that itinerary planners that give recommendations based on user preferences are a suitable solution. During the travel, sometimes tourist stumble upon a landmark that peek their interest. It's hard to know what that landmark just by searching its physical features. To solve this problem, our app has a feature of landmark recognition and also gives a couple of fun fact about the recognized landmark.
 
-## Features
+## Project Scope
 
-### Machine Learning Path
+### Machine Learning
 
 - Utilizes TensorFlow for giving personalized recommendations on itinerary planners.
 - Employs machine learning models for landmark detection to enhance the tourist experience.
 
-### Cloud Computing Path
+### Cloud Computing
 
 - Implements a user registration and login system using APIs for authentication.
 - Stores and manages assets in Google Cloud Storage for efficient data handling.
 - Deploys machine learning models to the cloud for scalability and accessibility.
 
-### Mobile Development Path
+### Mobile Development
 
 - Designs & develops a user-friendly UI design for the Android application.
 - Implements the Android application using Kotlin, integrating all the features seamlessly.
