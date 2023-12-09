@@ -6,6 +6,10 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.rounded.AddCircle
+import androidx.compose.material.icons.twotone.AccountCircle
+import androidx.compose.material.icons.twotone.AddCircle
+import androidx.compose.material.icons.twotone.DateRange
+import androidx.compose.material.icons.twotone.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -38,22 +42,22 @@ fun BottomBarNavigation(
         val navigationItems = listOf(
             DestinologyBottomNavigationItem(
                 title = "My Plan",
-                icon = Icons.Default.Search,
+                icon = Icons.TwoTone.DateRange,
                 screen = DestinologyScreens.DestinologyPlanScreen
             ),
             DestinologyBottomNavigationItem(
                 title = "Scan",
-                icon = Icons.Rounded.AddCircle,
+                icon = Icons.TwoTone.AddCircle,
                 screen = DestinologyScreens.DestinologyCameraScreen
             ),
             DestinologyBottomNavigationItem(
                 title = "Community",
-                icon = Icons.Default.FavoriteBorder,
+                icon = Icons.TwoTone.Search,
                 screen = DestinologyScreens.DestinologyCommunityScreen
             ),
             DestinologyBottomNavigationItem(
                 title = "Profile",
-                icon = Icons.Default.Person,
+                icon = Icons.TwoTone.AccountCircle,
                 screen = DestinologyScreens.DestinologyUserProfileScreen
             ),
         )

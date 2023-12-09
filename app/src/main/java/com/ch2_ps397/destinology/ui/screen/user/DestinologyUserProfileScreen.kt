@@ -16,11 +16,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.Place
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.Button
+import androidx.compose.material.icons.twotone.Place
+import androidx.compose.material.icons.twotone.Settings
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -46,23 +43,27 @@ import com.ch2_ps397.destinology.ui.theme.Black
 import com.ch2_ps397.destinology.ui.theme.DarkGray
 import com.ch2_ps397.destinology.ui.theme.Gray
 import com.ch2_ps397.destinology.ui.theme.VeryLightGray
+import com.ch2_ps397.destinology.ui.theme.White
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DestinologyUserProfileScreen(navController: NavController) {
     Scaffold(
         topBar = {
-            TopAppBar(title = {
-                Text(text = "rizkyfirmansyah")
+            TopAppBar(
+                title = {
+                Text(text = "@rizkyfirmansyah")
             }, actions = {
                 Image(
-                    imageVector = Icons.Default.Settings,
+                    imageVector = Icons.TwoTone.Settings,
                     contentDescription = "Options",
                     modifier = Modifier.clickable {
                         navController.navigate(DestinologyScreens.DestinologySettingScreen.name)
                     }
                 )
-            })
+            },
+                modifier = Modifier.background(White)
+            )
         },
         bottomBar = {
             BottomBarNavigation(navController = navController)
@@ -71,7 +72,7 @@ fun DestinologyUserProfileScreen(navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(VeryLightGray)
+                .background(White)
                 .padding(innerPadding)
         ) {
             Row(
@@ -149,7 +150,7 @@ fun DestinologyUserProfileScreen(navController: NavController) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Image(
-                        imageVector = Icons.Default.Place,
+                        imageVector = Icons.TwoTone.Place,
                         contentDescription = "Address",
                         colorFilter = ColorFilter.tint(Gray),
                         modifier = Modifier.size(16.dp)
