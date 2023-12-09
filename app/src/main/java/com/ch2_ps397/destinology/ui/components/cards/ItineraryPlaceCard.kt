@@ -18,7 +18,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.twotone.Refresh
-import androidx.compose.material.icons.twotone.Share
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,8 +30,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ch2_ps397.destinology.ui.theme.Gray
-import com.ch2_ps397.destinology.ui.theme.Orange
-import com.ch2_ps397.destinology.ui.theme.OrangeLight
 import com.ch2_ps397.destinology.ui.theme.VeryLightGray
 import com.ch2_ps397.destinology.ui.theme.White
 

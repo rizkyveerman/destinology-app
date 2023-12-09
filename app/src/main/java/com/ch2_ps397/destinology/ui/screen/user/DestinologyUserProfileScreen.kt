@@ -42,7 +42,6 @@ import com.ch2_ps397.destinology.ui.components.scaffold.BottomBarNavigation
 import com.ch2_ps397.destinology.ui.theme.Black
 import com.ch2_ps397.destinology.ui.theme.DarkGray
 import com.ch2_ps397.destinology.ui.theme.Gray
-import com.ch2_ps397.destinology.ui.theme.VeryLightGray
 import com.ch2_ps397.destinology.ui.theme.White
 
 @OptIn(ExperimentalMaterial3Api::class)

@@ -18,7 +18,6 @@ import com.ch2_ps397.destinology.ui.screen.plan.DestinologyPlanDetailScreen
 import com.ch2_ps397.destinology.ui.screen.plan.DestinologyPlanScreen
 import com.ch2_ps397.destinology.ui.screen.recommendation.DestinologyRecommendationScreen
 import com.ch2_ps397.destinology.ui.screen.scan.DestinologyScanLandmarkScreen
-import com.ch2_ps397.destinology.ui.screen.scan.ScanActivity
 import com.ch2_ps397.destinology.ui.screen.setting.DestinologySettingScreen
 import com.ch2_ps397.destinology.ui.screen.splash.DestinologySplashScreen
 import com.ch2_ps397.destinology.ui.screen.user.DestinologyUserAuthScreen

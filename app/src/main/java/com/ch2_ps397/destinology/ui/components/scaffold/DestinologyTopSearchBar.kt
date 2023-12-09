@@ -15,7 +15,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,10 +28,8 @@ import androidx.compose.ui.semantics.isTraversalGroup
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.traversalIndex
 import androidx.compose.ui.unit.dp
-import com.ch2_ps397.destinology.ui.theme.Gray
 import com.ch2_ps397.destinology.ui.theme.LightGray
 import com.ch2_ps397.destinology.ui.theme.Orange
-import com.ch2_ps397.destinology.ui.theme.OrangeLight
 
 
 @OptIn(ExperimentalMaterial3Api::class)
