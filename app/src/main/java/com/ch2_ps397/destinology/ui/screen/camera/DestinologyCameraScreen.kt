@@ -140,7 +140,6 @@ fun DestinologyCameraScreen(
                                 controller = controller,
                             ) { bitmap ->
                                 cameraXScreenViewModel.onTakePhoto(bitmap)
-                                navController.navigate(DestinologyScreens.ScanActivity.name)
                             }
                         },
                     contentAlignment = Alignment.Center,

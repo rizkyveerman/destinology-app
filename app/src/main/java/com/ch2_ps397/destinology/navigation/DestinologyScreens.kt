@@ -9,8 +9,8 @@ enum class DestinologyScreens {
     DestinologyPlanScreen,
     DestinologyPlanDetailScreen,
     DestinologyScanLandmarkScreen,
-    ScanActivity,
     DestinologyCameraScreen,
+    DestinologyDiscoveryScreen,
     DestinologyCommunityScreen,
     DestinologyCommunityPostDetailScreen,
     DestinologyUserProfileScreen,
@@ -27,10 +27,10 @@ enum class DestinologyScreens {
                 DestinologyPlanScreen.name -> DestinologyPlanScreen
                 DestinologyPlanDetailScreen.name -> DestinologyPlanDetailScreen
                 DestinologyScanLandmarkScreen.name -> DestinologyScanLandmarkScreen
-                ScanActivity.name -> ScanActivity
                 DestinologyCameraScreen.name -> DestinologyCameraScreen
                 DestinologyCommunityScreen.name -> DestinologyCommunityScreen
                 DestinologyCommunityPostDetailScreen.name -> DestinologyCommunityPostDetailScreen
+                DestinologyDiscoveryScreen.name -> DestinologyDiscoveryScreen
                 DestinologyUserProfileScreen.name -> DestinologyUserProfileScreen
                 DestinologySettingScreen.name -> DestinologySettingScreen
                 else -> throw IllegalArgumentException("$route not recognized.")

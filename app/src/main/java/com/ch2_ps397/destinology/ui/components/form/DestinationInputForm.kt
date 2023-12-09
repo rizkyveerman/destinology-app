@@ -51,13 +51,6 @@ fun DestinationInputForm() {
         "Lombok"
     )
 
-    val modes = listOf(
-        "Alam",
-        "Tempat bersejarah",
-        "Pusat kota/urban",
-        "Tempat ibadah",
-    )
-
     Card(
         shape = RoundedCornerShape(corner = CornerSize(16.dp)),
         colors = CardDefaults.cardColors(White),
@@ -92,23 +85,6 @@ fun DestinationInputForm() {
             )
             Spacer(modifier = Modifier.height(12.dp))
             NumberInput()
-        }
-
-        Column(
-            modifier = Modifier
-                .background(White)
-                .padding(16.dp)
-        ) {
-            Text(
-                text = "Mode",
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier
-                    .background(White)
-            )
-            Spacer(modifier = Modifier.height(12.dp))
-            Dropdown(listOfItem = modes) {
-                
-            }
         }
 
         Column(modifier = Modifier

@@ -1,5 +1,7 @@
 package com.ch2_ps397.destinology.ui.components.scaffold
 
+import android.graphics.drawable.VectorDrawable
+import androidx.compose.foundation.Image
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Home
@@ -19,9 +21,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
+import com.ch2_ps397.destinology.R
+import com.ch2_ps397.destinology.R.*
 import com.ch2_ps397.destinology.navigation.DestinologyBottomNavigationItem
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
 
@@ -51,9 +58,9 @@ fun BottomBarNavigation(
                 screen = DestinologyScreens.DestinologyCameraScreen
             ),
             DestinologyBottomNavigationItem(
-                title = "Community",
+                title = "Discovery",
                 icon = Icons.TwoTone.Search,
-                screen = DestinologyScreens.DestinologyCommunityScreen
+                screen = DestinologyScreens.DestinologyDiscoveryScreen
             ),
             DestinologyBottomNavigationItem(
                 title = "Profile",
@@ -73,7 +80,7 @@ fun BottomBarNavigation(
                     }
                 },
                 icon = {
-                    Icon(imageVector = item.icon, contentDescription = item.title)
+                    Image(imageVector = item.icon, contentDescription = item.title)
                 },
                 colors = NavigationBarItemDefaults.colors(
                     indicatorColor = Color.Black,

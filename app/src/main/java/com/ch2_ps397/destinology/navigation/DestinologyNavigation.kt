@@ -11,6 +11,7 @@ import androidx.navigation.navArgument
 import com.ch2_ps397.destinology.ui.screen.camera.DestinologyCameraScreen
 import com.ch2_ps397.destinology.ui.screen.community.DestinologyCommunityPostDetailScreen
 import com.ch2_ps397.destinology.ui.screen.community.DestinologyCommunityScreen
+import com.ch2_ps397.destinology.ui.screen.discovery.DestinologyDiscoveryScreen
 import com.ch2_ps397.destinology.ui.screen.generate.DestinologyGenerateItineraryScreen
 import com.ch2_ps397.destinology.ui.screen.onboarding.DestinologyOnboardingScreen
 import com.ch2_ps397.destinology.ui.screen.plan.DestinologyPlanDetailScreen
@@ -59,8 +60,8 @@ fun DestinologyNavigation() {
         ) { navBackStackEntry ->
             DestinologyPlanDetailScreen(navController = navController, navBackStackEntry = navBackStackEntry.arguments?.getString("planId"))
         }
-        composable(DestinologyScreens.ScanActivity.name) {
-            ScanActivity()
+        composable(DestinologyScreens.DestinologyDiscoveryScreen.name) {
+            DestinologyDiscoveryScreen(navController)
         }
         composable(DestinologyScreens.DestinologyScanLandmarkScreen.name) {
             DestinologyScanLandmarkScreen(navController = navController)
