@@ -1,7 +1,6 @@
 package com.ch2_ps397.destinology.ui.components.scaffold
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.twotone.AccountCircle
 import androidx.compose.material.icons.twotone.AddCircle
@@ -15,17 +14,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.vector.DefaultTintColor
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.ch2_ps397.destinology.navigation.DestinologyBottomNavigationItem
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.theme.Black
-import com.ch2_ps397.destinology.ui.theme.Gray
 import com.ch2_ps397.destinology.ui.theme.LightGray
 import com.ch2_ps397.destinology.ui.theme.Orange
-import com.ch2_ps397.destinology.ui.theme.OrangeLight
 import com.ch2_ps397.destinology.ui.theme.White
 
 
