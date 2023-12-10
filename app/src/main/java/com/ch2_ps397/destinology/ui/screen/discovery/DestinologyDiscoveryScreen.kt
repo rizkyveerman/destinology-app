@@ -1,8 +1,11 @@
 package com.ch2_ps397.destinology.ui.screen.discovery
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,17 +14,28 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.ch2_ps397.destinology.R
 import com.ch2_ps397.destinology.ui.components.cards.DestinologyPlaceCard
 import com.ch2_ps397.destinology.ui.components.scaffold.DestinologyBottomBarNavigation
 import com.ch2_ps397.destinology.ui.components.scaffold.DestinologySearchBar
+import com.ch2_ps397.destinology.ui.theme.Black
+import com.ch2_ps397.destinology.ui.theme.Gray
+import com.ch2_ps397.destinology.ui.theme.LightGray
+import com.ch2_ps397.destinology.ui.theme.OrangeLight
 import com.ch2_ps397.destinology.ui.theme.VeryLightGray
 import com.ch2_ps397.destinology.ui.theme.White
 
@@ -29,20 +43,79 @@ import com.ch2_ps397.destinology.ui.theme.White
 fun DestinologyDiscoveryScreen(navController: NavController) {
     Scaffold(
         topBar = {
-            Column(
+            Box(
                 modifier = Modifier
-                    .background(White)
                     .padding(16.dp)
             ) {
-                Text(text = "Temukan", fontSize = 24.sp)
-                Text(text = "Destinasimu", fontWeight = FontWeight.Bold, fontSize = 32.sp)
-                DestinologySearchBar(onSearch = {})
+                Card(
+                    shape = RoundedCornerShape(16.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = White
+                    ),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .background(White)
+                            .padding(16.dp)
+                    ) {
+                        Text(text = "Hi, Lemon.", fontSize = 16.sp, color = Gray)
+                        Text(text = "Mari Menjelajah!", fontSize = 24.sp, color = Black)
+                        DestinologySearchBar(onSearch = {})
+                    }
+                }
             }
         },
         bottomBar = {
             DestinologyBottomBarNavigation(navController = navController)
         }
     ) { innerPadding ->
+        Row {
+            Column {
+                Card(
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .background(OrangeLight)
+                        .padding(16.dp)
+                ) {
+                    Image(painter = painterResource(id = R.drawable.random_dice), contentDescription = "Random place" )
+                }
+                Text(text = "Semua")
+            }
+            Column {
+                Card(
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .background(LightGray)
+                        .padding(16.dp)
+                ) {
+                    Image(painter = painterResource(id = R.drawable.culture), contentDescription = "Random place" )
+                }
+                Text(text = "Semua")
+            }
+            Column {
+                Card(
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .background(LightGray)
+                        .padding(16.dp)
+                ) {
+                    Image(painter = painterResource(id = R.drawable.urban), contentDescription = "Random place" )
+                }
+                Text(text = "Semua")
+            }
+            Column {
+                Card(
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .background(LightGray)
+                        .padding(16.dp)
+                ) {
+                    Image(painter = painterResource(id = R.drawable.forest), contentDescription = "Random place" )
+                }
+                Text(text = "Semua")
+            }
+        }
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()

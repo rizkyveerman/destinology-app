@@ -66,14 +66,14 @@ fun DestinologySearchBar(onSearch: (query: String) -> Unit) {
             )
         ) {
             LazyColumn(
-                contentPadding = PaddingValues(start = 16.dp, top = 72.dp, end = 16.dp, bottom = 16.dp),
+                contentPadding = PaddingValues(
+                    start = 16.dp,
+                    top = 72.dp,
+                    end = 16.dp,
+                    bottom = 16.dp
+                ),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                for (i in 1..6) {
-                    item { 
-                        Text(text = "Item $i")
-                    }
-                }
             }
         }
     }
