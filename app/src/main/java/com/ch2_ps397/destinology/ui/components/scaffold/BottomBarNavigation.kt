@@ -1,6 +1,7 @@
 package com.ch2_ps397.destinology.ui.components.scaffold
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.twotone.AccountCircle
 import androidx.compose.material.icons.twotone.AddCircle
@@ -13,16 +14,23 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.vector.DefaultTintColor
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.ch2_ps397.destinology.navigation.DestinologyBottomNavigationItem
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
+import com.ch2_ps397.destinology.ui.theme.Black
+import com.ch2_ps397.destinology.ui.theme.Gray
+import com.ch2_ps397.destinology.ui.theme.LightGray
+import com.ch2_ps397.destinology.ui.theme.Orange
+import com.ch2_ps397.destinology.ui.theme.OrangeLight
+import com.ch2_ps397.destinology.ui.theme.White
 
 
 @Composable
-fun BottomBarNavigation(
+fun DestinologyBottomBarNavigation(
     modifier: Modifier = Modifier,
     navController: NavController
 ) {
@@ -30,9 +38,6 @@ fun BottomBarNavigation(
     val currentRoute = navBackStackEntry?.destination?.route
 
     NavigationBar(
-        containerColor = Color.White,
-        contentColor = Color.Black,
-        modifier = modifier
     ) {
         val navigationItems = listOf(
             DestinologyBottomNavigationItem(
@@ -68,12 +73,16 @@ fun BottomBarNavigation(
                     }
                 },
                 icon = {
-                    Image(imageVector = item.icon, contentDescription = item.title)
+                    Image(
+                        imageVector = item.icon,
+                        contentDescription = item.title,
+                        colorFilter = ColorFilter.tint(Black)
+                    )
                 },
                 colors = NavigationBarItemDefaults.colors(
-                    indicatorColor = Color.Black,
-                    selectedIconColor = Color.White,
-                    unselectedIconColor = Color.Gray,
+                    indicatorColor = Orange,
+                    selectedIconColor = White,
+                    unselectedIconColor = LightGray,
                 ),
                 label = {
                     Text(text = item.title)

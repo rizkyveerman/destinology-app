@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.ch2_ps397.destinology.ui.components.cards.DestinologyPlaceCard
-import com.ch2_ps397.destinology.ui.components.scaffold.BottomBarNavigation
+import com.ch2_ps397.destinology.ui.components.scaffold.DestinologyBottomBarNavigation
 import com.ch2_ps397.destinology.ui.components.scaffold.DestinologySearchBar
 import com.ch2_ps397.destinology.ui.theme.VeryLightGray
 import com.ch2_ps397.destinology.ui.theme.White
@@ -40,7 +40,7 @@ fun DestinologyDiscoveryScreen(navController: NavController) {
             }
         },
         bottomBar = {
-            BottomBarNavigation(navController = navController)
+            DestinologyBottomBarNavigation(navController = navController)
         }
     ) { innerPadding ->
         LazyColumn(

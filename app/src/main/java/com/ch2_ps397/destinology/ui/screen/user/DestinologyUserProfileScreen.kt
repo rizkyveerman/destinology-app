@@ -38,7 +38,7 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.components.button.SmallButton
-import com.ch2_ps397.destinology.ui.components.scaffold.BottomBarNavigation
+import com.ch2_ps397.destinology.ui.components.scaffold.DestinologyBottomBarNavigation
 import com.ch2_ps397.destinology.ui.theme.Black
 import com.ch2_ps397.destinology.ui.theme.DarkGray
 import com.ch2_ps397.destinology.ui.theme.Gray
@@ -65,7 +65,7 @@ fun DestinologyUserProfileScreen(navController: NavController) {
             )
         },
         bottomBar = {
-            BottomBarNavigation(navController = navController)
+            DestinologyBottomBarNavigation(navController = navController)
         }
     ) { innerPadding ->
         Column(

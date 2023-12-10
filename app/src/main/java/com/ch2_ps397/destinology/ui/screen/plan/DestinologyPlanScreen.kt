@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
-import com.ch2_ps397.destinology.ui.components.scaffold.BottomBarNavigation
+import com.ch2_ps397.destinology.ui.components.scaffold.DestinologyBottomBarNavigation
 import com.ch2_ps397.destinology.ui.theme.LightGray
 import com.ch2_ps397.destinology.ui.theme.Orange
 import com.ch2_ps397.destinology.ui.theme.White
@@ -34,7 +34,7 @@ fun DestinologyPlanScreen(navController: NavController) {
             })
         },
         bottomBar = {
-            BottomBarNavigation(navController = navController)
+            DestinologyBottomBarNavigation(navController = navController)
         },
         floatingActionButton = {
             FloatingActionButton(
