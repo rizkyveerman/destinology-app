@@ -30,6 +30,8 @@ import androidx.compose.ui.semantics.traversalIndex
 import androidx.compose.ui.unit.dp
 import com.ch2_ps397.destinology.ui.theme.LightGray
 import com.ch2_ps397.destinology.ui.theme.Orange
+import com.ch2_ps397.destinology.ui.theme.VeryLightGray
+import com.ch2_ps397.destinology.ui.theme.White
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -42,11 +44,10 @@ fun DestinologySearchBar(onSearch: (query: String) -> Unit) {
     Box(
         Modifier
             .fillMaxWidth()
-            .background(Color.White)
             .semantics { isTraversalGroup = true }
-            .padding(16.dp)
     ) {
         SearchBar(
+            shape = RoundedCornerShape(16.dp),
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(16.dp))
@@ -65,7 +66,7 @@ fun DestinologySearchBar(onSearch: (query: String) -> Unit) {
             placeholder = { Text("Cari") },
             leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
             colors = SearchBarDefaults.colors(
-                containerColor = LightGray,
+                containerColor = VeryLightGray,
                 dividerColor = Orange,
             )
         ) {
