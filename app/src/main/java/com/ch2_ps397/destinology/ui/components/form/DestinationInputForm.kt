@@ -27,6 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ch2_ps397.destinology.ui.components.fields.Dropdown
 import com.ch2_ps397.destinology.ui.components.fields.NumberInput
+import com.ch2_ps397.destinology.ui.theme.Black
 import com.ch2_ps397.destinology.ui.theme.Orange
 import com.ch2_ps397.destinology.ui.theme.OrangeLight
 import com.ch2_ps397.destinology.ui.theme.White
@@ -35,10 +36,6 @@ import com.ch2_ps397.destinology.ui.theme.White
 fun DestinationInputForm() {
 
     var selectedCity by remember {
-        mutableStateOf("")
-    }
-
-    var selectedMode by remember {
         mutableStateOf("")
     }
 
@@ -63,6 +60,7 @@ fun DestinationInputForm() {
             Text(
                 text = "City",
                 fontWeight = FontWeight.Bold,
+                color = Black,
                 modifier = Modifier
                     .background(White)
             )
@@ -80,6 +78,7 @@ fun DestinationInputForm() {
             Text(
                 text = "Duration (days)",
                 fontWeight = FontWeight.Bold,
+                color = Black,
                 modifier = Modifier
                     .background(White)
             )
@@ -93,6 +92,7 @@ fun DestinationInputForm() {
             Text(
                 text = "Budget range",
                 fontWeight = FontWeight.Bold,
+                color = Black,
                 modifier = Modifier
                     .background(White)
             )
@@ -105,7 +105,7 @@ fun DestinationInputForm() {
 @Composable
 fun PriceRangeSlider() {
     var sliderPosition by remember { mutableFloatStateOf(1f) }
-    var budgetRangeInRupiah = sliderPosition.times(1000000)
+    val budgetRangeInRupiah = sliderPosition.times(1000000)
 
     val numberFormat = NumberFormat.getCurrencyInstance()
     numberFormat.maximumFractionDigits = 0
@@ -124,7 +124,10 @@ fun PriceRangeSlider() {
                 valueRange = 0f..5f
             )
         }
-        Text(text = numberFormat.format(budgetRangeInRupiah))
+        Text(
+            text = numberFormat.format(budgetRangeInRupiah),
+            color = Black,
+        )
     }
 }
 
