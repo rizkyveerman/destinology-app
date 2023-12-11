@@ -131,6 +131,33 @@ fun PriceRangeSlider() {
     }
 }
 
+
+@Composable
+fun RatingSlider() {
+    var sliderPosition by remember { mutableFloatStateOf(4f) }
+
+    Column {
+        Column {
+            Slider(
+                value = sliderPosition,
+                onValueChange = { sliderPosition = it },
+                colors = SliderDefaults.colors(
+                    thumbColor = Orange,
+                    activeTrackColor = Orange,
+                    inactiveTrackColor = OrangeLight,
+                ),
+                valueRange = 0f..5f,
+                steps = 5
+            )
+        }
+        Text(
+            text = "$sliderPosition bintang",
+            fontWeight = FontWeight.Bold,
+            color = Black,
+        )
+    }
+}
+
 @Preview
 @Composable
 fun PreviewDestinationInputForm() {
