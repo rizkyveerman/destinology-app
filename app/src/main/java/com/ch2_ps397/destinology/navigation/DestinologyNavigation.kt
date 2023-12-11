@@ -12,6 +12,7 @@ import com.ch2_ps397.destinology.ui.screen.camera.DestinologyCameraScreen
 import com.ch2_ps397.destinology.ui.screen.community.DestinologyCommunityPostDetailScreen
 import com.ch2_ps397.destinology.ui.screen.community.DestinologyCommunityScreen
 import com.ch2_ps397.destinology.ui.screen.discovery.DestinologyDiscoveryScreen
+import com.ch2_ps397.destinology.ui.screen.discovery.DestinologyPlaceDetailsScreen
 import com.ch2_ps397.destinology.ui.screen.generate.DestinologyGenerateItineraryScreen
 import com.ch2_ps397.destinology.ui.screen.onboarding.DestinologyOnboardingScreen
 import com.ch2_ps397.destinology.ui.screen.plan.DestinologyPlanDetailScreen
@@ -30,7 +31,6 @@ fun DestinologyNavigation() {
     NavHost(
         navController = navController,
         startDestination = DestinologyScreens.DestinologySplashScreen.name,
-        enterTransition = { EnterTransition.None},
         exitTransition = { ExitTransition.None},
         popEnterTransition = { EnterTransition.None},
         popExitTransition = { ExitTransition.None}
@@ -41,26 +41,48 @@ fun DestinologyNavigation() {
         composable(DestinologyScreens.DestionologyOnboardingScreen.name) {
             DestinologyOnboardingScreen(navController = navController)
         }
-        composable(DestinologyScreens.DestinologyUserAuthScreen.name) {
+        composable(
+            route = DestinologyScreens.DestinologyUserAuthScreen.name,
+        ) {
             DestinologyUserAuthScreen(navController = navController)
         }
-        composable(DestinologyScreens.DestinologyGenerateItineraryScreen.name) {
+        composable(
+            route = DestinologyScreens.DestinologyGenerateItineraryScreen.name,
+            enterTransition = { EnterTransition.None },
+            exitTransition = { ExitTransition.None }
+        ) {
             DestinologyGenerateItineraryScreen(navController = navController)
         }
-        composable(DestinologyScreens.DestinologyRecommendationScreen.name) {
+        composable(
+            route = DestinologyScreens.DestinologyRecommendationScreen.name
+        ) {
             DestinologyRecommendationScreen(navController = navController)
         }
-        composable(DestinologyScreens.DestinologyPlanScreen.name) {
+        composable(
+            route = DestinologyScreens.DestinologyPlanScreen.name,
+            enterTransition = { EnterTransition.None },
+            exitTransition = { ExitTransition.None }
+        ) {
             DestinologyPlanScreen(navController = navController)
         }
         composable(
-            "${DestinologyScreens.DestinologyPlanDetailScreen.name}/{planId}",
+            route = "${DestinologyScreens.DestinologyPlanDetailScreen.name}/{planId}",
             arguments = listOf(navArgument("planId") { type = NavType.StringType})
         ) { navBackStackEntry ->
             DestinologyPlanDetailScreen(navController = navController, navBackStackEntry = navBackStackEntry.arguments?.getString("planId"))
         }
-        composable(DestinologyScreens.DestinologyDiscoveryScreen.name) {
+        composable(
+            route = DestinologyScreens.DestinologyDiscoveryScreen.name,
+            enterTransition = { EnterTransition.None },
+            exitTransition = { ExitTransition.None }
+        ) {
             DestinologyDiscoveryScreen(navController)
+        }
+        composable(
+            "${DestinologyScreens.DestinologyPlaceDetailsScreen.name}/{placeId}",
+            arguments = listOf(navArgument("placeId") { type = NavType.StringType})
+        ) { navBackStackEntry ->
+            DestinologyPlaceDetailsScreen(navController = navController, navBackStackEntry = navBackStackEntry.arguments?.getString("planId"))
         }
         composable(DestinologyScreens.DestinologyScanLandmarkScreen.name) {
             DestinologyScanLandmarkScreen(navController = navController)
@@ -74,7 +96,11 @@ fun DestinologyNavigation() {
         composable(DestinologyScreens.DestinologyCommunityPostDetailScreen.name) {
             DestinologyCommunityPostDetailScreen(navController = navController)
         }
-        composable(DestinologyScreens.DestinologyUserProfileScreen.name) {
+        composable(
+            route = DestinologyScreens.DestinologyUserProfileScreen.name,
+            enterTransition = { EnterTransition.None },
+            exitTransition = { ExitTransition.None },
+        ) {
             DestinologyUserProfileScreen(navController = navController)
         }
         composable(DestinologyScreens.DestinologySettingScreen.name) {
