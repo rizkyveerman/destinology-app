@@ -88,7 +88,11 @@ fun DestinologyRecommendationScreen(
                     }
                 ) {
                     //TODO save this plan to ROOM
-                    navController.navigate(DestinologyScreens.DestinologyPlanScreen.name)
+                    navController.navigate(DestinologyScreens.DestinologyPlanScreen.name) {
+                        popUpTo(navController.graph.id) {
+                            inclusive = true
+                        }
+                    }
                 }
             },
             floatingActionButtonPosition = FabPosition.End,
