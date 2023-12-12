@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -18,6 +19,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.ch2_ps397.destinology.ui.theme.Orange
 import com.ch2_ps397.destinology.ui.theme.VeryLightGray
+import com.ch2_ps397.destinology.ui.theme.White
 
 
 @Composable
@@ -30,7 +32,7 @@ fun DestinologyTextInput(
     imeAction: ImeAction = ImeAction.Default,
     onActions: KeyboardActions = KeyboardActions.Default
 ) {
-    TextField(
+    OutlinedTextField(
         value = valueState.value,
         onValueChange = { valueState.value = it },
         label = { Text(text = labelId) },
@@ -40,7 +42,7 @@ fun DestinologyTextInput(
         keyboardActions = onActions,
         enabled = enabled,
         colors = TextFieldDefaults.colors(
-            focusedContainerColor = VeryLightGray,
+            focusedContainerColor = White,
             cursorColor = Orange,
             disabledContainerColor = VeryLightGray,
             errorContainerColor = Color.Red,

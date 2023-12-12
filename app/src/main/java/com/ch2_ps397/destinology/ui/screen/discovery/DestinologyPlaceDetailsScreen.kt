@@ -1,5 +1,6 @@
 package com.ch2_ps397.destinology.ui.screen.discovery
 
+import android.widget.ImageButton
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -19,17 +20,24 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.twotone.ExitToApp
 import androidx.compose.material.icons.twotone.Place
+import androidx.compose.material.icons.twotone.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.currentCompositionLocalContext
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -42,12 +50,17 @@ import com.ch2_ps397.destinology.ui.components.fields.DestinologyTextInput
 import com.ch2_ps397.destinology.ui.components.imagery.ImageBackground
 import com.ch2_ps397.destinology.ui.theme.Black
 import com.ch2_ps397.destinology.ui.theme.Gray
+import com.ch2_ps397.destinology.ui.theme.Orange
 import com.ch2_ps397.destinology.ui.theme.VeryLightGray
 import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
 fun DestinologyPlaceDetailsScreen(navController: NavController, navBackStackEntry: String?) {
-    val reviewComment= rememberSaveable { mutableStateOf("") }
+    val ratingStars = rememberSaveable { mutableIntStateOf(3) }
+    val reviewComment = rememberSaveable { mutableStateOf("") }
+    var showRatingialog by remember {
+        mutableStateOf(false)
+    }
 
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -61,43 +74,6 @@ fun DestinologyPlaceDetailsScreen(navController: NavController, navBackStackEntr
                     .fillMaxSize()
                     .padding(16.dp)
             ) {
-                Dialog(
-                    onDismissRequest = { /*TODO*/ },
-                    properties = DialogProperties(
-                        dismissOnBackPress = true,
-                        dismissOnClickOutside = true
-                    )
-                ) {
-                    Card(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                    ) {
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .background(White)
-                                .padding(16.dp),
-                        )  {
-                            Text(
-                                text = "Beri rating",
-                                fontWeight = FontWeight.Bold,
-                                modifier = Modifier.background(Color.Transparent)
-                            )
-                            Spacer(modifier = Modifier.height(16.dp))
-                            //TODO rating stars
-                            Spacer(modifier = Modifier.height(16.dp))
-                            DestinologyTextInput(
-                                valueState = reviewComment,
-                                labelId = "Komentar",
-                                enabled = true,
-                            )
-                            Spacer(modifier = Modifier.height(16.dp))
-                            Button(enabled = true, text = "Submit") {
-                                
-                            }
-                        }
-                    }
-                }
                 Card(
                     colors = CardDefaults.cardColors(
                         containerColor = White
@@ -161,7 +137,94 @@ fun DestinologyPlaceDetailsScreen(navController: NavController, navBackStackEntr
                 }
                 Spacer(modifier = Modifier.height(16.dp))
                 Button(enabled = true, text = "Beri rating") {
+                    showRatingialog = true
+                }
 
+                if (showRatingialog) {
+                    Dialog(
+                        onDismissRequest = { showRatingialog = false },
+                        properties = DialogProperties(
+                            dismissOnBackPress = true,
+                            dismissOnClickOutside = true
+                        )
+                    ) {
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                        ) {
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .background(White)
+                                    .padding(16.dp),
+                            )  {
+                                Text(
+                                    text = "Beri rating",
+                                    fontWeight = FontWeight.Bold,
+                                    modifier = Modifier.background(Color.Transparent)
+                                )
+                                Spacer(modifier = Modifier.height(16.dp))
+                                //TODO rating stars
+                                Row {
+                                    Image(
+                                        colorFilter = if (ratingStars.intValue >= 1) ColorFilter.tint(Orange) else ColorFilter.tint(
+                                            Gray) ,
+                                        imageVector = Icons.TwoTone.Star,
+                                        contentDescription = null,
+                                        modifier = Modifier.clickable {
+                                            ratingStars.intValue = 1
+                                        }
+                                    )
+                                    Image(
+                                        colorFilter = if (ratingStars.intValue >= 2) ColorFilter.tint(Orange) else ColorFilter.tint(
+                                            Gray) ,
+                                        imageVector = Icons.TwoTone.Star,
+                                        contentDescription = null,
+                                        modifier = Modifier.clickable {
+                                            ratingStars.intValue = 2
+                                        }
+                                    )
+                                    Image(
+                                        colorFilter = if (ratingStars.intValue >= 3) ColorFilter.tint(Orange) else ColorFilter.tint(
+                                            Gray) ,
+                                        imageVector = Icons.TwoTone.Star,
+                                        contentDescription = null,
+                                        modifier = Modifier.clickable {
+                                            ratingStars.intValue = 3
+                                        }
+                                    )
+                                    Image(
+                                        colorFilter = if (ratingStars.intValue >= 4) ColorFilter.tint(Orange) else ColorFilter.tint(
+                                            Gray) ,
+                                        imageVector = Icons.TwoTone.Star,
+                                        contentDescription = null,
+                                        modifier = Modifier.clickable {
+                                            ratingStars.intValue = 4
+                                        }
+                                    )
+                                    Image(
+                                        colorFilter = if (ratingStars.intValue >= 5) ColorFilter.tint(Orange) else ColorFilter.tint(
+                                            Gray) ,
+                                        imageVector = Icons.TwoTone.Star,
+                                        contentDescription = null,
+                                        modifier = Modifier.clickable {
+                                            ratingStars.intValue = 5
+                                        }
+                                    )
+                                }
+                                Spacer(modifier = Modifier.height(16.dp))
+                                DestinologyTextInput(
+                                    valueState = reviewComment,
+                                    labelId = "Beri komentar",
+                                    enabled = true,
+                                )
+                                Spacer(modifier = Modifier.height(16.dp))
+                                Button(enabled = true, text = "Submit") {
+                                    showRatingialog = false
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
