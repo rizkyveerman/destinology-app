@@ -15,19 +15,27 @@ class DestinologyRecommendationViewModel(
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    val itinerary = savedStateHandle.getStateFlow("itinerary", null)
-    private val _resource: MutableStateFlow<Resource<MItinerary>> = MutableStateFlow(Resource.Loading)
+    private val _resource: MutableStateFlow<Resource<MItinerary>> = MutableStateFlow(Resource.Idle)
     val resource: MutableStateFlow<Resource<MItinerary>> = _resource
+
+    //TODO delete this once you implement API connection
+    private val _dummyResource: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val dummyResource = _dummyResource
 
     fun generateNewItinerary() {
         viewModelScope.launch {
             itineraryRepository.generateNewItinerary()
                 .catch { cause ->
-                    _resource.value = Resource.Error(cause.message.toString())
+                    //TODO use this once you implement API connection
+//                    _resource.value = Resource.Error(cause.message.toString())
                 }
                 .collect { data ->
-                    savedStateHandle["itinerary"] = data
-                    _resource.value = Resource.Success(data)
+                    //TODO use this once you implement API connection
+//                    savedStateHandle["itinerary"] = data
+//                    _resource.value = Resource.Success(data)
+
+                    //TODO delete this once you implement API connection
+                    _dummyResource.value = true
                 }
         }
     }

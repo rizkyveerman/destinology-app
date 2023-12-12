@@ -13,7 +13,6 @@ import com.ch2_ps397.destinology.ui.screen.community.DestinologyCommunityPostDet
 import com.ch2_ps397.destinology.ui.screen.community.DestinologyCommunityScreen
 import com.ch2_ps397.destinology.ui.screen.discovery.DestinologyDiscoveryScreen
 import com.ch2_ps397.destinology.ui.screen.discovery.DestinologyPlaceDetailsScreen
-import com.ch2_ps397.destinology.ui.screen.generate.DestinologyGenerateItineraryScreen
 import com.ch2_ps397.destinology.ui.screen.onboarding.DestinologyOnboardingScreen
 import com.ch2_ps397.destinology.ui.screen.plan.DestinologyPlanDetailScreen
 import com.ch2_ps397.destinology.ui.screen.plan.DestinologyPlanScreen
@@ -45,13 +44,6 @@ fun DestinologyNavigation() {
             route = DestinologyScreens.DestinologyUserAuthScreen.name,
         ) {
             DestinologyUserAuthScreen(navController = navController)
-        }
-        composable(
-            route = DestinologyScreens.DestinologyGenerateItineraryScreen.name,
-            enterTransition = { EnterTransition.None },
-            exitTransition = { ExitTransition.None }
-        ) {
-            DestinologyGenerateItineraryScreen(navController = navController)
         }
         composable(
             route = DestinologyScreens.DestinologyRecommendationScreen.name

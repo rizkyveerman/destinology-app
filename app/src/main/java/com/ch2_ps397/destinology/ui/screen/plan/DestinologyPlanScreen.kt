@@ -40,7 +40,7 @@ fun DestinologyPlanScreen(navController: NavController) {
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { navController.navigate(DestinologyScreens.DestinologyGenerateItineraryScreen.name) },
+                onClick = { navController.navigate(DestinologyScreens.DestinologyRecommendationScreen.name) },
                 containerColor = Orange,
                 contentColor = White,
             ) {
