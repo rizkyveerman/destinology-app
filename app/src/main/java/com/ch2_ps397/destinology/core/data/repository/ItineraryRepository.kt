@@ -1,6 +1,5 @@
 package com.ch2_ps397.destinology.core.data.repository
 
-import androidx.compose.runtime.mutableStateOf
 import com.ch2_ps397.destinology.core.data.source.local.UserPreferences
 import com.ch2_ps397.destinology.core.data.source.remote.network.ApiService
 import com.ch2_ps397.destinology.core.data.source.remote.response.ItineraryResponse
@@ -10,7 +9,6 @@ import kotlinx.coroutines.flow.flowOf
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.awaitResponse
 
 class ItineraryRepository(
     private val token: String?,
@@ -24,7 +22,7 @@ class ItineraryRepository(
 
     fun getToken() = token
 
-    suspend fun getAllItinerary(token: String): Flow<List<MItinerary>>{
+    suspend fun getAllItinerary(): Flow<List<MItinerary>>{
         val client = apiService.getAllItinerary()
         client.clone().enqueue(object : Callback<ItineraryResponse> {
             override fun onResponse(

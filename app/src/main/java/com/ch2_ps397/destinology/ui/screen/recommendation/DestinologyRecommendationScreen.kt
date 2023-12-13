@@ -52,7 +52,10 @@ import com.ch2_ps397.destinology.ui.theme.White
 fun DestinologyRecommendationScreen(
     navController: NavController,
     destinologyRecommendationViewModel: DestinologyRecommendationViewModel = viewModel(
-        factory = ViewModelFactory(Injection.provideRepository(LocalContext.current))
+        factory = ViewModelFactory(
+            Injection.provideItineraryRepository(LocalContext.current),
+            Injection.provideLandmarkRepository(LocalContext.current)
+        )
     )
 ) {
 
