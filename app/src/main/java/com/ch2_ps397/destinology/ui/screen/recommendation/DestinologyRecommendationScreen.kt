@@ -64,8 +64,10 @@ fun DestinologyRecommendationScreen(
     }
 
     // TODO delete this once you implement API call
-    DestinologyGenerateItineraryScreen {
+    DestinologyGenerateItineraryScreen { city, duration, price ->
         generateForm = false
+
+        // TODO use API
     }
     // TODO delete this once you implement API call
     if (!generateForm) {
@@ -101,7 +103,22 @@ fun DestinologyRecommendationScreen(
 
 
 @Composable
-fun DestinologyGenerateItineraryScreen(onGenerate: () -> Unit) {
+fun DestinologyGenerateItineraryScreen(onGenerate: (
+    selectedCity: String,
+    selectedDuration: Int,
+    selectedPrice: String
+) -> Unit) {
+
+    var selectedCity by remember {
+        mutableStateOf("")
+    }
+    var selectedDuration by remember {
+        mutableIntStateOf(1)
+    }
+    var selectedPrice by remember {
+        mutableStateOf("100000")
+    }
+
     ImageBackground()
     Box(
         contentAlignment = Alignment.Center,
@@ -120,10 +137,19 @@ fun DestinologyGenerateItineraryScreen(onGenerate: () -> Unit) {
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(32.dp))
-            DestinationInputForm()
+            DestinationInputForm(
+                onCityChanged = {
+                    selectedCity = it
+                },
+                onDurationChanged = {
+                    selectedDuration = it
+                }
+            ) {
+                selectedPrice = it
+            }
             Spacer(modifier = Modifier.height(16.dp))
             Button(enabled = true, text = "Generate") {
-                onGenerate()
+                onGenerate(selectedCity, selectedDuration, selectedPrice)
             }
         }
     }

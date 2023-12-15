@@ -25,7 +25,7 @@ import com.ch2_ps397.destinology.ui.theme.LightGray
 import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
-fun NumberInput() {
+fun NumberInput(onChanged: (number: Int) -> Unit) {
     var number by remember {
         mutableIntStateOf(1)
     }
@@ -50,6 +50,7 @@ fun NumberInput() {
                 .clickable {
                     if (number > 1 ) {
                         number--
+                        onChanged(number)
                     }
                 }
             ) {
@@ -81,7 +82,10 @@ fun NumberInput() {
                 modifier = Modifier
                     .fillMaxSize()
                     .background(White)
-                    .clickable { number++ }
+                    .clickable {
+                        number++
+                        onChanged(number)
+                    }
             ) {
                 Text(text = "+")
             }
@@ -92,5 +96,7 @@ fun NumberInput() {
 @Preview
 @Composable
 fun PreviewNumberInput() {
-    NumberInput()
+    NumberInput {
+
+    }
 }
