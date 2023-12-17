@@ -18,10 +18,9 @@ class DestinologyRecommendationViewModel(
     private val _resource: MutableStateFlow<Resource<MItinerary>> = MutableStateFlow(Resource.Idle)
     val resource: MutableStateFlow<Resource<MItinerary>> = _resource
 
-
-    fun generateNewItinerary() {
+    fun generateNewItinerary(city: String, duration: String, budget: String) {
         viewModelScope.launch {
-            itineraryRepository.generateNewItinerary()
+            itineraryRepository.generateNewItinerary(city, duration, budget)
                 .catch { cause ->
                     _resource.value = Resource.Error(cause.message.toString())
                 }

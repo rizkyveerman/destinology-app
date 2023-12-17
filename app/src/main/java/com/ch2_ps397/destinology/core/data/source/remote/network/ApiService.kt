@@ -12,7 +12,7 @@ import retrofit2.http.Path
 
 interface ApiService {
     @GET("itinerary")
-    fun generateNewItinerary() : Call<ItineraryResponse>
+    fun generateNewItinerary(city: String, duration: String, budget: String) : Call<ItineraryResponse>
 
     @GET("itinerary")
     fun getAllItinerary() : Call<ItineraryResponse>

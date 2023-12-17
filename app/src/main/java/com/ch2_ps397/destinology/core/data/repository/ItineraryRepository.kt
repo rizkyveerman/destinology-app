@@ -49,8 +49,8 @@ class ItineraryRepository(
         return flowOf(itineraryList)
     }
 
-    suspend fun generateNewItinerary(): Flow<MItinerary> {
-        val client = apiService.generateNewItinerary()
+suspend fun generateNewItinerary(city: String, duration: String, budget: String): Flow<MItinerary> {
+        val client = apiService.generateNewItinerary(city, duration, budget)
         client.clone().enqueue(object : Callback<ItineraryResponse> {
             override fun onResponse(
                 call: Call<ItineraryResponse>,
@@ -69,7 +69,6 @@ class ItineraryRepository(
             override fun onFailure(call: Call<ItineraryResponse>, t: Throwable) {
 //                TODO("Not yet implemented")
             }
-
         })
         return  flowOf(newItinerary)
     }

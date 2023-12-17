@@ -64,8 +64,9 @@ fun DestinologyRecommendationScreen(
     }
 
     // TODO delete this once you implement API call
-    DestinologyGenerateItineraryScreen { city, duration, price ->
+    DestinologyGenerateItineraryScreen { city, duration, budget ->
         generateForm = false
+        destinologyRecommendationViewModel.generateNewItinerary(city, duration.toString(), budget)
 
         // TODO use API
     }
@@ -106,7 +107,7 @@ fun DestinologyRecommendationScreen(
 fun DestinologyGenerateItineraryScreen(onGenerate: (
     selectedCity: String,
     selectedDuration: Int,
-    selectedPrice: String
+    selectedBudget: String
 ) -> Unit) {
 
     var selectedCity by remember {
@@ -115,7 +116,7 @@ fun DestinologyGenerateItineraryScreen(onGenerate: (
     var selectedDuration by remember {
         mutableIntStateOf(1)
     }
-    var selectedPrice by remember {
+    var selectedBudget by remember {
         mutableStateOf("100000")
     }
 
@@ -145,11 +146,11 @@ fun DestinologyGenerateItineraryScreen(onGenerate: (
                     selectedDuration = it
                 }
             ) {
-                selectedPrice = it
+                selectedBudget = it
             }
             Spacer(modifier = Modifier.height(16.dp))
             Button(enabled = true, text = "Generate") {
-                onGenerate(selectedCity, selectedDuration, selectedPrice)
+                onGenerate(selectedCity, selectedDuration, selectedBudget)
             }
         }
     }
