@@ -12,17 +12,19 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ch2_ps397.destinology.ui.theme.Black
+import com.ch2_ps397.destinology.ui.theme.Gray
 import com.ch2_ps397.destinology.ui.theme.LightGray
 import com.ch2_ps397.destinology.ui.theme.Orange
 import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
-fun Button(enabled: Boolean, text: String, onClick: () -> Unit) {
+fun DestinologyPrimaryButton(enabled: Boolean, text: String, onClick: () -> Unit) {
     Button(
         enabled = enabled,
         onClick = onClick,
@@ -68,6 +70,39 @@ fun DestinologyFloatingButton(
         content = content
     )
 }
+
+
+@Composable
+fun DestinologyTransparentButton(enabled: Boolean, text: String, onClick: () -> Unit) {
+    Button(
+        enabled = enabled,
+        onClick = { onClick() },
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(min = 48.dp),
+        colors = ButtonDefaults.buttonColors(Color.Transparent),
+        elevation = ButtonDefaults.buttonElevation(
+            defaultElevation = 0.dp,
+            disabledElevation = 0.dp,
+            focusedElevation = 0.dp,
+            hoveredElevation = 0.dp,
+            pressedElevation = 0.dp
+        ),
+        contentPadding = PaddingValues(
+            vertical = 16.dp,
+            horizontal = 24.dp
+        ),
+
+        ) {
+        Text(
+            text = text,
+            fontWeight = FontWeight.Normal,
+            textAlign = TextAlign.Center,
+            color = Gray
+        )
+    }
+}
+
 
 @Composable
 fun SmallButton(text: String, onClick: () -> Unit) {

@@ -37,7 +37,7 @@ import androidx.navigation.compose.rememberNavController
 import com.ch2_ps397.destinology.core.di.Injection
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.ViewModelFactory
-import com.ch2_ps397.destinology.ui.components.button.Button
+import com.ch2_ps397.destinology.ui.components.button.DestinologyPrimaryButton
 import com.ch2_ps397.destinology.ui.components.button.DestinologyFloatingButton
 import com.ch2_ps397.destinology.ui.components.cards.ItineraryDayCard
 import com.ch2_ps397.destinology.ui.components.cards.ItineraryPlaceCard
@@ -155,7 +155,7 @@ fun DestinologyGenerateItineraryScreen(onGenerate: (
                 selectedBudget = it
             }
             Spacer(modifier = Modifier.height(16.dp))
-            Button(enabled = true, text = "Generate") {
+            DestinologyPrimaryButton(enabled = true, text = "Generate") {
                 onGenerate(selectedCity, selectedDuration, selectedBudget)
             }
         }

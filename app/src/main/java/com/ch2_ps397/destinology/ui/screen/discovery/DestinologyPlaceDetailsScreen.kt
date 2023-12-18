@@ -1,6 +1,5 @@
 package com.ch2_ps397.destinology.ui.screen.discovery
 
-import android.widget.ImageButton
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -25,7 +24,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.currentCompositionLocalContext
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -37,7 +35,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -45,7 +42,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.ch2_ps397.destinology.ui.components.button.Button
+import com.ch2_ps397.destinology.ui.components.button.DestinologyPrimaryButton
 import com.ch2_ps397.destinology.ui.components.fields.DestinologyTextInput
 import com.ch2_ps397.destinology.ui.components.imagery.ImageBackground
 import com.ch2_ps397.destinology.ui.theme.Black
@@ -136,7 +133,7 @@ fun DestinologyPlaceDetailsScreen(navController: NavController, navBackStackEntr
                     }
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                Button(enabled = true, text = "Beri rating") {
+                DestinologyPrimaryButton(enabled = true, text = "Beri rating") {
                     showRatingialog = true
                 }
 
@@ -219,7 +216,7 @@ fun DestinologyPlaceDetailsScreen(navController: NavController, navBackStackEntr
                                     enabled = true,
                                 )
                                 Spacer(modifier = Modifier.height(16.dp))
-                                Button(enabled = true, text = "Submit") {
+                                DestinologyPrimaryButton(enabled = true, text = "Submit") {
                                     showRatingialog = false
                                 }
                             }

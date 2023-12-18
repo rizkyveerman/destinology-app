@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
-import com.ch2_ps397.destinology.ui.components.button.Button
+import com.ch2_ps397.destinology.ui.components.button.DestinologyPrimaryButton
 import com.ch2_ps397.destinology.ui.components.imagery.ImageBackground
 
 @Composable
@@ -51,8 +51,8 @@ fun DestinologyOnboardingContent(navController: NavController) {
             lineHeight = 48.sp
         )
         Spacer(modifier = Modifier.height(32.dp))
-        Button(enabled = true, text = "Get Started") {
-            navController.navigate(DestinologyScreens.DestinologyRecommendationScreen.name) {
+        DestinologyPrimaryButton(enabled = true, text = "Get Started") {
+            navController.navigate(DestinologyScreens.DestinologyUserAuthScreen.name) {
                 popUpTo(navController.graph.id) {
                     inclusive = true
                 }

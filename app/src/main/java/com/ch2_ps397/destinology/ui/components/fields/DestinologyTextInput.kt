@@ -1,7 +1,6 @@
 package com.ch2_ps397.destinology.ui.components.fields
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,6 +23,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import com.ch2_ps397.destinology.ui.theme.Gray
 import com.ch2_ps397.destinology.ui.theme.Orange
 import com.ch2_ps397.destinology.ui.theme.OrangeLight
 import com.ch2_ps397.destinology.ui.theme.VeryLightGray
@@ -84,6 +84,7 @@ fun DestinologyPasswordInput(
     else PasswordVisualTransformation()
 
     TextField(
+        shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
         value = passwordState.value,
         onValueChange = { passwordState.value = it },
         label = { Text(text = labelId)},
@@ -97,7 +98,8 @@ fun DestinologyPasswordInput(
         keyboardActions = onAction,
         enabled = enabled,
         colors = TextFieldDefaults.colors(
-            focusedContainerColor = OrangeLight,
+            focusedLabelColor = Orange,
+            focusedContainerColor = White,
             cursorColor = Orange,
             disabledContainerColor = White,
             unfocusedContainerColor = White,
@@ -105,6 +107,8 @@ fun DestinologyPasswordInput(
                 backgroundColor = OrangeLight,
                 handleColor = Orange
             ),
+            unfocusedIndicatorColor = Gray,
+            focusedIndicatorColor = Orange
         ),
     )
 }
@@ -121,6 +125,7 @@ fun DestinologyTextInputFilled(
     onActions: KeyboardActions = KeyboardActions.Default,
 ) {
     TextField(
+        shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
         value = valueState.value,
         onValueChange = { valueState.value = it },
         label = { Text(text = labelId) },
@@ -129,7 +134,8 @@ fun DestinologyTextInputFilled(
         keyboardActions = onActions,
         enabled = enabled,
         colors = TextFieldDefaults.colors(
-            focusedContainerColor = OrangeLight,
+            focusedLabelColor = Orange,
+            focusedContainerColor = White,
             cursorColor = Orange,
             disabledContainerColor = White,
             unfocusedContainerColor = White,
@@ -137,6 +143,9 @@ fun DestinologyTextInputFilled(
                 backgroundColor = OrangeLight,
                 handleColor = Orange
             ),
+            unfocusedIndicatorColor = Gray,
+            focusedIndicatorColor = Orange
+
         ),
         modifier = modifier
             .fillMaxWidth()
