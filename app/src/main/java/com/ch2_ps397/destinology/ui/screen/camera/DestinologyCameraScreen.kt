@@ -55,8 +55,15 @@ fun DestinologyCameraScreen(
     navController: NavController,
     cameraXScreenViewModel: DestinologyCameraViewModel = viewModel(
         factory = ViewModelFactory(
-            Injection.provideItineraryRepository(LocalContext.current),
-            Injection.provideLandmarkRepository(LocalContext.current)
+            Injection.provideItineraryRepository(
+                LocalContext.current
+            ),
+            Injection.provideLandmarkRepository(
+                LocalContext.current
+            ),
+            Injection.provideUserRepository(
+                LocalContext.current
+            )
         )
     )
 ) {

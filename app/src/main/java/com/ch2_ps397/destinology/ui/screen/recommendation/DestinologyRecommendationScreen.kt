@@ -47,14 +47,20 @@ import com.ch2_ps397.destinology.ui.theme.Gray
 import com.ch2_ps397.destinology.ui.theme.VeryLightGray
 import com.ch2_ps397.destinology.ui.theme.White
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DestinologyRecommendationScreen(
     navController: NavController,
     destinologyRecommendationViewModel: DestinologyRecommendationViewModel = viewModel(
         factory = ViewModelFactory(
-            Injection.provideItineraryRepository(LocalContext.current),
-            Injection.provideLandmarkRepository(LocalContext.current)
+            Injection.provideItineraryRepository(
+                LocalContext.current
+            ),
+            Injection.provideLandmarkRepository(
+                LocalContext.current
+            ),
+            Injection.provideUserRepository(
+                LocalContext.current
+            )
         )
     )
 ) {

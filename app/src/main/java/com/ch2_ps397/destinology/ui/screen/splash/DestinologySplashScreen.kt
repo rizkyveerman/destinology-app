@@ -33,7 +33,7 @@ fun DestinologySplashScreen(navController: NavController) {
         LaunchedEffect(key1 = true) {
             delay(2000L)
 
-            navController.navigate(DestinologyScreens.DestionologyOnboardingScreen.name) {
+            navController.navigate(DestinologyScreens.DestinologyUserAuthScreen.name) {
                 popUpTo(navController.graph.id) {
                     inclusive = true
                 }
