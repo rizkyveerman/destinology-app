@@ -28,7 +28,6 @@ import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.ViewModelFactory
 import com.ch2_ps397.destinology.ui.components.button.DestinologyTransparentButton
 import com.ch2_ps397.destinology.ui.components.form.DestinologyLoginUserForm
-import com.ch2_ps397.destinology.ui.components.form.DestinoloyCreateAccountForm
 
 @Composable
 fun DestinologyUserLoginScreen(navController: NavController,
