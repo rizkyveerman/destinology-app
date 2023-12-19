@@ -1,5 +1,6 @@
 package com.ch2_ps397.destinology.ui.screen.splash
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -39,6 +40,7 @@ fun DestinologySplashScreen(
     )
 ) {
     splashViewModel.userToken.collectAsState().value.let { token ->
+        Log.d("TOKEN", "onResponse: $token")
         Box(
             modifier = Modifier
                 .fillMaxSize()

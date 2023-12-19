@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 class DestinologySplashViewModel(
     private val userRepository: UserRepository
 ): ViewModel() {
-    private val _userToken: MutableStateFlow<String?> = MutableStateFlow(null)
+    private val _userToken: MutableStateFlow<String?> = MutableStateFlow("")
     val userToken: MutableStateFlow<String?> = _userToken
 
     init {

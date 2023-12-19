@@ -1,5 +1,6 @@
 package com.ch2_ps397.destinology.ui.screen.recommendation
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,10 +16,10 @@ class DestinologyRecommendationViewModel(
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _resource: MutableStateFlow<Resource<MItinerary>> = MutableStateFlow(Resource.Idle)
-    val resource: MutableStateFlow<Resource<MItinerary>> = _resource
+    private val _resource: MutableStateFlow<Resource<List<MItinerary>>> = MutableStateFlow(Resource.Idle)
+    val resource: MutableStateFlow<Resource<List<MItinerary>>> = _resource
 
-    fun generateNewItinerary(city: String, duration: String, budget: String) {
+    fun generateNewItinerary(city: String, duration: Int, budget: Int) {
         viewModelScope.launch {
             itineraryRepository.generateNewItinerary(city, duration, budget)
                 .catch { cause ->

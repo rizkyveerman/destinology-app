@@ -1,10 +1,15 @@
 package com.ch2_ps397.destinology.core.model
 
-import com.google.gson.annotations.SerializedName
-
 data class MItinerary (
-    var id: String = "",
-    var name: String = "",
-    var description: String = "",
-    var address: String = "",
+    val placeName: String,
+    val price: Int,
+    val rating: Float,
+    val category: String,
+    val day: Int
+)
+
+data class MGenerateItinerary (
+    val city: String = "Yogyakarta",
+    val n_days: Int = 1,
+    val max_budget: Int = 150000
 )

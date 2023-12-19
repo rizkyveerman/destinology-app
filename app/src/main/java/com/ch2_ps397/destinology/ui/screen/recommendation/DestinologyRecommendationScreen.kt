@@ -18,10 +18,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,6 +37,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.ch2_ps397.destinology.core.di.Injection
+import com.ch2_ps397.destinology.core.utils.Resource
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.ViewModelFactory
 import com.ch2_ps397.destinology.ui.components.button.DestinologyFloatingButton
@@ -64,66 +67,46 @@ fun DestinologyRecommendationScreen(
         )
     )
 ) {
+    destinologyRecommendationViewModel
+        .resource.collectAsState(initial = Resource.Loading)
+        .value.let { resource ->
+            when(resource) {
+                is Resource.Idle -> {
+                    DestinologyGenerateItineraryScreen { city, duration, budget ->
+                        destinologyRecommendationViewModel.generateNewItinerary(city, duration, budget)
+                    }
+                }
+                is Resource.Loading -> {
 
-    var generateForm by remember {
-        mutableStateOf(true)
+                }
+                is Resource.Success -> {
+                    DestinologySucessRecommend(navController)
+                }
+                is Resource.Error -> {
+                    Text(text = resource.message)
+                }
+            }
+
     }
-
-    // TODO delete this once you implement API call
-    DestinologyGenerateItineraryScreen { city, duration, budget ->
-        generateForm = false
-        destinologyRecommendationViewModel.generateNewItinerary(city, duration.toString(), budget)
-
-        // TODO use API
-    }
-    // TODO delete this once you implement API call
-    if (!generateForm) {
-        DestinologySucessRecommend(navController)
-    }
-
-    // TODO uncomment this once you implement API call
-//    destinologyRecommendationViewModel
-//        .resource.collectAsState(initial = Resource.Loading)
-//        .value.let { resource ->
-//
-//            when(resource) {
-//                is Resource.Idle -> {
-//                    DestinologyGenerateItineraryScreen {
-//                        destinologyRecommendationViewModel.generateNewItinerary()
-//                    }
-//                }
-//
-//                is Resource.Loading -> {
-//
-//                }
-//
-//                is Resource.Success -> {
-//                    DestinologySucessRecommend(navController)
-//                }
-//                is Resource.Error -> {
-//                    Text(text = resource.message)
-//                }
-//            }
-//
-//    }
 }
 
 
 @Composable
-fun DestinologyGenerateItineraryScreen(onGenerate: (
+fun DestinologyGenerateItineraryScreen(
+    onGenerate: (
     selectedCity: String,
     selectedDuration: Int,
-    selectedBudget: String
+    selectedBudget: Int
 ) -> Unit) {
 
-    var selectedCity by remember {
-        mutableStateOf("")
+    var selectedCity by rememberSaveable {
+        mutableStateOf("Yogyakarta")
     }
-    var selectedDuration by remember {
+    var selectedDuration by rememberSaveable {
         mutableIntStateOf(1)
     }
-    var selectedBudget by remember {
-        mutableStateOf("100000")
+    var selectedBudget by rememberSaveable {
+        mutableIntStateOf(100000)
     }
 
     ImageBackground()
@@ -147,13 +130,15 @@ fun DestinologyGenerateItineraryScreen(onGenerate: (
             DestinationInputForm(
                 onCityChanged = {
                     selectedCity = it
+
                 },
                 onDurationChanged = {
                     selectedDuration = it
+                },
+                {
+                    selectedBudget = it
                 }
-            ) {
-                selectedBudget = it
-            }
+            )
             Spacer(modifier = Modifier.height(16.dp))
             DestinologyPrimaryButton(enabled = true, text = "Generate") {
                 onGenerate(selectedCity, selectedDuration, selectedBudget)

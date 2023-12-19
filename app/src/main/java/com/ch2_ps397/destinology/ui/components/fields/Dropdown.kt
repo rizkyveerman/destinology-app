@@ -30,7 +30,7 @@ import com.ch2_ps397.destinology.ui.theme.LightGray
 import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
-fun Dropdown(listOfItem: List<Any>, onSelect: () -> Unit) {
+fun Dropdown(listOfItem: List<Any>, onSelect: (selectedCity: String) -> Unit) {
     var dropdownState by remember {
         mutableStateOf(false)
     }
@@ -79,7 +79,7 @@ fun Dropdown(listOfItem: List<Any>, onSelect: () -> Unit) {
                     onClick = {
                         dropdownState = false
                         item = i.toString()
-                        onSelect()
+                        onSelect(i.toString())
                     },
                 )
             }

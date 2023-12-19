@@ -35,6 +35,7 @@ import com.ch2_ps397.destinology.ui.ViewModelFactory
 import com.ch2_ps397.destinology.ui.components.button.DestinologyTransparentButton
 import com.ch2_ps397.destinology.ui.components.form.DestinoloyCreateAccountForm
 import com.ch2_ps397.destinology.ui.theme.White
+import kotlinx.coroutines.delay
 
 @Composable
 fun DestinologyUserCreateAccountScreen(navController: NavController,

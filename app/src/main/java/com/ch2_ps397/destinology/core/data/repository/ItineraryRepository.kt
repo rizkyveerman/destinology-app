@@ -1,8 +1,11 @@
 package com.ch2_ps397.destinology.core.data.repository
 
+import android.util.Log
 import com.ch2_ps397.destinology.core.data.source.local.UserPreferences
 import com.ch2_ps397.destinology.core.data.source.remote.network.ApiService
-import com.ch2_ps397.destinology.core.data.source.remote.response.ItineraryResponse
+import com.ch2_ps397.destinology.core.data.source.remote.response.GenerateItineraryResponse
+import com.ch2_ps397.destinology.core.data.source.remote.response.ItineraryItem
+import com.ch2_ps397.destinology.core.model.MGenerateItinerary
 import com.ch2_ps397.destinology.core.model.MItinerary
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
@@ -17,84 +20,23 @@ class ItineraryRepository(
 ) {
 
     private val itineraryList = mutableListOf<MItinerary>()
-    private var itineraryDetails = MItinerary()
-    private var newItinerary = MItinerary()
 
-    fun getToken() = token
+    suspend fun generateNewItinerary(city: String, duration: Int, budget: Int): Flow<List<MItinerary>> {
+        val generateItinerary = MGenerateItinerary(city, duration, budget)
+        val client = apiService.generateNewItinerary(generateItinerary)
 
-    suspend fun getAllItinerary(): Flow<List<MItinerary>>{
-        val client = apiService.getAllItinerary()
-        client.clone().enqueue(object : Callback<ItineraryResponse> {
-            override fun onResponse(
-                call: Call<ItineraryResponse>,
-                response: Response<ItineraryResponse>
-            ) {
-                if (response.isSuccessful) {
-                    itineraryList.add(
-                        MItinerary(
-                            id = response.body()?.id!!,
-                            name = response.body()?.name!!,
-                            description = response.body()?.description!!,
-                            address = response.body()?.address!!,
-                        )
-                    )
-                }
-            }
-
-            override fun onFailure(call: Call<ItineraryResponse>, t: Throwable) {
-//                TODO("Not yet implemented")
-            }
-        })
-
-        return flowOf(itineraryList)
-    }
-
-suspend fun generateNewItinerary(city: String, duration: String, budget: String): Flow<MItinerary> {
-        val client = apiService.generateNewItinerary(city, duration, budget)
-        client.clone().enqueue(object : Callback<ItineraryResponse> {
-            override fun onResponse(
-                call: Call<ItineraryResponse>,
-                response: Response<ItineraryResponse>
-            ) {
-                if (response.isSuccessful) {
-                    newItinerary = MItinerary(
-                        id = response.body()?.id!!,
-                        name = response.body()?.name!!,
-                        description = response.body()?.description!!,
-                        address = response.body()?.address!!,
-                    )
-                }
-            }
-
-            override fun onFailure(call: Call<ItineraryResponse>, t: Throwable) {
-//                TODO("Not yet implemented")
-            }
-        })
-        return  flowOf(newItinerary)
-    }
-
-    suspend fun getItineraryDetail(id:String): Flow<MItinerary> {
-        val client = apiService.getItinerary(id)
-        client.clone().enqueue(object : Callback<ItineraryResponse> {
-            override fun onResponse(
-                call: Call<ItineraryResponse>,
-                response: Response<ItineraryResponse>
-            ) {
-                if (response.isSuccessful) {
-                    itineraryDetails = MItinerary(
-                        id = response.body()?.id!!,
-                        name = response.body()?.name!!,
-                        description = response.body()?.description!!,
-                        address = response.body()?.address!!,
-                    )
-                }
-            }
-
-            override fun onFailure(call: Call<ItineraryResponse>, t: Throwable) {
-//                TODO("Not yet implemented")
-            }
-        })
-
-        return flowOf(itineraryDetails)
+        client.itinerary.map {
+            itineraryItem ->
+            itineraryList.add(
+                MItinerary(
+                placeName = itineraryItem.placeName,
+                category = itineraryItem.category,
+                day = itineraryItem.day,
+                rating = itineraryItem.rating.toFloat(),
+                price = itineraryItem.price,
+            )
+            )
+        }
+        return  flowOf(itineraryList)
     }
 }

@@ -18,8 +18,8 @@ class UserRepository(
     private val apiService: ApiService,
     private val userPreferences: UserPreferences
 ) {
-    fun getUserToken() : String {
-        return token!!
+    fun getUserToken() : String? {
+        return token
     }
     suspend fun createAccountUser(
         email: String,
