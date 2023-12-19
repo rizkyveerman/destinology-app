@@ -3,7 +3,8 @@ package com.ch2_ps397.destinology.navigation
 enum class DestinologyScreens {
     DestinologySplashScreen,
     DestionologyOnboardingScreen,
-    DestinologyUserAuthScreen,
+    DestinologyUserCreateAccountScreen,
+    DestinologyUserLoginScreen,
     DestinologyRecommendationScreen,
     DestinologyPlanScreen,
     DestinologyPlanDetailScreen,
@@ -21,7 +22,8 @@ enum class DestinologyScreens {
             when( route.substringBefore("/")) {
                 DestinologySplashScreen.name -> DestinologySplashScreen
                 DestionologyOnboardingScreen.name -> DestionologyOnboardingScreen
-                DestinologyUserAuthScreen.name -> DestinologyUserAuthScreen
+                DestinologyUserCreateAccountScreen.name -> DestinologyUserCreateAccountScreen
+                DestinologyUserLoginScreen.name -> DestinologyUserLoginScreen
                 DestinologyRecommendationScreen.name -> DestinologyRecommendationScreen
                 DestinologyPlanScreen.name -> DestinologyPlanScreen
                 DestinologyPlanDetailScreen.name -> DestinologyPlanDetailScreen

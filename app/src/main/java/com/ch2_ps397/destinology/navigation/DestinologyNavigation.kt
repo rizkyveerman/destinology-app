@@ -20,7 +20,8 @@ import com.ch2_ps397.destinology.ui.screen.recommendation.DestinologyRecommendat
 import com.ch2_ps397.destinology.ui.screen.scan.DestinologyScanLandmarkScreen
 import com.ch2_ps397.destinology.ui.screen.setting.DestinologySettingScreen
 import com.ch2_ps397.destinology.ui.screen.splash.DestinologySplashScreen
-import com.ch2_ps397.destinology.ui.screen.user.DestinologyUserAuthScreen
+import com.ch2_ps397.destinology.ui.screen.user.DestinologyUserCreateAccountScreen
+import com.ch2_ps397.destinology.ui.screen.user.DestinologyUserLoginScreen
 import com.ch2_ps397.destinology.ui.screen.user.DestinologyUserProfileScreen
 
 @Composable
@@ -41,9 +42,14 @@ fun DestinologyNavigation() {
             DestinologyOnboardingScreen(navController = navController)
         }
         composable(
-            route = DestinologyScreens.DestinologyUserAuthScreen.name,
+            route = DestinologyScreens.DestinologyUserCreateAccountScreen.name,
         ) {
-            DestinologyUserAuthScreen(navController = navController)
+            DestinologyUserCreateAccountScreen(navController = navController)
+        }
+        composable(
+            route = DestinologyScreens.DestinologyUserLoginScreen.name,
+        ) {
+            DestinologyUserLoginScreen(navController = navController)
         }
         composable(
             route = DestinologyScreens.DestinologyRecommendationScreen.name

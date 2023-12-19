@@ -37,8 +37,8 @@ import androidx.navigation.compose.rememberNavController
 import com.ch2_ps397.destinology.core.di.Injection
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.ViewModelFactory
-import com.ch2_ps397.destinology.ui.components.button.DestinologyPrimaryButton
 import com.ch2_ps397.destinology.ui.components.button.DestinologyFloatingButton
+import com.ch2_ps397.destinology.ui.components.button.DestinologyPrimaryButton
 import com.ch2_ps397.destinology.ui.components.cards.ItineraryDayCard
 import com.ch2_ps397.destinology.ui.components.cards.ItineraryPlaceCard
 import com.ch2_ps397.destinology.ui.components.form.DestinationInputForm

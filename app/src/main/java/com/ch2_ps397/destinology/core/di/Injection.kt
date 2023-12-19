@@ -29,6 +29,6 @@ object Injection {
         val userPreferences = UserPreferences.getInstance(context.dataStore)
         val token = runBlocking { userPreferences.getToken().firstOrNull() }
         val apiService = runBlocking { ApiConfig.getApiService(token) }
-        return UserRepository(token, apiService)
+        return UserRepository(token, apiService, userPreferences)
     }
 }

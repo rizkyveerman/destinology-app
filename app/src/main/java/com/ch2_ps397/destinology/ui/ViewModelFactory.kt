@@ -8,6 +8,7 @@ import com.ch2_ps397.destinology.core.data.repository.LandmarkRepository
 import com.ch2_ps397.destinology.core.data.repository.UserRepository
 import com.ch2_ps397.destinology.ui.screen.camera.DestinologyCameraViewModel
 import com.ch2_ps397.destinology.ui.screen.recommendation.DestinologyRecommendationViewModel
+import com.ch2_ps397.destinology.ui.screen.splash.DestinologySplashViewModel
 import com.ch2_ps397.destinology.ui.screen.user.DestinologyUserAuthViewModel
 
 class ViewModelFactory(
@@ -23,6 +24,8 @@ class ViewModelFactory(
             return DestinologyRecommendationViewModel(itineraryRepository, savedStateHandle = SavedStateHandle()) as T
         } else if(modelClass.isAssignableFrom(DestinologyUserAuthViewModel::class.java)) {
             return DestinologyUserAuthViewModel(userRepository) as T
+        } else if(modelClass.isAssignableFrom(DestinologySplashViewModel::class.java)) {
+            return DestinologySplashViewModel(userRepository) as T
         }
 
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

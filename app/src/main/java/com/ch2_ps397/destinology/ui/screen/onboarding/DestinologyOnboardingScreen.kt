@@ -14,11 +14,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.components.button.DestinologyPrimaryButton
 import com.ch2_ps397.destinology.ui.components.imagery.ImageBackground
@@ -52,23 +50,11 @@ fun DestinologyOnboardingContent(navController: NavController) {
         )
         Spacer(modifier = Modifier.height(32.dp))
         DestinologyPrimaryButton(enabled = true, text = "Get Started") {
-            navController.navigate(DestinologyScreens.DestinologyUserAuthScreen.name) {
+            navController.navigate(DestinologyScreens.DestinologyUserLoginScreen.name) {
                 popUpTo(navController.graph.id) {
                     inclusive = true
                 }
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun PreviewDestinologyOnboardingScreen() {
-    DestinologyOnboardingScreen(navController = rememberNavController())
-}
-
-@Preview
-@Composable
-fun PreviewDestinologyOnboardingContent() {
-    DestinologyOnboardingContent(navController = rememberNavController())
 }
