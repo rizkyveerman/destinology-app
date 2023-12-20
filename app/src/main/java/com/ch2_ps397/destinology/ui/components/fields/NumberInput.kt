@@ -27,7 +27,7 @@ import com.ch2_ps397.destinology.ui.theme.White
 @Composable
 fun NumberInput(onChanged: (number: Int) -> Unit) {
     var number by remember {
-        mutableIntStateOf(1)
+        mutableIntStateOf(3)
     }
 
     Row(
@@ -83,7 +83,10 @@ fun NumberInput(onChanged: (number: Int) -> Unit) {
                     .fillMaxSize()
                     .background(White)
                     .clickable {
-                        number++
+                        if (number < 3 ) {
+                            number++
+                            onChanged(number)
+                        }
                         onChanged(number)
                     }
             ) {

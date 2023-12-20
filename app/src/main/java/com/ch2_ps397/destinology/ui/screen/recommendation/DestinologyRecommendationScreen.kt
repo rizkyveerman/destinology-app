@@ -10,8 +10,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
@@ -30,23 +30,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.ch2_ps397.destinology.core.di.Injection
+import com.ch2_ps397.destinology.core.model.MItinerary
 import com.ch2_ps397.destinology.core.utils.Resource
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.ViewModelFactory
 import com.ch2_ps397.destinology.ui.components.button.DestinologyFloatingButton
 import com.ch2_ps397.destinology.ui.components.button.DestinologyPrimaryButton
 import com.ch2_ps397.destinology.ui.components.cards.ItineraryDayCard
-import com.ch2_ps397.destinology.ui.components.cards.ItineraryPlaceCard
+import com.ch2_ps397.destinology.ui.components.cards.ItineraryPlaceTimeline
 import com.ch2_ps397.destinology.ui.components.form.DestinationInputForm
 import com.ch2_ps397.destinology.ui.components.imagery.ImageBackground
-import com.ch2_ps397.destinology.ui.theme.Gray
 import com.ch2_ps397.destinology.ui.theme.VeryLightGray
 import com.ch2_ps397.destinology.ui.theme.White
 
@@ -80,7 +78,7 @@ fun DestinologyRecommendationScreen(
 
                 }
                 is Resource.Success -> {
-                    DestinologySucessRecommend(navController)
+                    DestinologySucessRecommend(navController, data = resource.data)
                 }
                 is Resource.Error -> {
                     Text(text = resource.message)
@@ -103,10 +101,10 @@ fun DestinologyGenerateItineraryScreen(
         mutableStateOf("Yogyakarta")
     }
     var selectedDuration by rememberSaveable {
-        mutableIntStateOf(1)
+        mutableIntStateOf(3)
     }
     var selectedBudget by rememberSaveable {
-        mutableIntStateOf(100000)
+        mutableIntStateOf(600000)
     }
 
     ImageBackground()
@@ -149,10 +147,10 @@ fun DestinologyGenerateItineraryScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DestinologySucessRecommend(navController: NavController) {
+fun DestinologySucessRecommend(navController: NavController, data: List<MItinerary>?) {
 
     var dayPlanState by remember {
-        mutableIntStateOf(0)
+        mutableIntStateOf(1)
     }
 
     Scaffold(
@@ -189,14 +187,14 @@ fun DestinologySucessRecommend(navController: NavController) {
                     .fillMaxWidth()
                     .padding(vertical = 16.dp)
             ) {
-                ItineraryDayCard(isActive = (dayPlanState == 0), "Day 1", "12 Des") {
-                    dayPlanState = 0
-                }
-                ItineraryDayCard(isActive = (dayPlanState == 1), "Day 2", "13 Des") {                    dayPlanState = 0
+                ItineraryDayCard(isActive = (dayPlanState == 1), "Day 1", "12 Des") {
                     dayPlanState = 1
                 }
-                ItineraryDayCard(isActive = (dayPlanState == 2), "Day 3", "14 Des") {
+                ItineraryDayCard(isActive = (dayPlanState == 2), "Day 2", "13 Des") {
                     dayPlanState = 2
+                }
+                ItineraryDayCard(isActive = (dayPlanState == 3), "Day 3", "14 Des") {
+                    dayPlanState = 3
                 }
             }
             Column(
@@ -207,48 +205,16 @@ fun DestinologySucessRecommend(navController: NavController) {
                     .padding(16.dp)
             ) {
                 when (dayPlanState) {
-                    0 -> {
-                        LazyColumn(
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            for (i in 1..4) {
-                                item {
-                                    Row(
-                                        horizontalArrangement = Arrangement.SpaceBetween,
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        modifier = Modifier.fillMaxWidth()
-                                    ) {
-                                        Text(text = "10.00 AM", color = Gray)
-                                        Spacer(modifier = Modifier.width(8.dp))
-                                        ItineraryPlaceCard(
-                                            title = "Museum Ulen Sentalu 1",
-                                            description = "Museum keren kalo mau liat patung Squidward bisa kesini.",
-                                            address = "Jl. Boyong KM.25 Kaliurang, Hargobinangun, Yogyakarta"
-                                        )
-                                    }
-                                }
-                            }
-                        }
-                    }
                     1 -> {
                         LazyColumn(
                             modifier = Modifier.fillMaxWidth()
                         ) {
-                            for (i in 1..4) {
-                                item {
-                                    Row(
-                                        horizontalArrangement = Arrangement.SpaceBetween,
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        modifier = Modifier.fillMaxWidth()
-                                    ) {
-                                        Text(text = "10.00 AM", color = Gray)
-                                        Spacer(modifier = Modifier.width(8.dp))
-                                        ItineraryPlaceCard(
-                                            title = "Museum Ulen Sentalu 2",
-                                            description = "Museum keren kalo mau liat patung Squidward bisa kesini.",
-                                            address = "Jl. Boyong KM.25 Kaliurang, Hargobinangun, Yogyakarta"
-                                        )
-                                    }
+                            var hours = 9
+                            if (data != null) {
+                                val day1 = data.filter { it.day == 1 }
+                                items(day1) { mItinerary ->
+                                    hours++
+                                    ItineraryPlaceTimeline(hours, mItinerary)
                                 }
                             }
                         }
@@ -257,35 +223,34 @@ fun DestinologySucessRecommend(navController: NavController) {
                         LazyColumn(
                             modifier = Modifier.fillMaxWidth()
                         ) {
-                            for (i in 1..4) {
-                                item {
-                                    Row(
-                                        horizontalArrangement = Arrangement.SpaceBetween,
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        modifier = Modifier.fillMaxWidth()
-                                    ) {
-                                        Text(text = "10.00 AM", color = Gray)
-                                        Spacer(modifier = Modifier.width(8.dp))
-                                        ItineraryPlaceCard(
-                                            title = "Museum Ulen Sentalu 3",
-                                            description = "Museum keren kalo mau liat patung Squidward bisa kesini.",
-                                            address = "Jl. Boyong KM.25 Kaliurang, Hargobinangun, Yogyakarta"
-                                        )
-                                    }
+                            var hours = 9
+                            if (data != null) {
+                                val day2 = data.filter { it.day == 2 }
+                                items(day2) { mItinerary ->
+                                    hours++
+                                    ItineraryPlaceTimeline(hours, mItinerary)
+                                }
+                            }
+                        }
+                    }
+                    3 -> {
+                        LazyColumn(
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            var hours = 9
+                            if (data != null) {
+                                val day3 = data.filter { it.day == 3 }
+                                items(day3) { mItinerary ->
+                                    hours++
+                                    ItineraryPlaceTimeline(hours, mItinerary)
                                 }
                             }
                         }
                     }
                 }
             }
+
         }
 
     }
-
-}
-
-@Preview
-@Composable
-fun PreviewRecommendationScreen() {
-    DestinologyRecommendationScreen(navController = rememberNavController())
 }

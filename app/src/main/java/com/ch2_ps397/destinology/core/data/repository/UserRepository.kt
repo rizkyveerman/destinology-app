@@ -61,7 +61,7 @@ class UserRepository(
                 response: Response<DestinologyLoginUserResponse>
             ) {
                 GlobalScope.launch {
-                    userPreferences.saveToken(response.body()?.accessToken.toString())
+                    userPreferences.saveToken(response.body()?.accessToken!!)
                 }
             }
 

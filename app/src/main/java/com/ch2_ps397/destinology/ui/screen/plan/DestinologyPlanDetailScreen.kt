@@ -28,10 +28,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.ch2_ps397.destinology.core.model.MItinerary
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.components.cards.ItineraryDayCard
 import com.ch2_ps397.destinology.ui.components.cards.ItineraryPlaceCard
+import com.ch2_ps397.destinology.ui.components.cards.ItineraryPlaceTimeline
 import com.ch2_ps397.destinology.ui.components.scaffold.DestinologyAppBarNavigationIcon
 import com.ch2_ps397.destinology.ui.theme.DarkGray
 import com.ch2_ps397.destinology.ui.theme.Gray
@@ -100,21 +103,16 @@ fun DestinologyPlanDetailScreen(navController: NavController, navBackStackEntry:
                         LazyColumn(
                             modifier = Modifier.fillMaxWidth()
                         ) {
+                            val mItinerary = MItinerary(
+                                placeName = "mItinerary.placeName",
+                                category = "mItinerary.category",
+                                price = 1000,
+                                rating = 4.5f,
+                                day = 3
+                            )
                             for (i in 1..4) {
                                 item {
-                                    Row(
-                                        horizontalArrangement = Arrangement.SpaceBetween,
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        modifier = Modifier.fillMaxWidth()
-                                    ) {
-                                        Text(text = "10.00 AM", color = Gray)
-                                        Spacer(modifier = Modifier.width(8.dp))
-                                        ItineraryPlaceCard(
-                                            title = "Museum Ulen Sentalu 1",
-                                            description = "Museum keren kalo mau liat patung Squidward bisa kesini.",
-                                            address = "Jl. Boyong KM.25 Kaliurang, Hargobinangun, Yogyakarta"
-                                        )
-                                    }
+//                                    ItineraryPlaceTimeline(mItinerary = mItinerary)
                                 }
                             }
                         }
@@ -123,21 +121,16 @@ fun DestinologyPlanDetailScreen(navController: NavController, navBackStackEntry:
                         LazyColumn(
                             modifier = Modifier.fillMaxWidth()
                         ) {
+                            val mItinerary = MItinerary(
+                                placeName = "mItinerary.placeName",
+                                category = "mItinerary.category",
+                                price = 1000,
+                                rating = 4.5f,
+                                day = 3
+                            )
                             for (i in 1..4) {
                                 item {
-                                    Row(
-                                        horizontalArrangement = Arrangement.SpaceBetween,
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        modifier = Modifier.fillMaxWidth()
-                                    ) {
-                                        Text(text = "10.00 AM", color = Gray)
-                                        Spacer(modifier = Modifier.width(8.dp))
-                                        ItineraryPlaceCard(
-                                            title = "Museum Ulen Sentalu 2",
-                                            description = "Museum keren kalo mau liat patung Squidward bisa kesini.",
-                                            address = "Jl. Boyong KM.25 Kaliurang, Hargobinangun, Yogyakarta"
-                                        )
-                                    }
+//                                    ItineraryPlaceTimeline(mItinerary = mItinerary)
                                 }
                             }
                         }
@@ -146,21 +139,16 @@ fun DestinologyPlanDetailScreen(navController: NavController, navBackStackEntry:
                         LazyColumn(
                             modifier = Modifier.fillMaxWidth()
                         ) {
+                            val mItinerary = MItinerary(
+                                placeName = "mItinerary.placeName",
+                                category = "mItinerary.category",
+                                price = 1000,
+                                rating = 4.5f,
+                                day = 3
+                            )
                             for (i in 1..4) {
                                 item {
-                                    Row(
-                                        horizontalArrangement = Arrangement.SpaceBetween,
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        modifier = Modifier.fillMaxWidth()
-                                    ) {
-                                        Text(text = "10.00 AM", color = Gray)
-                                        Spacer(modifier = Modifier.width(8.dp))
-                                        ItineraryPlaceCard(
-                                            title = "Museum Ulen Sentalu 3",
-                                            description = "Museum keren kalo mau liat patung Squidward bisa kesini.",
-                                            address = "Jl. Boyong KM.25 Kaliurang, Hargobinangun, Yogyakarta"
-                                        )
-                                    }
+//                                    ItineraryPlaceTimeline(mItinerary = mItinerary)
                                 }
                             }
                         }
