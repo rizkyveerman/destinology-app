@@ -2,7 +2,6 @@ package com.ch2_ps397.destinology.ui.screen.scan
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController

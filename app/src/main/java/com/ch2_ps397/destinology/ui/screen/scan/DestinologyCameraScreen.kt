@@ -45,10 +45,8 @@ import androidx.navigation.NavController
 import com.ch2_ps397.destinology.R
 import com.ch2_ps397.destinology.core.di.Injection
 import com.ch2_ps397.destinology.core.utils.Resource
-import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.ViewModelFactory
 import com.ch2_ps397.destinology.ui.components.camera.CameraPreview
-import kotlinx.coroutines.runBlocking
 
 @Composable
 fun DestinologyCameraScreen(
