@@ -37,7 +37,7 @@ import com.ch2_ps397.destinology.ui.theme.VeryLightGray
 import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
-fun ItineraryPlaceCard(placeName:String, price: Int, rating: Float, category: String) {
+fun ItineraryPlaceCard(placeName:String, price: Int, rating: Float, category: String, regeneratePlace: () -> Unit) {
     Card(
         modifier = Modifier
             .widthIn(max = 300.dp)
@@ -69,7 +69,6 @@ fun ItineraryPlaceCard(placeName:String, price: Int, rating: Float, category: St
                         .clip(CircleShape)
                         .background(VeryLightGray)
                         .clickable {
-
                         }
                 ) {
                     Image(
@@ -113,7 +112,7 @@ fun ItineraryPlaceCard(placeName:String, price: Int, rating: Float, category: St
 }
 
 @Composable
-fun ItineraryPlaceTimeline(hours: Int, mItinerary: MItinerary) {
+fun ItineraryPlaceTimeline(hours: Int, mItinerary: MItinerary, regeneratePlace: () -> Unit) {
     val timeConvention = if (hours < 12) "AM" else "PM"
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -127,6 +126,8 @@ fun ItineraryPlaceTimeline(hours: Int, mItinerary: MItinerary) {
             category = mItinerary.category,
             price = mItinerary.price,
             rating = mItinerary.rating
-        )
+        ) {
+            regeneratePlace()
+        }
     }
 }

@@ -41,6 +41,7 @@ import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.ViewModelFactory
 import com.ch2_ps397.destinology.ui.components.button.DestinologyFloatingButton
 import com.ch2_ps397.destinology.ui.components.button.DestinologyPrimaryButton
+import com.ch2_ps397.destinology.ui.components.cards.DestinologyCardDialog
 import com.ch2_ps397.destinology.ui.components.cards.ItineraryDayCard
 import com.ch2_ps397.destinology.ui.components.cards.ItineraryPlaceTimeline
 import com.ch2_ps397.destinology.ui.components.form.DestinationInputForm
@@ -65,6 +66,7 @@ fun DestinologyRecommendationScreen(
         )
     )
 ) {
+
     destinologyRecommendationViewModel
         .resource.collectAsState(initial = Resource.Loading)
         .value.let { resource ->
@@ -75,13 +77,14 @@ fun DestinologyRecommendationScreen(
                     }
                 }
                 is Resource.Loading -> {
-
                 }
                 is Resource.Success -> {
                     DestinologySucessRecommend(navController, data = resource.data)
                 }
                 is Resource.Error -> {
-                    Text(text = resource.message)
+                    DestinologyGenerateItineraryScreen { city, duration, budget ->
+                        destinologyRecommendationViewModel.generateNewItinerary(city, duration, budget)
+                    }
                 }
             }
 
