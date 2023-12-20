@@ -231,7 +231,7 @@ fun DestinologySucessRecommend(navController: NavController, data: List<MItinera
                                 val day2 = data.filter { it.day == 2 }
                                 items(day2) { mItinerary ->
                                     hours++
-                                    ItineraryPlaceTimeline(hours, mItinerary)
+                                    ItineraryPlaceTimeline(hours, mItinerary) {}
                                 }
                             }
                         }
@@ -245,7 +245,7 @@ fun DestinologySucessRecommend(navController: NavController, data: List<MItinera
                                 val day3 = data.filter { it.day == 3 }
                                 items(day3) { mItinerary ->
                                     hours++
-                                    ItineraryPlaceTimeline(hours, mItinerary)
+                                    ItineraryPlaceTimeline(hours, mItinerary) {}
                                 }
                             }
                         }
