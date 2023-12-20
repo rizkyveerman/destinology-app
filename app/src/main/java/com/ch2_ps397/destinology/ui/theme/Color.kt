@@ -2,8 +2,8 @@ package com.ch2_ps397.destinology.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Orange  = Color(0xFFF77F00)
-val OrangeLight = Color(0xFFFEEAD6)
+val Indigo  = Color(0xFF4f46e5)
+val IndigoLight = Color(0xFFc7d2fe)
 val Black = Color(0xFF2A2A2A)
 val DarkGray = Color(0xFF383838)
 val Gray = Color(0xFF7C7C80)

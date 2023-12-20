@@ -16,16 +16,16 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Orange,
+    primary = Indigo,
     secondary = Black,
-    tertiary = OrangeLight,
+    tertiary = IndigoLight,
     background = Black,
     surface = Black
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = Black,
-    secondary = Orange,
+    secondary = Indigo,
     tertiary = White,
     background = VeryLightGray,
     surface = White
@@ -35,7 +35,7 @@ private val LightColorScheme = lightColorScheme(
    surface = White,
    onPrimary = Orange,
    onSecondary = Black,
-   onTertiary = OrangeLight,
+   onTertiary = IndigoLight,
    onBackground = VeryLightGray,
    onSurface = White,
     */

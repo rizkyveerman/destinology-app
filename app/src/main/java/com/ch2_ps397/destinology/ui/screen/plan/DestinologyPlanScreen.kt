@@ -22,7 +22,7 @@ import androidx.navigation.NavController
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.components.cards.DestinologyItineraryCard
 import com.ch2_ps397.destinology.ui.components.scaffold.DestinologyBottomBarNavigation
-import com.ch2_ps397.destinology.ui.theme.Orange
+import com.ch2_ps397.destinology.ui.theme.Indigo
 import com.ch2_ps397.destinology.ui.theme.VeryLightGray
 import com.ch2_ps397.destinology.ui.theme.White
 
@@ -41,7 +41,7 @@ fun DestinologyPlanScreen(navController: NavController) {
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { navController.navigate(DestinologyScreens.DestinologyRecommendationScreen.name) },
-                containerColor = Orange,
+                containerColor = Indigo,
                 contentColor = White,
             ) {
                 Image(

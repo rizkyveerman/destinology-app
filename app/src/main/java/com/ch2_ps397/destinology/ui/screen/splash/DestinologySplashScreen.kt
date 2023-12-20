@@ -18,7 +18,7 @@ import androidx.navigation.NavController
 import com.ch2_ps397.destinology.core.di.Injection
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.ViewModelFactory
-import com.ch2_ps397.destinology.ui.theme.Orange
+import com.ch2_ps397.destinology.ui.theme.Indigo
 import com.ch2_ps397.destinology.ui.theme.White
 import kotlinx.coroutines.delay
 
@@ -44,7 +44,7 @@ fun DestinologySplashScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Orange),
+                .background(Indigo),
             contentAlignment = Alignment.Center
         ) {
             Text(

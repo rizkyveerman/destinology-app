@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.sp
 import com.ch2_ps397.destinology.core.model.MItinerary
 import com.ch2_ps397.destinology.ui.theme.Black
 import com.ch2_ps397.destinology.ui.theme.Gray
-import com.ch2_ps397.destinology.ui.theme.Orange
+import com.ch2_ps397.destinology.ui.theme.Indigo
 import com.ch2_ps397.destinology.ui.theme.VeryLightGray
 import com.ch2_ps397.destinology.ui.theme.White
 
@@ -94,7 +94,7 @@ fun ItineraryPlaceCard(placeName:String, price: Int, rating: Float, category: St
                         imageVector = Icons.Default.Star,
                         contentDescription = "Itinerary place",
                         modifier = Modifier.size(16.dp),
-                        colorFilter = ColorFilter.tint(Orange)
+                        colorFilter = ColorFilter.tint(Indigo)
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(text = rating.toString(), color = Gray )

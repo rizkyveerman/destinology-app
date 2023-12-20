@@ -24,8 +24,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.ch2_ps397.destinology.ui.theme.Gray
-import com.ch2_ps397.destinology.ui.theme.Orange
-import com.ch2_ps397.destinology.ui.theme.OrangeLight
+import com.ch2_ps397.destinology.ui.theme.Indigo
+import com.ch2_ps397.destinology.ui.theme.IndigoLight
 import com.ch2_ps397.destinology.ui.theme.VeryLightGray
 import com.ch2_ps397.destinology.ui.theme.White
 
@@ -50,7 +50,7 @@ fun DestinologyTextInput(
         enabled = enabled,
         colors = TextFieldDefaults.colors(
             focusedContainerColor = White,
-            cursorColor = Orange,
+            cursorColor = Indigo,
             disabledContainerColor = VeryLightGray,
             errorContainerColor = Color.Red,
             unfocusedContainerColor = VeryLightGray,
@@ -98,17 +98,17 @@ fun DestinologyPasswordInput(
         keyboardActions = onAction,
         enabled = enabled,
         colors = TextFieldDefaults.colors(
-            focusedLabelColor = Orange,
+            focusedLabelColor = Indigo,
             focusedContainerColor = White,
-            cursorColor = Orange,
+            cursorColor = Indigo,
             disabledContainerColor = White,
             unfocusedContainerColor = White,
             selectionColors = TextSelectionColors(
-                backgroundColor = OrangeLight,
-                handleColor = Orange
+                backgroundColor = IndigoLight,
+                handleColor = Indigo
             ),
             unfocusedIndicatorColor = Gray,
-            focusedIndicatorColor = Orange
+            focusedIndicatorColor = Indigo
         ),
     )
 }
@@ -134,17 +134,17 @@ fun DestinologyTextInputFilled(
         keyboardActions = onActions,
         enabled = enabled,
         colors = TextFieldDefaults.colors(
-            focusedLabelColor = Orange,
+            focusedLabelColor = Indigo,
             focusedContainerColor = White,
-            cursorColor = Orange,
+            cursorColor = Indigo,
             disabledContainerColor = White,
             unfocusedContainerColor = White,
             selectionColors = TextSelectionColors(
-                backgroundColor = OrangeLight,
-                handleColor = Orange
+                backgroundColor = IndigoLight,
+                handleColor = Indigo
             ),
             unfocusedIndicatorColor = Gray,
-            focusedIndicatorColor = Orange
+            focusedIndicatorColor = Indigo
 
         ),
         modifier = modifier

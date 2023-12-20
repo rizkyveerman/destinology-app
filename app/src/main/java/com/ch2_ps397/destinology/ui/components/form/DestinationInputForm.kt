@@ -27,8 +27,8 @@ import androidx.compose.ui.unit.dp
 import com.ch2_ps397.destinology.ui.components.fields.Dropdown
 import com.ch2_ps397.destinology.ui.components.fields.NumberInput
 import com.ch2_ps397.destinology.ui.theme.Black
-import com.ch2_ps397.destinology.ui.theme.Orange
-import com.ch2_ps397.destinology.ui.theme.OrangeLight
+import com.ch2_ps397.destinology.ui.theme.Indigo
+import com.ch2_ps397.destinology.ui.theme.IndigoLight
 import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
@@ -119,9 +119,9 @@ fun PriceRangeSlider(onPriceChanged: (price: Int) -> Unit) {
                     sliderPosition = it
                 },
                 colors = SliderDefaults.colors(
-                    thumbColor = Orange,
-                    activeTrackColor = Orange,
-                    inactiveTrackColor = OrangeLight,
+                    thumbColor = Indigo,
+                    activeTrackColor = Indigo,
+                    inactiveTrackColor = IndigoLight,
                 ),
                 valueRange = 0f..5000000f
             )
@@ -146,9 +146,9 @@ fun RatingSlider() {
                     sliderPosition = it
                 },
                 colors = SliderDefaults.colors(
-                    thumbColor = Orange,
-                    activeTrackColor = Orange,
-                    inactiveTrackColor = OrangeLight,
+                    thumbColor = Indigo,
+                    activeTrackColor = Indigo,
+                    inactiveTrackColor = IndigoLight,
                 ),
                 valueRange = 0f..5f,
                 steps = 5

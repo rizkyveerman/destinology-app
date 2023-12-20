@@ -34,7 +34,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.ch2_ps397.destinology.ui.theme.Black
 import com.ch2_ps397.destinology.ui.theme.Gray
-import com.ch2_ps397.destinology.ui.theme.Orange
+import com.ch2_ps397.destinology.ui.theme.Indigo
 import com.ch2_ps397.destinology.ui.theme.VeryLightGray
 import com.ch2_ps397.destinology.ui.theme.White
 
@@ -73,7 +73,7 @@ fun DestinologyPlaceCard(imageModel: String, title: String, rating: Float, onCli
                     Image(
                         imageVector = Icons.TwoTone.Star,
                         contentDescription = "Rate",
-                        colorFilter = ColorFilter.tint(Orange),
+                        colorFilter = ColorFilter.tint(Indigo),
                         modifier = Modifier
                             .size(22.dp)
                             .padding(end = 4.dp)

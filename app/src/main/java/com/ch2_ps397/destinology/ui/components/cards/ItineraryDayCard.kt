@@ -18,7 +18,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ch2_ps397.destinology.ui.theme.Black
-import com.ch2_ps397.destinology.ui.theme.Orange
+import com.ch2_ps397.destinology.ui.theme.Indigo
 import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
@@ -30,7 +30,7 @@ fun ItineraryDayCard(isActive: Boolean, day: String, date: String, onClick: () -
             .width(80.dp)
             .height(80.dp)
             .clip(RoundedCornerShape(8.dp))
-            .background(if (isActive) Orange else White)
+            .background(if (isActive) Indigo else White)
             .clickable { onClick() }
             .padding(16.dp)
     ) {

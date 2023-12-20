@@ -25,7 +25,7 @@ import androidx.compose.ui.semantics.isTraversalGroup
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.traversalIndex
 import androidx.compose.ui.unit.dp
-import com.ch2_ps397.destinology.ui.theme.Orange
+import com.ch2_ps397.destinology.ui.theme.Indigo
 import com.ch2_ps397.destinology.ui.theme.VeryLightGray
 
 
@@ -62,7 +62,7 @@ fun DestinologySearchBar(onSearch: (query: String) -> Unit) {
             leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
             colors = SearchBarDefaults.colors(
                 containerColor = VeryLightGray,
-                dividerColor = Orange,
+                dividerColor = Indigo,
             )
         ) {
             LazyColumn(

@@ -21,7 +21,7 @@ import com.ch2_ps397.destinology.navigation.DestinologyBottomNavigationItem
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.theme.Black
 import com.ch2_ps397.destinology.ui.theme.LightGray
-import com.ch2_ps397.destinology.ui.theme.Orange
+import com.ch2_ps397.destinology.ui.theme.Indigo
 import com.ch2_ps397.destinology.ui.theme.White
 
 
@@ -76,7 +76,7 @@ fun DestinologyBottomBarNavigation(
                     )
                 },
                 colors = NavigationBarItemDefaults.colors(
-                    indicatorColor = Orange,
+                    indicatorColor = Indigo,
                     selectedIconColor = White,
                     unselectedIconColor = LightGray,
                 ),

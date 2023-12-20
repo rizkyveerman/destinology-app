@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.ch2_ps397.destinology.ui.theme.Black
 import com.ch2_ps397.destinology.ui.theme.Gray
 import com.ch2_ps397.destinology.ui.theme.LightGray
-import com.ch2_ps397.destinology.ui.theme.Orange
+import com.ch2_ps397.destinology.ui.theme.Indigo
 import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
@@ -31,7 +31,7 @@ fun DestinologyPrimaryButton(enabled: Boolean, text: String, onClick: () -> Unit
         modifier = Modifier
             .fillMaxWidth()
             .heightIn(min = 48.dp),
-        colors = ButtonDefaults.buttonColors(Orange),
+        colors = ButtonDefaults.buttonColors(Indigo),
         elevation = ButtonDefaults.buttonElevation(
             defaultElevation = 0.dp,
             disabledElevation = 0.dp,
@@ -65,7 +65,7 @@ fun DestinologyFloatingButton(
             .widthIn(min = 48.dp)
             .height(48.dp)
         ,
-        containerColor = Orange,
+        containerColor = Indigo,
         contentColor = White,
         content = content
     )

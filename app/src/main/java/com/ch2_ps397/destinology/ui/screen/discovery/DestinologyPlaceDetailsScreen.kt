@@ -47,7 +47,7 @@ import com.ch2_ps397.destinology.ui.components.fields.DestinologyTextInput
 import com.ch2_ps397.destinology.ui.components.imagery.ImageBackground
 import com.ch2_ps397.destinology.ui.theme.Black
 import com.ch2_ps397.destinology.ui.theme.Gray
-import com.ch2_ps397.destinology.ui.theme.Orange
+import com.ch2_ps397.destinology.ui.theme.Indigo
 import com.ch2_ps397.destinology.ui.theme.VeryLightGray
 import com.ch2_ps397.destinology.ui.theme.White
 
@@ -164,7 +164,7 @@ fun DestinologyPlaceDetailsScreen(navController: NavController, navBackStackEntr
                                 //TODO rating stars
                                 Row {
                                     Image(
-                                        colorFilter = if (ratingStars.intValue >= 1) ColorFilter.tint(Orange) else ColorFilter.tint(
+                                        colorFilter = if (ratingStars.intValue >= 1) ColorFilter.tint(Indigo) else ColorFilter.tint(
                                             Gray) ,
                                         imageVector = Icons.TwoTone.Star,
                                         contentDescription = null,
@@ -173,7 +173,7 @@ fun DestinologyPlaceDetailsScreen(navController: NavController, navBackStackEntr
                                         }
                                     )
                                     Image(
-                                        colorFilter = if (ratingStars.intValue >= 2) ColorFilter.tint(Orange) else ColorFilter.tint(
+                                        colorFilter = if (ratingStars.intValue >= 2) ColorFilter.tint(Indigo) else ColorFilter.tint(
                                             Gray) ,
                                         imageVector = Icons.TwoTone.Star,
                                         contentDescription = null,
@@ -182,7 +182,7 @@ fun DestinologyPlaceDetailsScreen(navController: NavController, navBackStackEntr
                                         }
                                     )
                                     Image(
-                                        colorFilter = if (ratingStars.intValue >= 3) ColorFilter.tint(Orange) else ColorFilter.tint(
+                                        colorFilter = if (ratingStars.intValue >= 3) ColorFilter.tint(Indigo) else ColorFilter.tint(
                                             Gray) ,
                                         imageVector = Icons.TwoTone.Star,
                                         contentDescription = null,
@@ -191,7 +191,7 @@ fun DestinologyPlaceDetailsScreen(navController: NavController, navBackStackEntr
                                         }
                                     )
                                     Image(
-                                        colorFilter = if (ratingStars.intValue >= 4) ColorFilter.tint(Orange) else ColorFilter.tint(
+                                        colorFilter = if (ratingStars.intValue >= 4) ColorFilter.tint(Indigo) else ColorFilter.tint(
                                             Gray) ,
                                         imageVector = Icons.TwoTone.Star,
                                         contentDescription = null,
@@ -200,7 +200,7 @@ fun DestinologyPlaceDetailsScreen(navController: NavController, navBackStackEntr
                                         }
                                     )
                                     Image(
-                                        colorFilter = if (ratingStars.intValue >= 5) ColorFilter.tint(Orange) else ColorFilter.tint(
+                                        colorFilter = if (ratingStars.intValue >= 5) ColorFilter.tint(Indigo) else ColorFilter.tint(
                                             Gray) ,
                                         imageVector = Icons.TwoTone.Star,
                                         contentDescription = null,
