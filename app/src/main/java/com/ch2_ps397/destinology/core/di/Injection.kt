@@ -22,7 +22,7 @@ object Injection {
         val userPreferences = UserPreferences.getInstance(context.dataStore)
         val token = runBlocking { userPreferences.getToken().firstOrNull() }
         val apiService = runBlocking { ApiConfig.getApiService(token) }
-        return LandmarkRepository(token, apiService)
+        return LandmarkRepository(apiService)
     }
 
     fun provideUserRepository(context: Context) : UserRepository {

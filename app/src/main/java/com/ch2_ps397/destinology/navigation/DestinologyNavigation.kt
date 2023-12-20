@@ -8,7 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.ch2_ps397.destinology.ui.screen.camera.DestinologyCameraScreen
+import com.ch2_ps397.destinology.ui.screen.scan.DestinologyCameraScreen
 import com.ch2_ps397.destinology.ui.screen.community.DestinologyCommunityPostDetailScreen
 import com.ch2_ps397.destinology.ui.screen.community.DestinologyCommunityScreen
 import com.ch2_ps397.destinology.ui.screen.discovery.DestinologyDiscoveryScreen
@@ -82,8 +82,20 @@ fun DestinologyNavigation() {
         ) { navBackStackEntry ->
             DestinologyPlaceDetailsScreen(navController = navController, navBackStackEntry = navBackStackEntry.arguments?.getString("planId"))
         }
-        composable(DestinologyScreens.DestinologyScanLandmarkScreen.name) {
-            DestinologyScanLandmarkScreen(navController = navController)
+        composable(
+            "${DestinologyScreens.DestinologyScanLandmarkScreen.name}/{nama}/{desc}/{fact}",
+            arguments = listOf(
+                navArgument("nama") { type = NavType.StringType },
+                navArgument(name = "desc") { type = NavType.StringType },
+                navArgument(name = "fact") { type = NavType.StringType }
+            )
+        ) { navBackStackEntry ->
+            DestinologyScanLandmarkScreen(
+                navController = navController,
+                nama = navBackStackEntry.arguments?.getString("nama"),
+                desc = navBackStackEntry.arguments?.getString("desc"),
+                fact = navBackStackEntry.arguments?.getString("fact")
+            )
         }
         composable(DestinologyScreens.DestinologyCameraScreen.name) {
             DestinologyCameraScreen(navController)

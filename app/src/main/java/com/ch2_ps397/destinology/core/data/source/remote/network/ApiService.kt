@@ -2,8 +2,8 @@ package com.ch2_ps397.destinology.core.data.source.remote.network
 
 import com.ch2_ps397.destinology.core.data.source.remote.response.DestinologyCreateUserResponse
 import com.ch2_ps397.destinology.core.data.source.remote.response.DestinologyLoginUserResponse
-import com.ch2_ps397.destinology.core.data.source.remote.response.FileUploadResponse
 import com.ch2_ps397.destinology.core.data.source.remote.response.GenerateItineraryResponse
+import com.ch2_ps397.destinology.core.data.source.remote.response.ScanLandmarkResponse
 import com.ch2_ps397.destinology.core.model.MGenerateItinerary
 import com.ch2_ps397.destinology.core.model.MUser
 import okhttp3.MultipartBody
@@ -24,8 +24,7 @@ interface ApiService {
     @POST("models/itinerary")
     suspend fun generateNewItinerary(@Body generateItinerary: MGenerateItinerary) : GenerateItineraryResponse
 
-    // TODO change the API response here
     @Multipart
-    @POST("stories/guest/")
-    suspend fun scanLandmark(@Part file: MultipartBody.Part) : Call<FileUploadResponse>
+    @POST("models/landmark")
+    suspend fun scanLandmark(@Part file: MultipartBody.Part) : ScanLandmarkResponse
 }

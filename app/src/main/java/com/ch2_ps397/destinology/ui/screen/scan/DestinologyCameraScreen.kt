@@ -1,8 +1,11 @@
-package com.ch2_ps397.destinology.ui.screen.camera
+package com.ch2_ps397.destinology.ui.screen.scan
 
 import android.app.Activity
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
+import android.graphics.ImageDecoder
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.camera.view.CameraController
 import androidx.camera.view.LifecycleCameraController
@@ -20,11 +23,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.twotone.Check
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,20 +45,15 @@ import androidx.navigation.NavController
 import com.ch2_ps397.destinology.R
 import com.ch2_ps397.destinology.core.di.Injection
 import com.ch2_ps397.destinology.core.utils.Resource
+import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.ViewModelFactory
 import com.ch2_ps397.destinology.ui.components.camera.CameraPreview
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
-import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.FileOutputStream
+import kotlinx.coroutines.runBlocking
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DestinologyCameraScreen(
     navController: NavController,
-    cameraXScreenViewModel: DestinologyCameraViewModel = viewModel(
+    cameraViewModel: DestinologyCameraViewModel = viewModel(
         factory = ViewModelFactory(
             Injection.provideItineraryRepository(
                 LocalContext.current
@@ -94,7 +94,23 @@ fun DestinologyCameraScreen(
         }
     }
 
-    cameraXScreenViewModel.bitmap.collectAsState().value.let { bitmap ->
+    var imageUri by remember {
+        mutableStateOf<Uri?>(null)
+    }
+
+    val galleryLauncher = rememberLauncherForActivityResult(contract =
+    ActivityResultContracts.GetContent()) { uri: Uri? ->
+        imageUri = uri
+    }
+
+    imageUri?.let {
+        val source = ImageDecoder
+            .createSource(context.contentResolver,it)
+        val bitmap = ImageDecoder.decodeBitmap(source)
+        cameraViewModel.getImageFromGallery(bitmap)
+    }
+
+    cameraViewModel.bitmap.collectAsState().value.let { bitmap ->
         when (bitmap) {
             is Resource.Success -> {
                 Scaffold(
@@ -113,35 +129,7 @@ fun DestinologyCameraScreen(
                                         Color.White
                                     )
                                     .clickable {
-                                        takePhoto(
-                                            applicationContext = context.applicationContext,
-                                            controller = controller,
-                                        ) { bitmap ->
-                                            val imageFile = File(context.cacheDir, "landmark")
-                                            imageFile.createNewFile()
-
-                                            val byteArrayOutputStream = ByteArrayOutputStream()
-                                            bitmap.compress(
-                                                Bitmap.CompressFormat.JPEG,
-                                                100,
-                                                byteArrayOutputStream
-                                            )
-                                            val byteArray = byteArrayOutputStream.toByteArray()
-
-                                            val fileOutputStream = FileOutputStream(imageFile)
-                                            fileOutputStream.write(byteArray)
-                                            fileOutputStream.flush()
-                                            fileOutputStream.close()
-
-                                            val requestImageFile =
-                                                imageFile.asRequestBody("image/jpeg".toMediaType())
-                                            val multipartBody = MultipartBody.Part.createFormData(
-                                                "landmark-photo",
-                                                imageFile.name,
-                                                requestImageFile
-                                            )
-                                            cameraXScreenViewModel.uploadImage(multipartBody)
-                                        }
+                                        cameraViewModel.uploadImage(bitmap.data!!, context, navController)
                                     },
                                 contentAlignment = Alignment.Center,
                             ) {
@@ -179,6 +167,24 @@ fun DestinologyCameraScreen(
                     ) {
                         Box(
                             modifier = Modifier
+                                .clip(CircleShape)
+                                .size(100.dp)
+                                .padding(16.dp)
+                                .background(
+                                    Color.White
+                                )
+                                .clickable {
+                                    galleryLauncher.launch("image/*")
+                                },
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.baseline_image_24),
+                                contentDescription = "capture"
+                            )
+                        }
+                        Box(
+                            modifier = Modifier
                                 .size(100.dp)
                                 .clip(CircleShape)
                                 .padding(16.dp)
@@ -190,7 +196,7 @@ fun DestinologyCameraScreen(
                                         applicationContext = context.applicationContext,
                                         controller = controller,
                                     ) { bitmap ->
-                                        cameraXScreenViewModel.onTakePhoto(bitmap)
+                                        cameraViewModel.onTakePhoto(bitmap)
                                     }
                                 },
                             contentAlignment = Alignment.Center,
@@ -200,7 +206,6 @@ fun DestinologyCameraScreen(
                                 contentDescription = "capture"
                             )
                         }
-
                         Box(
                             modifier = Modifier
                                 .size(100.dp)

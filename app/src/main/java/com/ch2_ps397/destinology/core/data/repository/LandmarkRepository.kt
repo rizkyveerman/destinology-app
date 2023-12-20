@@ -1,30 +1,39 @@
 package com.ch2_ps397.destinology.core.data.repository
 
-import android.util.Log
+import android.content.Context
+import android.graphics.Bitmap
 import com.ch2_ps397.destinology.core.data.source.remote.network.ApiService
-import com.ch2_ps397.destinology.core.data.source.remote.response.FileUploadResponse
+import com.ch2_ps397.destinology.core.model.MLandmark
+import com.ch2_ps397.destinology.ui.screen.scan.bitmapToFile
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import okhttp3.RequestBody
 
 class LandmarkRepository(
-    private val token: String?,
     private val apiService: ApiService
 ) {
-    suspend fun scanLandmark(multipartBodyPart: MultipartBody.Part) {
-        val client = apiService.scanLandmark(multipartBodyPart)
+    private var scanResponse: MLandmark? = MLandmark()
 
-        client.clone().enqueue(object : Callback<FileUploadResponse> {
-            override fun onResponse(
-                call: Call<FileUploadResponse>,
-                response: Response<FileUploadResponse>
-            ) {
-                Log.i("SCAN_LANDMARK", "onResponse: ${response.isSuccessful}")
-            }
-            override fun onFailure(call: Call<FileUploadResponse>, t: Throwable) {
-                Log.e("SCAN_LANDMARK", "onResponse: ${t.message}")
-            }
-        })
+    suspend fun scanLandmark(bitmap: Bitmap, applicationContext: Context) : Flow<MLandmark> {
+        val file = bitmapToFile(bitmap, applicationContext)
+        val requestFile = RequestBody.create("image/jpeg".toMediaTypeOrNull(), file)
+        val filePart = MultipartBody.Part.createFormData("file", file.name, requestFile)
+
+        try {
+            val response = apiService.scanLandmark(filePart)
+            scanResponse = MLandmark(
+                fact = response.fact,
+                desc = response.desc,
+                nama = response.nama
+            )
+        } catch (e: Exception) {
+            scanResponse = MLandmark(
+                errorMessage = e.message.toString()
+            )
+        }
+
+        return flowOf(scanResponse!!)
     }
 }

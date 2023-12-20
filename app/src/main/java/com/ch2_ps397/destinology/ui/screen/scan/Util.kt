@@ -1,4 +1,4 @@
-package com.ch2_ps397.destinology.ui.screen.camera
+package com.ch2_ps397.destinology.ui.screen.scan
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -9,7 +9,21 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.ImageProxy
 import androidx.camera.view.LifecycleCameraController
 import androidx.core.content.ContextCompat
+import java.io.File
+import java.io.FileOutputStream
 
+fun bitmapToFile(bitmap: Bitmap, context: Context): File {
+    // Create a temporary file
+    val file = File.createTempFile("temp_image", ".jpg", context.cacheDir)
+
+    // Write the bitmap to the file
+    val outputStream = FileOutputStream(file)
+    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+    outputStream.flush()
+    outputStream.close()
+
+    return file
+}
 
 fun takePhoto(
     applicationContext: Context,

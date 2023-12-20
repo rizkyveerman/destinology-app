@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.ch2_ps397.destinology.core.data.repository.ItineraryRepository
 import com.ch2_ps397.destinology.core.data.repository.LandmarkRepository
 import com.ch2_ps397.destinology.core.data.repository.UserRepository
-import com.ch2_ps397.destinology.ui.screen.camera.DestinologyCameraViewModel
+import com.ch2_ps397.destinology.ui.screen.scan.DestinologyCameraViewModel
 import com.ch2_ps397.destinology.ui.screen.recommendation.DestinologyRecommendationViewModel
 import com.ch2_ps397.destinology.ui.screen.splash.DestinologySplashViewModel
 import com.ch2_ps397.destinology.ui.screen.user.DestinologyUserAuthViewModel
