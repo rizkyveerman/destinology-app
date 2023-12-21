@@ -1,7 +1,6 @@
 package com.ch2_ps397.destinology.ui.screen.user
 
 import android.widget.Toast
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,9 +30,7 @@ import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.ViewModelFactory
 import com.ch2_ps397.destinology.ui.components.button.DestinologyTransparentButton
 import com.ch2_ps397.destinology.ui.components.cards.DestinologyCardDialog
-import com.ch2_ps397.destinology.ui.components.cards.customDialogModifier
 import com.ch2_ps397.destinology.ui.components.form.DestinoloyCreateAccountForm
-import com.ch2_ps397.destinology.ui.theme.IndigoLight
 
 enum class CustomDialogPosition {
     BOTTOM, TOP
