@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.pm.PackageManager
 import android.graphics.ImageDecoder
 import android.net.Uri
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
@@ -114,6 +115,20 @@ fun DestinologyCameraScreen(
         cameraViewModel.getImageFromGallery(bitmap)
     }
     var showDialog by remember { mutableStateOf(false) }
+    var isError by remember { mutableStateOf(false) }
+
+    cameraViewModel.resource.collectAsState().value.let { res ->
+        when (res) {
+            is Resource.Error -> {
+                showDialog = false
+                isError = true
+                Toast.makeText(LocalContext.current, res.message, Toast.LENGTH_LONG).show()
+            }
+            else -> {}
+        }
+
+    }
+
 
     cameraViewModel.bitmap.collectAsState().value.let { bitmap ->
         when (bitmap) {
@@ -171,6 +186,7 @@ fun DestinologyCameraScreen(
             is Resource.Loading -> {
                 showDialog = true
             }
+
             else -> {
                 Box(
                     modifier = Modifier

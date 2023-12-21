@@ -21,15 +21,15 @@ class LandmarkRepository(
         val requestFile = RequestBody.create("image/jpeg".toMediaTypeOrNull(), file)
         val filePart = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
-        try {
+        scanResponse = try {
             val response = apiService.scanLandmark(filePart)
-            scanResponse = MLandmark(
+            MLandmark(
                 fact = response.fact,
                 desc = response.desc,
-                nama = response.nama
+                nama = response.nama,
             )
         } catch (e: Exception) {
-            scanResponse = MLandmark(
+            MLandmark(
                 errorMessage = e.message.toString()
             )
         }

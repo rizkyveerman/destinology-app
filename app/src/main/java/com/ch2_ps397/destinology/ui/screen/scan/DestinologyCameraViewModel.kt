@@ -35,7 +35,7 @@ class DestinologyCameraViewModel(
             _resource.value = Resource.Loading
             landmarkRepository.scanLandmark(bitmap, applicationContext)
                 .catch {  cause: Throwable ->
-                    _resource.value = Resource.Error(cause.toString())
+                    _resource.value = Resource.Error("Landmark tidak diketahui")
                 }
                 .collect { landmark ->
                     _resource.value = Resource.Success(landmark)
