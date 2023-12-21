@@ -72,11 +72,7 @@ fun DestinologyPlanScreen(navController: NavController) {
                                 title = "Itinerary 1",
                                 rating = 4.6f
                             ) {
-                                navController.navigate(DestinologyScreens.DestinologyPlanDetailScreen.name+ "/1") {
-                                    popUpTo(navController.graph.id) {
-                                        inclusive = false
-                                    }
-                                }
+                                navController.navigate(DestinologyScreens.DestinologyPlanDetailScreen.name+ "/1")
                             }
                         }
                     }

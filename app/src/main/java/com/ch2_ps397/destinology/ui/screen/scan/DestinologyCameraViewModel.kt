@@ -32,17 +32,14 @@ class DestinologyCameraViewModel(
 
     fun uploadImage(bitmap: Bitmap, applicationContext: Context, navController: NavController) {
         viewModelScope.launch {
+            _resource.value = Resource.Loading
             landmarkRepository.scanLandmark(bitmap, applicationContext)
                 .catch {  cause: Throwable ->
                     _resource.value = Resource.Error(cause.toString())
                 }
                 .collect { landmark ->
                     _resource.value = Resource.Success(landmark)
-                    navController.navigate("${DestinologyScreens.DestinologyScanLandmarkScreen.name}/${landmark.nama}/${landmark.desc}/${landmark.fact}") {
-                        popUpTo(navController.graph.id) {
-                            inclusive = true
-                        }
-                    }
+                    navController.navigate("${DestinologyScreens.DestinologyScanLandmarkScreen.name}/${landmark.nama}/${landmark.desc}/${landmark.fact}")
                 }
         }
     }

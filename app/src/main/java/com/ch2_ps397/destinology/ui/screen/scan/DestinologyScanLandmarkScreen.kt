@@ -19,6 +19,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.ch2_ps397.destinology.navigation.DestinologyScreens
+import com.ch2_ps397.destinology.ui.components.button.DestinologyPrimaryButton
 import com.ch2_ps397.destinology.ui.components.imagery.ImageBackground
 import com.ch2_ps397.destinology.ui.theme.Black
 import com.ch2_ps397.destinology.ui.theme.Gray
@@ -70,6 +72,14 @@ fun DestinologyScanLandmarkScreen(
                         Column {
                             Text(text = "Fun fact:", color = Gray, fontSize = 12.sp)
                             Text(text = fact!!, color = Black)
+                        }
+                    }
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+                DestinologyPrimaryButton(enabled = true, text = "Scan lagi") {
+                    navController.navigate(DestinologyScreens.DestinologyCameraScreen.name) {
+                        popUpTo(navController.graph.id) {
+                            inclusive = true
                         }
                     }
                 }
