@@ -1,5 +1,6 @@
 package com.ch2_ps397.destinology.ui.screen.user
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -54,6 +55,23 @@ fun DestinologyUserLoginScreen(navController: NavController,
             }
         }
 
+        when(resource) {
+            is Resource.Loading -> {
+                showDialog = true
+            }
+            is Resource.Success -> {
+                Toast.makeText(LocalContext.current, resource.data.toString(), Toast.LENGTH_LONG).show()
+                showDialog = false
+            }
+            is Resource.Error -> {
+                showDialog = false
+                Toast.makeText(LocalContext.current, resource.message, Toast.LENGTH_LONG).show()
+            }
+            else -> {
+                showDialog = false
+            }
+        }
+
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
@@ -67,8 +85,8 @@ fun DestinologyUserLoginScreen(navController: NavController,
                 fontWeight = FontWeight.Bold,
             )
             Spacer(modifier = Modifier.height(16.dp))
-            DestinologyLoginUserForm(navController = navController) { email, password ->
-                userAuthViewModel.loginUser(email = email, password = password)
+            DestinologyLoginUserForm { email, password ->
+                userAuthViewModel.loginUser(email = email, password = password, navController = navController)
             }
             Spacer(modifier = Modifier.height(16.dp))
             DestinologyTransparentButton(enabled = true, text = "Belum punya akun? Buat dulu sekarang") {

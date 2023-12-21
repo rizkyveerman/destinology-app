@@ -1,5 +1,6 @@
 package com.ch2_ps397.destinology.core.data.repository
 
+import android.util.Log
 import com.ch2_ps397.destinology.core.data.source.local.UserPreferences
 import com.ch2_ps397.destinology.core.data.source.remote.network.ApiService
 import com.ch2_ps397.destinology.core.data.source.remote.response.DestinologyLoginUserResponse
@@ -34,8 +35,9 @@ class UserRepository(
         )
         return apiService.createAccountUser(newUser).awaitResponse().code()
     }
+
     @OptIn(DelicateCoroutinesApi::class)
-    suspend fun loginUser(email: String, password: String) {
+    suspend fun loginUser(email: String, password: String) : Int {
         val loginUser = MUser(
             email = email,
             password = password
@@ -46,6 +48,7 @@ class UserRepository(
                 call: Call<DestinologyLoginUserResponse>,
                 response: Response<DestinologyLoginUserResponse>
             ) {
+                Log.d("loginUser", "Repo: $response")
                 GlobalScope.launch {
                     userPreferences.saveToken(response.body()?.accessToken!!)
                 }
@@ -56,6 +59,7 @@ class UserRepository(
             }
 
         })
-    }
 
+        return client.awaitResponse().code()
+    }
 }

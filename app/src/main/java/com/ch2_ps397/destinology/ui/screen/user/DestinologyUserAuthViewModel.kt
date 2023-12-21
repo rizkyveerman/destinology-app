@@ -15,9 +15,35 @@ class DestinologyUserAuthViewModel(private val userRepository: UserRepository) :
     private val _resource: MutableStateFlow<Resource<Any>> = MutableStateFlow(Resource.Idle)
     val resource: MutableStateFlow<Resource<Any>> = _resource
 
-    fun loginUser(email: String, password: String) {
+    fun loginUser(email: String, password: String, navController: NavController) {
         viewModelScope.launch {
-            userRepository.loginUser(email, password)
+            try {
+                _resource.value = Resource.Loading
+                val res = userRepository.loginUser(email, password)
+                Log.d("loginUser", "VM: $res")
+                when (res) {
+                    200 -> {
+                        _resource.value = Resource.Success("Yay! Berhasil masuk.")
+                        navController.navigate(DestinologyScreens.DestinologyPlanScreen.name) {
+                            popUpTo(navController.graph.id) {
+                                inclusive = true
+                            }
+                        }
+                    }
+                    400 -> {
+                        _resource.value = Resource.Error("Password or email tidak sesuai.")
+                    }
+                    422 -> {
+                        _resource.value = Resource.Error("Akun belum terdaftar.")
+
+                    }
+                    else -> {
+                        _resource.value = Resource.Error("Ada yang salah. Coba lagi.")
+                    }
+                }
+            } catch (e: Exception) {
+
+            }
         }
     }
     fun registerUser(
@@ -36,7 +62,6 @@ class DestinologyUserAuthViewModel(private val userRepository: UserRepository) :
                     username = username,
                     password = password
                 )
-                Log.d("CREATE_ACCOUNT", "resVM: $res")
                 when (res) {
                     201 -> {
                         _resource.value = Resource.Success("Yay! Akun berhasil terdaftar.")

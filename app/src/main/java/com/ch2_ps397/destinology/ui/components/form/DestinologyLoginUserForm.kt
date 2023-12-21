@@ -13,8 +13,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.components.button.DestinologyPrimaryButton
 import com.ch2_ps397.destinology.ui.components.fields.DestinologyPasswordInput
 import com.ch2_ps397.destinology.ui.components.fields.DestinologyTextInputFilled
@@ -96,7 +94,7 @@ fun DestinoloyCreateAccountForm(onSubmit: (
 }
 
 @Composable
-fun DestinologyLoginUserForm(navController: NavController, onSubmit: (
+fun DestinologyLoginUserForm(onSubmit: (
     email: String,
     password: String,
 ) -> Unit) {
@@ -138,12 +136,6 @@ fun DestinologyLoginUserForm(navController: NavController, onSubmit: (
                         )
                     } catch (e: Exception) {
                         throw e
-                    } finally {
-                        navController.navigate(DestinologyScreens.DestinologyPlanScreen.name) {
-                            popUpTo(navController.graph.id) {
-                                inclusive = true
-                            }
-                        }
                     }
                 }
             }
