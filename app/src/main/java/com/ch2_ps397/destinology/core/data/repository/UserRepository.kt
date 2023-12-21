@@ -1,6 +1,5 @@
 package com.ch2_ps397.destinology.core.data.repository
 
-import android.util.Log
 import com.ch2_ps397.destinology.core.data.source.local.UserPreferences
 import com.ch2_ps397.destinology.core.data.source.remote.network.ApiService
 import com.ch2_ps397.destinology.core.data.source.remote.response.DestinologyLoginUserResponse

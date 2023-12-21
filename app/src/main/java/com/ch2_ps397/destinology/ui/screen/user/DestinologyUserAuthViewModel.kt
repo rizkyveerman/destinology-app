@@ -1,6 +1,5 @@
 package com.ch2_ps397.destinology.ui.screen.user
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
