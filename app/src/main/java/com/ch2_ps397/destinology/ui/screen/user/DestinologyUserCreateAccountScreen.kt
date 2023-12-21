@@ -1,5 +1,6 @@
 package com.ch2_ps397.destinology.ui.screen.user
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -54,6 +55,7 @@ fun DestinologyUserCreateAccountScreen(navController: NavController,
                 showDialog = true
             }
             is Resource.Success -> {
+                Toast.makeText(LocalContext.current, "Berhasil buat akun.", Toast.LENGTH_SHORT).show()
                 navController.navigate(DestinologyScreens.DestinologyUserLoginScreen.name) {
                     popUpTo(navController.graph.id) {
                         inclusive = true
@@ -65,6 +67,7 @@ fun DestinologyUserCreateAccountScreen(navController: NavController,
             is Resource.Error -> {
                 isSuccess = false
                 showDialog = false
+                Toast.makeText(LocalContext.current, "Gagal: $resource.message", Toast.LENGTH_SHORT).show()
             }
             else -> {
 
@@ -90,7 +93,7 @@ fun DestinologyUserCreateAccountScreen(navController: NavController,
         )
         Spacer(modifier = Modifier.height(16.dp))
         DestinoloyCreateAccountForm { email, fullName, username, password ->
-            userAuthViewModel.registerUser(email = email, fullname = fullName, username = username, password = password)
+            userAuthViewModel.registerUser(email = email, fullname = fullName, username = username, password = password, navController = navController)
         }
         Spacer(modifier = Modifier.height(16.dp))
         DestinologyTransparentButton(enabled = true, text = "Sudah punya akun? Masuk aja") {
