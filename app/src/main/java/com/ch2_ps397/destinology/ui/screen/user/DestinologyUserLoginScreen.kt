@@ -1,7 +1,9 @@
 package com.ch2_ps397.destinology.ui.screen.user
 
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -28,7 +30,9 @@ import com.ch2_ps397.destinology.core.utils.Resource
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.ViewModelFactory
 import com.ch2_ps397.destinology.ui.components.button.DestinologyTransparentButton
+import com.ch2_ps397.destinology.ui.components.cards.DestinologyCardDialog
 import com.ch2_ps397.destinology.ui.components.form.DestinologyLoginUserForm
+import com.ch2_ps397.destinology.ui.theme.IndigoLight
 
 @Composable
 fun DestinologyUserLoginScreen(navController: NavController,
@@ -50,8 +54,13 @@ fun DestinologyUserLoginScreen(navController: NavController,
 
     userAuthViewModel.resource.collectAsState(initial = Resource.Idle).value.let { resource ->
         if (showDialog) {
-            Dialog(onDismissRequest = {showDialog = false}) {
-                Text(text = "Loading...")
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .customDialogModifier(CustomDialogPosition.TOP)
+            ){
+                DestinologyCardDialog(showDialog = showDialog) { showDialog = false }
             }
         }
 

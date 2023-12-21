@@ -1,7 +1,9 @@
 package com.ch2_ps397.destinology.ui.screen.user
 
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -28,7 +31,29 @@ import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.ViewModelFactory
 import com.ch2_ps397.destinology.ui.components.button.DestinologyTransparentButton
 import com.ch2_ps397.destinology.ui.components.cards.DestinologyCardDialog
+import com.ch2_ps397.destinology.ui.components.cards.customDialogModifier
 import com.ch2_ps397.destinology.ui.components.form.DestinoloyCreateAccountForm
+import com.ch2_ps397.destinology.ui.theme.IndigoLight
+
+enum class CustomDialogPosition {
+    BOTTOM, TOP
+}
+
+fun Modifier.customDialogModifier(pos: CustomDialogPosition) = layout { measurable, constraints ->
+
+    val placeable = measurable.measure(constraints);
+    layout(constraints.maxWidth, constraints.maxHeight){
+        when(pos) {
+            CustomDialogPosition.BOTTOM -> {
+                placeable.place(0, constraints.maxHeight - placeable.height, 10f)
+            }
+            CustomDialogPosition.TOP -> {
+                placeable.place(0,0,10f)
+            }
+        }
+    }
+}
+
 
 @Composable
 fun DestinologyUserCreateAccountScreen(navController: NavController,
@@ -71,7 +96,14 @@ fun DestinologyUserCreateAccountScreen(navController: NavController,
     }
 
     if (showDialog) {
-        DestinologyCardDialog(showDialog = showDialog) { showDialog = false }
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .fillMaxSize()
+                .customDialogModifier(CustomDialogPosition.TOP)
+        ){
+            DestinologyCardDialog(showDialog = showDialog) { showDialog = false }
+        }
     }
 
     Column(
