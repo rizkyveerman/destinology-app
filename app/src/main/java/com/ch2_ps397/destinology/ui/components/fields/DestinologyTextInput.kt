@@ -110,6 +110,9 @@ fun DestinologyPasswordInput(
             unfocusedIndicatorColor = Gray,
             focusedIndicatorColor = Indigo
         ),
+        supportingText = {
+            Text(text = "Minimal 8 karakter. Perhatikan huruf besar & kecil, serta harus mengandung angka dan simbol.")
+        }
     )
 }
 
