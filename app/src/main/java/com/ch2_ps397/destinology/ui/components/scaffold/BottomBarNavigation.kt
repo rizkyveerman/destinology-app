@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -22,6 +23,7 @@ import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.theme.Black
 import com.ch2_ps397.destinology.ui.theme.LightGray
 import com.ch2_ps397.destinology.ui.theme.Indigo
+import com.ch2_ps397.destinology.ui.theme.IndigoLight
 import com.ch2_ps397.destinology.ui.theme.White
 
 
@@ -72,12 +74,12 @@ fun DestinologyBottomBarNavigation(
                     Image(
                         imageVector = item.icon,
                         contentDescription = item.title,
-                        colorFilter = ColorFilter.tint(Black)
+                        colorFilter = ColorFilter.tint(Indigo)
                     )
                 },
                 colors = NavigationBarItemDefaults.colors(
-                    indicatorColor = Indigo,
-                    selectedIconColor = White,
+                    indicatorColor = IndigoLight,
+                    selectedIconColor = Color.White,
                     unselectedIconColor = LightGray,
                 ),
                 label = {

@@ -33,8 +33,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
@@ -55,7 +53,6 @@ import com.ch2_ps397.destinology.ui.screen.user.customDialogModifier
 import com.ch2_ps397.destinology.ui.theme.Indigo
 import com.ch2_ps397.destinology.ui.theme.IndigoLight
 import com.ch2_ps397.destinology.ui.theme.White
-import com.ch2_ps397.destinology.ui.theme.White20
 
 @Composable
 fun DestinologyCameraScreen(
