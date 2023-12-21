@@ -6,13 +6,12 @@ Indonesia has a lot of potential with its tourism sector. There's a lot improvem
 
 ## Project Scope
 
-### Machine Learning
+### Machine Learning [(Repository)](https://github.com/diga-tech/Destinology_ML)
 
 - Utilizes TensorFlow for giving personalized recommendations on itinerary planners.
 - Employs machine learning models for landmark detection to enhance the tourist experience.
 
-### Cloud Computing
-
+### Cloud Computing [(Repository)](https://github.com/dhiyarisalah/destinology)
 - Implements a user registration and login system using APIs for authentication.
 - Stores and manages assets in Google Cloud Storage for efficient data handling.
 - Deploys machine learning models to the cloud for scalability and accessibility.
@@ -57,3 +56,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 - Special thanks to the team member.
 - Inspiration drawn from the commitment to transforming tourism for sustainable economic growth.
+
+## Other repositories
+[Cloud Computing](https://github.com/dhiyarisalah/destinology)
+[Machine Learning](https://github.com/diga-tech/Destinology_ML)
