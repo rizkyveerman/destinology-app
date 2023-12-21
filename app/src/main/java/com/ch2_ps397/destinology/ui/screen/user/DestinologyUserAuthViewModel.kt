@@ -1,5 +1,6 @@
 package com.ch2_ps397.destinology.ui.screen.user
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
@@ -26,25 +27,39 @@ class DestinologyUserAuthViewModel(private val userRepository: UserRepository) :
         password: String,
         navController: NavController
     ) {
-       viewModelScope.launch {
-           _resource.value = Resource.Loading
-           val createAccountRes = userRepository.createAccountUser(
-               email = email,
-               fullName = fullname,
-               username = username,
-               password = password
-           )
+        viewModelScope.launch {
+            try {
+                _resource.value = Resource.Loading
+                val res = userRepository.createAccountUser(
+                    email = email,
+                    fullName = fullname,
+                    username = username,
+                    password = password
+                )
+                Log.d("CREATE_ACCOUNT", "resVM: $res")
+                when (res) {
+                    201 -> {
+                        _resource.value = Resource.Success("Yay! Akun berhasil terdaftar.")
+                        navController.navigate(DestinologyScreens.DestinologyUserLoginScreen.name) {
+                            popUpTo(navController.graph.id) {
+                                inclusive = true
+                            }
+                        }
+                    }
+                    400 -> {
+                        _resource.value = Resource.Error("Akun sudah terpakai.")
+                    }
+                    422 -> {
+                        _resource.value = Resource.Error("Ada yang salah. Periksa email dan password anda.")
 
-           if (createAccountRes.isSuccessful) {
-               _resource.value = Resource.Success(createAccountRes.isSuccessful)
-               navController.navigate(DestinologyScreens.DestinologyUserLoginScreen.name) {
-                   popUpTo(navController.graph.id) {
-                       inclusive = true
-                   }
-               }
-           } else {
-               _resource.value = Resource.Error(createAccountRes.message())
-           }
-       }
+                    }
+                    else -> {
+                        _resource.value = Resource.Error("Ada yang salah. Coba lagi.")
+                    }
+                }
+            } catch (e: Exception) {
+
+            }
+        }
     }
 }

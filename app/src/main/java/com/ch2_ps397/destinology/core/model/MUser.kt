@@ -6,3 +6,8 @@ data class MUser(
     var password: String = "",
     var username: String = "",
 )
+
+data class MCreateUserResponse(
+    var code: Int = 0,
+    var message: String? = "",
+)

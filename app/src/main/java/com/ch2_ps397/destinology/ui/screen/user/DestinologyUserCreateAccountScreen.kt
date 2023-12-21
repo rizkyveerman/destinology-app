@@ -55,22 +55,17 @@ fun DestinologyUserCreateAccountScreen(navController: NavController,
                 showDialog = true
             }
             is Resource.Success -> {
-                Toast.makeText(LocalContext.current, "Berhasil buat akun.", Toast.LENGTH_SHORT).show()
-                navController.navigate(DestinologyScreens.DestinologyUserLoginScreen.name) {
-                    popUpTo(navController.graph.id) {
-                        inclusive = true
-                    }
-                }
+                Toast.makeText(LocalContext.current, resource.data.toString(), Toast.LENGTH_LONG).show()
                 isSuccess = true
                 showDialog = false
             }
             is Resource.Error -> {
                 isSuccess = false
                 showDialog = false
-                Toast.makeText(LocalContext.current, "Gagal: $resource.message", Toast.LENGTH_SHORT).show()
+                Toast.makeText(LocalContext.current, resource.message, Toast.LENGTH_LONG).show()
             }
             else -> {
-
+                showDialog = false
             }
         }
     }

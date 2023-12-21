@@ -1,9 +1,7 @@
 package com.ch2_ps397.destinology.core.data.repository
 
-import android.util.Log
 import com.ch2_ps397.destinology.core.data.source.local.UserPreferences
 import com.ch2_ps397.destinology.core.data.source.remote.network.ApiService
-import com.ch2_ps397.destinology.core.data.source.remote.response.DestinologyCreateUserResponse
 import com.ch2_ps397.destinology.core.data.source.remote.response.DestinologyLoginUserResponse
 import com.ch2_ps397.destinology.core.model.MUser
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -27,28 +25,14 @@ class UserRepository(
         fullName: String,
         username: String,
         password: String
-    ) : Response<DestinologyCreateUserResponse> {
+    ) : Int {
         val newUser = MUser(
             email = email,
             full_name = fullName,
             username = username,
             password = password
         )
-        val client = apiService.createAccountUser(newUser)
-        client.clone().enqueue(object : Callback<DestinologyCreateUserResponse> {
-            override fun onResponse(
-                call: Call<DestinologyCreateUserResponse>,
-                response: Response<DestinologyCreateUserResponse>
-            ) {
-                Log.d("CREATE ACCOUNT", "onResponse: ${response.message()}")
-            }
-
-            override fun onFailure(call: Call<DestinologyCreateUserResponse>, t: Throwable) {
-            }
-
-        })
-
-        return client.awaitResponse()
+        return apiService.createAccountUser(newUser).awaitResponse().code()
     }
     @OptIn(DelicateCoroutinesApi::class)
     suspend fun loginUser(email: String, password: String) {
