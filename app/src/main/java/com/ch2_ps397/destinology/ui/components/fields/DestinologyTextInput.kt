@@ -1,15 +1,20 @@
 package com.ch2_ps397.destinology.ui.components.fields
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Face
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -18,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -26,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import com.ch2_ps397.destinology.ui.theme.Gray
 import com.ch2_ps397.destinology.ui.theme.Indigo
 import com.ch2_ps397.destinology.ui.theme.IndigoLight
+import com.ch2_ps397.destinology.ui.theme.LightGray
 import com.ch2_ps397.destinology.ui.theme.VeryLightGray
 import com.ch2_ps397.destinology.ui.theme.White
 
@@ -65,8 +72,23 @@ fun DestinologyTextInput(
 @Composable
 fun PasswordVisibility(passwordVisibility: MutableState<Boolean>) {
     val isVisible = passwordVisibility.value
-    IconButton(onClick = { passwordVisibility.value !=isVisible }) {
-        Icons.Default.Close
+    IconButton(
+        onClick = { passwordVisibility.value = !isVisible },
+        colors = IconButtonDefaults.iconButtonColors(
+            contentColor = Indigo,
+            containerColor = IndigoLight,
+            disabledContainerColor = LightGray,
+            disabledContentColor = Gray
+        ),
+        modifier = Modifier.size(24.dp)
+    ) {
+        Image(
+            imageVector = if (isVisible) Icons.Default.Face else  Icons.Default.Close,
+            contentDescription = "Password visibility",
+            colorFilter = ColorFilter.tint(Indigo),
+            modifier = Modifier.size(16.dp)
+        )
+
     }
 }
 

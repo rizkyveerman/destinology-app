@@ -20,7 +20,6 @@ class DestinologyUserAuthViewModel(private val userRepository: UserRepository) :
             try {
                 _resource.value = Resource.Loading
                 val res = userRepository.loginUser(email, password)
-                Log.d("loginUser", "VM: $res")
                 when (res) {
                     200 -> {
                         _resource.value = Resource.Success("Yay! Berhasil masuk.")

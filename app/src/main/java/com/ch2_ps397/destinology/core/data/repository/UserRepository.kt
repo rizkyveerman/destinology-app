@@ -48,14 +48,14 @@ class UserRepository(
                 call: Call<DestinologyLoginUserResponse>,
                 response: Response<DestinologyLoginUserResponse>
             ) {
-                Log.d("loginUser", "Repo: $response")
-                GlobalScope.launch {
-                    userPreferences.saveToken(response.body()?.accessToken!!)
+                if (response.isSuccessful) {
+                    GlobalScope.launch {
+                        userPreferences.saveToken(response.body()?.accessToken!!)
+                    }
                 }
             }
 
             override fun onFailure(call: Call<DestinologyLoginUserResponse>, t: Throwable) {
-//                TODO("Not yet implemented")
             }
 
         })
