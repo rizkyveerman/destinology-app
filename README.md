@@ -28,8 +28,8 @@ Indonesia has a lot of potential with its tourism sector. There's a lot improvem
 ### Prerequisites
 
 - Android Studio: [Install Android Studio](https://developer.android.com/studio)
-- TensorFlow: [TensorFlow Installation Guide](https://www.tensorflow.org/install)
-- Google Cloud Platform Account: [Sign Up for GCP](https://cloud.google.com/)
+- Configure the Jetpack Compose [Jetpack Compose Overview](https://developer.android.com/jetpack/compose)
+- Configure CameraX [CameraX Overview](https://developer.android.com/training/camerax)
 
 ### Installation
 
