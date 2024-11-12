@@ -8,7 +8,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.ch2_ps397.destinology.navigation.DestinologyNavigation
 import com.ch2_ps397.destinology.ui.theme.DestinologyTheme
-import com.ch2_ps397.destinology.ui.theme.VeryLightGray
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +16,6 @@ class MainActivity : ComponentActivity() {
             DestinologyTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = VeryLightGray,
                 ) {
                     DestinologyNavigation()
                 }

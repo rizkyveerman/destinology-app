@@ -1,7 +1,6 @@
 package com.ch2_ps397.destinology.ui.screen.user
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,6 +19,7 @@ import androidx.compose.material.icons.twotone.Place
 import androidx.compose.material.icons.twotone.Settings
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -39,10 +39,6 @@ import coil.compose.AsyncImage
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.components.button.SmallButton
 import com.ch2_ps397.destinology.ui.components.scaffold.DestinologyBottomBarNavigation
-import com.ch2_ps397.destinology.ui.theme.Black
-import com.ch2_ps397.destinology.ui.theme.DarkGray
-import com.ch2_ps397.destinology.ui.theme.Gray
-import com.ch2_ps397.destinology.ui.theme.White
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -51,17 +47,17 @@ fun DestinologyUserProfileScreen(navController: NavController) {
         topBar = {
             TopAppBar(
                 title = {
-                Text(text = "@rizkyfirmansyah")
-            }, actions = {
-                Image(
-                    imageVector = Icons.TwoTone.Settings,
-                    contentDescription = "Options",
-                    modifier = Modifier.clickable {
-                        navController.navigate(DestinologyScreens.DestinologySettingScreen.name)
-                    }
-                )
-            },
-                modifier = Modifier.background(White)
+                    Text(text = "@rizkyfirmansyah")
+                },
+                actions = {
+                    Image(
+                        imageVector = Icons.TwoTone.Settings,
+                        contentDescription = "Options",
+                        modifier = Modifier.clickable {
+                            navController.navigate(DestinologyScreens.DestinologySettingScreen.name)
+                        }
+                    )
+                },
             )
         },
         bottomBar = {
@@ -71,7 +67,6 @@ fun DestinologyUserProfileScreen(navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(White)
                 .padding(innerPadding)
         ) {
             Row(
@@ -101,10 +96,9 @@ fun DestinologyUserProfileScreen(navController: NavController) {
                         Text(
                             text = "32",
                             fontWeight = FontWeight.Bold,
-                            color = DarkGray,
                             fontSize = 20.sp
                         )
-                        Text(text = "Post", color = Gray)
+                        Text(text = "Post")
                     }
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally
@@ -112,10 +106,9 @@ fun DestinologyUserProfileScreen(navController: NavController) {
                         Text(
                             text = "1300",
                             fontWeight = FontWeight.Bold,
-                            color = DarkGray,
                             fontSize = 20.sp
                         )
-                        Text(text = "Followers", color = Gray)
+                        Text(text = "Followers")
                     }
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally
@@ -123,10 +116,9 @@ fun DestinologyUserProfileScreen(navController: NavController) {
                         Text(
                             text = "568",
                             fontWeight = FontWeight.Bold,
-                            color = DarkGray,
                             fontSize = 20.sp
                         )
-                        Text(text = "Following", color = Gray)
+                        Text(text = "Following")
                     }
                 }
             }
@@ -143,7 +135,6 @@ fun DestinologyUserProfileScreen(navController: NavController) {
                 Text(
                     text = "Rizky F",
                     fontWeight = FontWeight.Bold,
-                    color = Black
                 )
                 Row(
                     verticalAlignment = Alignment.CenterVertically
@@ -151,20 +142,18 @@ fun DestinologyUserProfileScreen(navController: NavController) {
                     Image(
                         imageVector = Icons.TwoTone.Place,
                         contentDescription = "Address",
-                        colorFilter = ColorFilter.tint(Gray),
+                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
                         modifier = Modifier.size(16.dp)
                     )
                     Text(
                         text = "Jakarta, Indonesia",
                         fontSize = 12.sp,
-                        color = Gray
                     )
                 }
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = "The world is my playground, and I'm here to play!",
                     fontSize = 16.sp,
-                    color = Gray
                 )
             }
             Divider()
@@ -178,11 +167,10 @@ fun DestinologyUserProfileScreen(navController: NavController) {
                     Text(
                         text = "No post yet",
                         fontWeight = FontWeight.Bold,
-                        color = Gray,
                         textAlign = TextAlign.Center
                     )
                 }
-            }   
+            }
         }
     }
 }

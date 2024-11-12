@@ -1,8 +1,6 @@
 package com.ch2_ps397.destinology.ui.components.fields
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -25,9 +23,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ch2_ps397.destinology.ui.theme.Gray
-import com.ch2_ps397.destinology.ui.theme.LightGray
-import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
 fun Dropdown(listOfItem: List<Any>, onSelect: (selectedCity: String) -> Unit) {
@@ -39,18 +34,15 @@ fun Dropdown(listOfItem: List<Any>, onSelect: (selectedCity: String) -> Unit) {
         mutableStateOf("")
     }
 
-    Card (
-        border = BorderStroke(1.dp, LightGray),
+    Card(
         modifier = Modifier
             .height(48.dp)
-            .background(White)
     ) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxSize()
-                .background(White)
                 .clickable {
                     dropdownState = !dropdownState
                 }
@@ -58,9 +50,6 @@ fun Dropdown(listOfItem: List<Any>, onSelect: (selectedCity: String) -> Unit) {
         ) {
             Text(
                 text = if (item == "") listOfItem[0].toString() else item,
-                color = Gray,
-                modifier = Modifier
-                    .background(White)
             )
             Image(imageVector = Icons.Default.ArrowDropDown, contentDescription = null)
         }
@@ -71,7 +60,6 @@ fun Dropdown(listOfItem: List<Any>, onSelect: (selectedCity: String) -> Unit) {
             onDismissRequest = { dropdownState = false },
             modifier = Modifier
                 .widthIn(min = 300.dp)
-                .background(White)
         ) {
             for (i in listOfItem) {
                 DropdownMenuItem(
@@ -90,10 +78,12 @@ fun Dropdown(listOfItem: List<Any>, onSelect: (selectedCity: String) -> Unit) {
 @Preview
 @Composable
 fun PreviewDropdown() {
-    Dropdown(listOfItem = listOf(
-        "Item1",
-        "Item2"
-    )) {
+    Dropdown(
+        listOfItem = listOf(
+            "Item1",
+            "Item2"
+        )
+    ) {
 
     }
 }

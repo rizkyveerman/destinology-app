@@ -17,11 +17,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ch2_ps397.destinology.ui.theme.Black
-import com.ch2_ps397.destinology.ui.theme.Gray
-import com.ch2_ps397.destinology.ui.theme.LightGray
-import com.ch2_ps397.destinology.ui.theme.Indigo
-import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
 fun DestinologyPrimaryButton(enabled: Boolean, text: String, onClick: () -> Unit) {
@@ -31,7 +26,6 @@ fun DestinologyPrimaryButton(enabled: Boolean, text: String, onClick: () -> Unit
         modifier = Modifier
             .fillMaxWidth()
             .heightIn(min = 48.dp),
-        colors = ButtonDefaults.buttonColors(Indigo),
         elevation = ButtonDefaults.buttonElevation(
             defaultElevation = 0.dp,
             disabledElevation = 0.dp,
@@ -43,13 +37,11 @@ fun DestinologyPrimaryButton(enabled: Boolean, text: String, onClick: () -> Unit
             vertical = 16.dp,
             horizontal = 24.dp
         ),
-
-    ) {
+        ) {
         Text(
             text = text,
             fontWeight = FontWeight.Normal,
             textAlign = TextAlign.Center,
-            color = White
         )
     }
 }
@@ -63,10 +55,7 @@ fun DestinologyFloatingButton(
         onClick = { onClick() },
         modifier = Modifier
             .widthIn(min = 48.dp)
-            .height(48.dp)
-        ,
-        containerColor = Indigo,
-        contentColor = White,
+            .height(48.dp),
         content = content
     )
 }
@@ -98,7 +87,6 @@ fun DestinologyTransparentButton(enabled: Boolean, text: String, onClick: () -> 
             text = text,
             fontWeight = FontWeight.Normal,
             textAlign = TextAlign.Center,
-            color = Gray
         )
     }
 }
@@ -107,10 +95,6 @@ fun DestinologyTransparentButton(enabled: Boolean, text: String, onClick: () -> 
 @Composable
 fun SmallButton(text: String, onClick: () -> Unit) {
     Button(
-        colors = ButtonDefaults.buttonColors(
-            containerColor = LightGray,
-            contentColor = Black
-        ),
         shape = RoundedCornerShape(8.dp),
         onClick = { /*TODO*/ },
         modifier = Modifier

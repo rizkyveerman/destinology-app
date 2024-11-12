@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.pm.PackageManager
 import android.graphics.ImageDecoder
 import android.net.Uri
+import android.os.Build
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -11,7 +12,6 @@ import androidx.camera.core.CameraSelector
 import androidx.camera.view.CameraController
 import androidx.camera.view.LifecycleCameraController
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -25,6 +25,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.twotone.Check
 import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -51,9 +52,6 @@ import com.ch2_ps397.destinology.ui.components.camera.CameraPreview
 import com.ch2_ps397.destinology.ui.components.cards.DestinologyCardDialog
 import com.ch2_ps397.destinology.ui.screen.user.CustomDialogPosition
 import com.ch2_ps397.destinology.ui.screen.user.customDialogModifier
-import com.ch2_ps397.destinology.ui.theme.Indigo
-import com.ch2_ps397.destinology.ui.theme.IndigoLight
-import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
 fun DestinologyCameraScreen(
@@ -103,17 +101,24 @@ fun DestinologyCameraScreen(
         mutableStateOf<Uri?>(null)
     }
 
-    val galleryLauncher = rememberLauncherForActivityResult(contract =
-    ActivityResultContracts.GetContent()) { uri: Uri? ->
+    val galleryLauncher = rememberLauncherForActivityResult(
+        contract =
+        ActivityResultContracts.GetContent()
+    ) { uri: Uri? ->
         imageUri = uri
     }
 
-    imageUri?.let {
-        val source = ImageDecoder
-            .createSource(context.contentResolver,it)
-        val bitmap = ImageDecoder.decodeBitmap(source)
-        cameraViewModel.getImageFromGallery(bitmap)
+    if (Build.VERSION.SDK_INT >= 28) {
+        imageUri?.let {
+            val source = ImageDecoder
+                .createSource(context.contentResolver, it)
+            val bitmap = ImageDecoder.decodeBitmap(source)
+            cameraViewModel.getImageFromGallery(bitmap)
+        }
+    } else {
+        // TODO setup for 28 and lower
     }
+
     var showDialog by remember { mutableStateOf(false) }
     var isError by remember { mutableStateOf(false) }
 
@@ -124,6 +129,7 @@ fun DestinologyCameraScreen(
                 isError = true
                 Toast.makeText(LocalContext.current, res.message, Toast.LENGTH_LONG).show()
             }
+
             else -> {}
         }
 
@@ -135,7 +141,7 @@ fun DestinologyCameraScreen(
             is Resource.Success -> {
                 Scaffold(
                     bottomBar = {
-                        Row (
+                        Row(
                             modifier = Modifier
                                 .fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceAround
@@ -149,15 +155,20 @@ fun DestinologyCameraScreen(
                                 Box(
                                     modifier = Modifier
                                         .fillMaxSize()
-                                        .background(Indigo)
                                         .clickable {
                                             showDialog = true
-                                            cameraViewModel.uploadImage(bitmap.data!!, context, navController)
+                                            cameraViewModel.uploadImage(
+                                                bitmap.data!!,
+                                                context,
+                                                navController
+                                            )
                                         },
                                     contentAlignment = Alignment.Center,
                                 ) {
-                                    Image(imageVector = Icons.TwoTone.Check, contentDescription = "Scan", colorFilter = ColorFilter.tint(
-                                        White))
+                                    Image(
+                                        imageVector = Icons.TwoTone.Check,
+                                        contentDescription = "Scan"
+                                    )
                                 }
                             }
                         }
@@ -169,7 +180,7 @@ fun DestinologyCameraScreen(
                             modifier = Modifier
                                 .fillMaxSize()
                                 .customDialogModifier(CustomDialogPosition.TOP)
-                        ){
+                        ) {
                             DestinologyCardDialog(showDialog = showDialog) { showDialog = false }
                         }
                     }
@@ -177,12 +188,14 @@ fun DestinologyCameraScreen(
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier
-                        .fillMaxSize()
-                        .padding(innerPadding)) {
+                            .fillMaxSize()
+                            .padding(innerPadding)
+                    ) {
                         Image(bitmap = (bitmap.data)!!.asImageBitmap(), contentDescription = null)
                     }
                 }
             }
+
             is Resource.Loading -> {
                 showDialog = true
             }
@@ -197,7 +210,7 @@ fun DestinologyCameraScreen(
                         modifier = Modifier
                             .fillMaxSize()
                     )
-                    Row (
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth()
                             .align(Alignment.BottomCenter),
@@ -212,7 +225,6 @@ fun DestinologyCameraScreen(
                             Box(
                                 modifier = Modifier
                                     .fillMaxSize()
-                                    .background(IndigoLight)
                                     .clickable {
                                         galleryLauncher.launch("image/*")
                                     },
@@ -221,7 +233,7 @@ fun DestinologyCameraScreen(
                                 Image(
                                     painter = painterResource(id = R.drawable.baseline_image_24),
                                     contentDescription = "capture",
-                                    colorFilter = ColorFilter.tint(Indigo)
+                                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary)
                                 )
                             }
                         }
@@ -234,7 +246,6 @@ fun DestinologyCameraScreen(
                             Box(
                                 modifier = Modifier
                                     .fillMaxSize()
-                                    .background(Indigo)
                                     .clickable {
                                         takePhoto(
                                             applicationContext = context.applicationContext,
@@ -248,7 +259,6 @@ fun DestinologyCameraScreen(
                                 Image(
                                     painter = painterResource(id = R.drawable.baseline_capture_24),
                                     contentDescription = "capture",
-                                    colorFilter = ColorFilter.tint(White)
                                 )
                             }
                         }
@@ -261,7 +271,6 @@ fun DestinologyCameraScreen(
                             Box(
                                 modifier = Modifier
                                     .fillMaxSize()
-                                    .background(IndigoLight)
                                     .clickable {
                                         controller.cameraSelector =
                                             if (controller.cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) {
@@ -276,7 +285,7 @@ fun DestinologyCameraScreen(
                                         id = R.drawable.baseline_cameraswitch_24
                                     ),
                                     contentDescription = "Switch camera",
-                                    colorFilter = ColorFilter.tint(Indigo)
+                                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary)
                                 )
                             }
                         }

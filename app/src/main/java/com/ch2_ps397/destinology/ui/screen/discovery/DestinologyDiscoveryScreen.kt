@@ -1,6 +1,5 @@
 package com.ch2_ps397.destinology.ui.screen.discovery
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -15,7 +14,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,10 +30,6 @@ import com.ch2_ps397.destinology.ui.components.cards.DestinologyDiscoveryCategor
 import com.ch2_ps397.destinology.ui.components.cards.DestinologyPlaceCard
 import com.ch2_ps397.destinology.ui.components.scaffold.DestinologyBottomBarNavigation
 import com.ch2_ps397.destinology.ui.components.scaffold.DestinologySearchBar
-import com.ch2_ps397.destinology.ui.theme.Black
-import com.ch2_ps397.destinology.ui.theme.Gray
-import com.ch2_ps397.destinology.ui.theme.VeryLightGray
-import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
 fun DestinologyDiscoveryScreen(navController: NavController) {
@@ -54,18 +48,15 @@ fun DestinologyDiscoveryScreen(navController: NavController) {
             ) {
                 Card(
                     shape = RoundedCornerShape(16.dp),
-                    colors = CardDefaults.cardColors(
-                        containerColor = White
-                    ),
+
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Column(
                         modifier = Modifier
-                            .background(White)
                             .padding(16.dp)
                     ) {
-                        Text(text = "Hi, Lemon.", fontSize = 16.sp, color = Gray)
-                        Text(text = "Mari Menjelajah!", fontSize = 24.sp, color = Black)
+                        Text(text = "Hi, Lemon.", fontSize = 16.sp)
+                        Text(text = "Mari Menjelajah!", fontSize = 24.sp)
                         DestinologySearchBar(onSearch = {})
                     }
                 }
@@ -73,7 +64,6 @@ fun DestinologyDiscoveryScreen(navController: NavController) {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(VeryLightGray)
                     .padding(innerPadding)
             ) {
                 item {
@@ -114,7 +104,12 @@ fun DestinologyDiscoveryScreen(navController: NavController) {
                     Column(
                         modifier = Modifier.fillMaxSize()
                     ) {
-                        Text(text = "Tempat popular", fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 24.dp, bottom = 8.dp, start = 16.dp), fontSize = 20.sp)
+                        Text(
+                            text = "Tempat popular",
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(top = 24.dp, bottom = 8.dp, start = 16.dp),
+                            fontSize = 20.sp
+                        )
                         LazyRow(
                             contentPadding = PaddingValues(start = 16.dp),
                             modifier = Modifier.fillMaxWidth()
@@ -138,7 +133,12 @@ fun DestinologyDiscoveryScreen(navController: NavController) {
                     Column(
                         modifier = Modifier.fillMaxSize()
                     ) {
-                        Text(text = "Rekomendasi kami", fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 24.dp, bottom = 8.dp, start = 16.dp), fontSize = 20.sp)
+                        Text(
+                            text = "Rekomendasi kami",
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(top = 24.dp, bottom = 8.dp, start = 16.dp),
+                            fontSize = 20.sp
+                        )
                         LazyRow(
                             contentPadding = PaddingValues(start = 16.dp),
                             modifier = Modifier.fillMaxWidth()
@@ -162,7 +162,12 @@ fun DestinologyDiscoveryScreen(navController: NavController) {
                     Column(
                         modifier = Modifier.fillMaxSize()
                     ) {
-                        Text(text = "Lainnya", fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 24.dp, bottom = 8.dp, start = 16.dp), fontSize = 20.sp)
+                        Text(
+                            text = "Lainnya",
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(top = 24.dp, bottom = 8.dp, start = 16.dp),
+                            fontSize = 20.sp
+                        )
                         LazyRow(
                             contentPadding = PaddingValues(start = 16.dp),
                             modifier = Modifier.fillMaxWidth()

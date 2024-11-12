@@ -2,7 +2,6 @@ package com.ch2_ps397.destinology.ui.components.form
 
 import android.icu.text.NumberFormat
 import android.icu.util.Currency
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,9 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Slider
-import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,10 +23,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.ch2_ps397.destinology.ui.components.fields.Dropdown
 import com.ch2_ps397.destinology.ui.components.fields.NumberInput
-import com.ch2_ps397.destinology.ui.theme.Black
-import com.ch2_ps397.destinology.ui.theme.Indigo
-import com.ch2_ps397.destinology.ui.theme.IndigoLight
-import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
 fun DestinationInputForm(
@@ -45,19 +38,15 @@ fun DestinationInputForm(
 
     Card(
         shape = RoundedCornerShape(corner = CornerSize(16.dp)),
-        colors = CardDefaults.cardColors(White),
     ) {
         Column(
             modifier = Modifier
-                .background(White)
                 .padding(16.dp)
         ) {
             Text(
                 text = "City",
                 fontWeight = FontWeight.Bold,
-                color = Black,
                 modifier = Modifier
-                    .background(White)
             )
             Spacer(modifier = Modifier.height(12.dp))
             Dropdown(listOfItem = cities) {
@@ -67,15 +56,12 @@ fun DestinationInputForm(
 
         Column(
             modifier = Modifier
-                .background(White)
                 .padding(16.dp)
         ) {
             Text(
                 text = "Duration (days)",
                 fontWeight = FontWeight.Bold,
-                color = Black,
                 modifier = Modifier
-                    .background(White)
             )
             Spacer(modifier = Modifier.height(12.dp))
             NumberInput { number ->
@@ -83,15 +69,15 @@ fun DestinationInputForm(
             }
         }
 
-        Column(modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp, 0.dp, 16.dp, 16.dp)) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp, 0.dp, 16.dp, 16.dp)
+        ) {
             Text(
                 text = "Budget range",
                 fontWeight = FontWeight.Bold,
-                color = Black,
                 modifier = Modifier
-                    .background(White)
             )
             Spacer(modifier = Modifier.height(12.dp))
             PriceRangeSlider {
@@ -118,17 +104,11 @@ fun PriceRangeSlider(onPriceChanged: (price: Int) -> Unit) {
                     onPriceChanged(it.toInt())
                     sliderPosition = it
                 },
-                colors = SliderDefaults.colors(
-                    thumbColor = Indigo,
-                    activeTrackColor = Indigo,
-                    inactiveTrackColor = IndigoLight,
-                ),
                 valueRange = 0f..5000000f
             )
         }
         Text(
             text = numberFormat.format(budgetRangeInRupiah),
-            color = Black,
         )
     }
 }
@@ -145,11 +125,6 @@ fun RatingSlider() {
                 onValueChange = {
                     sliderPosition = it
                 },
-                colors = SliderDefaults.colors(
-                    thumbColor = Indigo,
-                    activeTrackColor = Indigo,
-                    inactiveTrackColor = IndigoLight,
-                ),
                 valueRange = 0f..5f,
                 steps = 5
             )
@@ -157,7 +132,6 @@ fun RatingSlider() {
         Text(
             text = "$sliderPosition bintang",
             fontWeight = FontWeight.Bold,
-            color = Black,
         )
     }
 }

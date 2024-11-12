@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,9 +21,6 @@ import androidx.navigation.NavController
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.components.button.DestinologyPrimaryButton
 import com.ch2_ps397.destinology.ui.components.imagery.ImageBackground
-import com.ch2_ps397.destinology.ui.theme.Black
-import com.ch2_ps397.destinology.ui.theme.Gray
-import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
 fun DestinologyScanLandmarkScreen(
@@ -46,9 +42,6 @@ fun DestinologyScanLandmarkScreen(
                     .padding(16.dp)
             ) {
                 Card(
-                    colors = CardDefaults.cardColors(
-                        containerColor = White
-                    ),
                     shape = RoundedCornerShape(16.dp),
                     modifier = Modifier
                         .fillMaxWidth()
@@ -61,17 +54,16 @@ fun DestinologyScanLandmarkScreen(
                         Text(
                             text = nama!!,
                             fontWeight = FontWeight.Bold,
-                            color = Black
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Column {
-                            Text(text = "Deskripsi", color = Gray, fontSize = 12.sp)
-                            Text(text = desc!!, color = Black)
+                            Text(text = "Deskripsi", fontSize = 12.sp)
+                            Text(text = desc!!)
                         }
                         Spacer(modifier = Modifier.height(16.dp))
                         Column {
-                            Text(text = "Fun fact:", color = Gray, fontSize = 12.sp)
-                            Text(text = fact!!, color = Black)
+                            Text(text = "Fun fact:", fontSize = 12.sp)
+                            Text(text = fact!!)
                         }
                     }
                 }

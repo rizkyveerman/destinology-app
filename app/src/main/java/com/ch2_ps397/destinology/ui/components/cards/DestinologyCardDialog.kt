@@ -1,7 +1,5 @@
 package com.ch2_ps397.destinology.ui.components.cards
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,8 +21,6 @@ import androidx.compose.ui.layout.layout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import com.ch2_ps397.destinology.ui.theme.Indigo
-import com.ch2_ps397.destinology.ui.theme.White
 
 enum class CustomDialogPosition {
     BOTTOM, TOP
@@ -33,13 +29,14 @@ enum class CustomDialogPosition {
 fun Modifier.customDialogModifier(pos: CustomDialogPosition) = layout { measurable, constraints ->
 
     val placeable = measurable.measure(constraints);
-    layout(constraints.maxWidth, constraints.maxHeight){
-        when(pos) {
+    layout(constraints.maxWidth, constraints.maxHeight) {
+        when (pos) {
             CustomDialogPosition.BOTTOM -> {
                 placeable.place(0, constraints.maxHeight - placeable.height, 10f)
             }
+
             CustomDialogPosition.TOP -> {
-                placeable.place(0,0,10f)
+                placeable.place(0, 0, 10f)
             }
         }
     }
@@ -47,7 +44,7 @@ fun Modifier.customDialogModifier(pos: CustomDialogPosition) = layout { measurab
 
 @Composable
 fun DestinologyCardDialog(showDialog: Boolean, onDismissRequest: (showDialog: Boolean) -> Unit) {
-    Dialog(onDismissRequest = {onDismissRequest(showDialog)}) {
+    Dialog(onDismissRequest = { onDismissRequest(showDialog) }) {
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
@@ -55,19 +52,16 @@ fun DestinologyCardDialog(showDialog: Boolean, onDismissRequest: (showDialog: Bo
         ) {
             Card(
                 elevation = CardDefaults.cardElevation(2.dp),
-                border = BorderStroke(1.dp, Indigo)
             ) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center,
                     modifier = Modifier
-                        .background(White)
                         .widthIn(min = 100.dp)
                         .heightIn(min = 100.dp)
                         .padding(16.dp)
                 ) {
                     CircularProgressIndicator(
-                        color = Indigo,
                         strokeCap = StrokeCap.Round
                     )
                     Spacer(modifier = Modifier.height(16.dp))

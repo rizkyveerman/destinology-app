@@ -1,7 +1,5 @@
 package com.ch2_ps397.destinology.ui.components.fields
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -21,8 +19,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ch2_ps397.destinology.ui.theme.LightGray
-import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
 fun NumberInput(onChanged: (number: Int) -> Unit) {
@@ -35,20 +31,16 @@ fun NumberInput(onChanged: (number: Int) -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .height(48.dp)
-            .background(White)
     ) {
         Card(
-            border = BorderStroke(1.dp, LightGray),
             modifier = Modifier
                 .width(72.dp)
                 .height(48.dp)
-                .background(White)
         ) {
             Box(contentAlignment = Alignment.Center, modifier = Modifier
                 .fillMaxSize()
-                .background(White)
                 .clickable {
-                    if (number > 1 ) {
+                    if (number > 1) {
                         number--
                         onChanged(number)
                     }
@@ -58,32 +50,28 @@ fun NumberInput(onChanged: (number: Int) -> Unit) {
             }
         }
         Card(
-            border = BorderStroke(1.dp, LightGray),
             modifier = Modifier
                 .width(180.dp)
                 .height(48.dp)
-                .background(White)
         ) {
-            Box(contentAlignment = Alignment.Center, modifier = Modifier
-                .fillMaxSize()
-                .background(White)) {
+            Box(
+                contentAlignment = Alignment.Center, modifier = Modifier
+                    .fillMaxSize()
+            ) {
                 Text(text = number.toString())
             }
         }
         Card(
-            border = BorderStroke(1.dp, LightGray),
             modifier = Modifier
                 .width(72.dp)
                 .height(48.dp)
-                .background(White)
         ) {
             Box(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(White)
                     .clickable {
-                        if (number < 3 ) {
+                        if (number < 3) {
                             number++
                             onChanged(number)
                         }

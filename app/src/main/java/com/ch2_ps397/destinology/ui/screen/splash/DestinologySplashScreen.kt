@@ -1,7 +1,6 @@
 package com.ch2_ps397.destinology.ui.screen.splash
 
 import android.util.Log
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
@@ -18,8 +17,6 @@ import androidx.navigation.NavController
 import com.ch2_ps397.destinology.core.di.Injection
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.ViewModelFactory
-import com.ch2_ps397.destinology.ui.theme.Indigo
-import com.ch2_ps397.destinology.ui.theme.White
 import kotlinx.coroutines.delay
 
 @Composable
@@ -43,13 +40,11 @@ fun DestinologySplashScreen(
         Log.d("TOKEN", "onResponse: $token")
         Box(
             modifier = Modifier
-                .fillMaxSize()
-                .background(Indigo),
+                .fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
             Text(
                 text = "Destinology",
-                color = White,
                 fontWeight = FontWeight.Bold,
                 fontSize = 24.sp
             )

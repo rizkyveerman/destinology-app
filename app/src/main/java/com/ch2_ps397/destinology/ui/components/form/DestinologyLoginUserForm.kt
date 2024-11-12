@@ -1,6 +1,5 @@
 package com.ch2_ps397.destinology.ui.components.form
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -16,15 +15,16 @@ import androidx.compose.ui.unit.dp
 import com.ch2_ps397.destinology.ui.components.button.DestinologyPrimaryButton
 import com.ch2_ps397.destinology.ui.components.fields.DestinologyPasswordInput
 import com.ch2_ps397.destinology.ui.components.fields.DestinologyTextInputFilled
-import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
-fun DestinoloyCreateAccountForm(onSubmit: (
-    email: String,
-    name: String,
-    username: String,
-    password: String,
-) -> Unit) {
+fun DestinoloyCreateAccountForm(
+    onSubmit: (
+        email: String,
+        name: String,
+        username: String,
+        password: String,
+    ) -> Unit
+) {
 
     val nameState = rememberSaveable {
         mutableStateOf("")
@@ -40,7 +40,7 @@ fun DestinoloyCreateAccountForm(onSubmit: (
     val passwordState = rememberSaveable {
         mutableStateOf("")
     }
-    val passwordVisibility = rememberSaveable { mutableStateOf(false)}
+    val passwordVisibility = rememberSaveable { mutableStateOf(false) }
 
     Column {
         Card {
@@ -48,9 +48,8 @@ fun DestinoloyCreateAccountForm(onSubmit: (
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Top,
                 modifier = Modifier
-                    .background(White)
                     .padding(16.dp)
-            )  {
+            ) {
                 DestinologyTextInputFilled(
                     valueState = nameState,
                     labelId = "Your full name",
@@ -87,24 +86,26 @@ fun DestinoloyCreateAccountForm(onSubmit: (
                     } catch (e: Exception) {
                         throw e
                     }
-            }
+                }
             }
         }
     }
 }
 
 @Composable
-fun DestinologyLoginUserForm(onSubmit: (
-    email: String,
-    password: String,
-) -> Unit) {
+fun DestinologyLoginUserForm(
+    onSubmit: (
+        email: String,
+        password: String,
+    ) -> Unit
+) {
     val emailState = rememberSaveable {
         mutableStateOf("")
     }
     val passwordState = rememberSaveable {
         mutableStateOf("")
     }
-    val passwordVisibility = rememberSaveable { mutableStateOf(false)}
+    val passwordVisibility = rememberSaveable { mutableStateOf(false) }
 
     Column {
         Card {
@@ -112,9 +113,8 @@ fun DestinologyLoginUserForm(onSubmit: (
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Top,
                 modifier = Modifier
-                    .background(White)
                     .padding(16.dp)
-            )  {
+            ) {
                 DestinologyTextInputFilled(
                     valueState = emailState,
                     labelId = "Email address",

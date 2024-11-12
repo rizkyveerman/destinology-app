@@ -21,7 +21,7 @@ import androidx.compose.material.icons.twotone.ExitToApp
 import androidx.compose.material.icons.twotone.Place
 import androidx.compose.material.icons.twotone.Star
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -45,11 +45,6 @@ import androidx.navigation.compose.rememberNavController
 import com.ch2_ps397.destinology.ui.components.button.DestinologyPrimaryButton
 import com.ch2_ps397.destinology.ui.components.fields.DestinologyTextInput
 import com.ch2_ps397.destinology.ui.components.imagery.ImageBackground
-import com.ch2_ps397.destinology.ui.theme.Black
-import com.ch2_ps397.destinology.ui.theme.Gray
-import com.ch2_ps397.destinology.ui.theme.Indigo
-import com.ch2_ps397.destinology.ui.theme.VeryLightGray
-import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
 fun DestinologyPlaceDetailsScreen(navController: NavController, navBackStackEntry: String?) {
@@ -72,9 +67,7 @@ fun DestinologyPlaceDetailsScreen(navController: NavController, navBackStackEntr
                     .padding(16.dp)
             ) {
                 Card(
-                    colors = CardDefaults.cardColors(
-                        containerColor = White
-                    ),
+
                     shape = RoundedCornerShape(16.dp),
                     modifier = Modifier
                         .fillMaxWidth()
@@ -93,7 +86,6 @@ fun DestinologyPlaceDetailsScreen(navController: NavController, navBackStackEntr
                                 Text(
                                     text = "Museum Ulen Nutelu",
                                     fontWeight = FontWeight.Bold,
-                                    color = Black
                                 )
                                 Row(
                                     verticalAlignment = Alignment.CenterVertically
@@ -101,12 +93,11 @@ fun DestinologyPlaceDetailsScreen(navController: NavController, navBackStackEntr
                                     Image(
                                         imageVector = Icons.TwoTone.Place,
                                         contentDescription = "Address",
-                                        colorFilter = ColorFilter.tint(Gray),
+                                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
                                         modifier = Modifier.size(16.dp)
                                     )
                                     Text(
                                         text = "Jl. Kaliurang - Yogyakarta",
-                                        color = Gray
                                     )
                                 }
                             }
@@ -116,7 +107,6 @@ fun DestinologyPlaceDetailsScreen(navController: NavController, navBackStackEntr
                                     .width(32.dp)
                                     .height(32.dp)
                                     .clip(CircleShape)
-                                    .background(VeryLightGray)
                                     .clickable {
 
                                     }
@@ -124,12 +114,14 @@ fun DestinologyPlaceDetailsScreen(navController: NavController, navBackStackEntr
                                 Image(
                                     imageVector = Icons.TwoTone.ExitToApp,
                                     contentDescription = "Like",
-                                    colorFilter = ColorFilter.tint(Gray)
+                                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary)
                                 )
                             }
                         }
                         Spacer(modifier = Modifier.height(16.dp))
-                        Text(text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", color = Black)
+                        Text(
+                            text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                        )
                     }
                 }
                 Spacer(modifier = Modifier.height(16.dp))
@@ -152,9 +144,8 @@ fun DestinologyPlaceDetailsScreen(navController: NavController, navBackStackEntr
                             Column(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .background(White)
                                     .padding(16.dp),
-                            )  {
+                            ) {
                                 Text(
                                     text = "Beri rating",
                                     fontWeight = FontWeight.Bold,
@@ -163,51 +154,20 @@ fun DestinologyPlaceDetailsScreen(navController: NavController, navBackStackEntr
                                 Spacer(modifier = Modifier.height(16.dp))
                                 //TODO rating stars
                                 Row {
-                                    Image(
-                                        colorFilter = if (ratingStars.intValue >= 1) ColorFilter.tint(Indigo) else ColorFilter.tint(
-                                            Gray) ,
-                                        imageVector = Icons.TwoTone.Star,
-                                        contentDescription = null,
-                                        modifier = Modifier.clickable {
-                                            ratingStars.intValue = 1
-                                        }
-                                    )
-                                    Image(
-                                        colorFilter = if (ratingStars.intValue >= 2) ColorFilter.tint(Indigo) else ColorFilter.tint(
-                                            Gray) ,
-                                        imageVector = Icons.TwoTone.Star,
-                                        contentDescription = null,
-                                        modifier = Modifier.clickable {
-                                            ratingStars.intValue = 2
-                                        }
-                                    )
-                                    Image(
-                                        colorFilter = if (ratingStars.intValue >= 3) ColorFilter.tint(Indigo) else ColorFilter.tint(
-                                            Gray) ,
-                                        imageVector = Icons.TwoTone.Star,
-                                        contentDescription = null,
-                                        modifier = Modifier.clickable {
-                                            ratingStars.intValue = 3
-                                        }
-                                    )
-                                    Image(
-                                        colorFilter = if (ratingStars.intValue >= 4) ColorFilter.tint(Indigo) else ColorFilter.tint(
-                                            Gray) ,
-                                        imageVector = Icons.TwoTone.Star,
-                                        contentDescription = null,
-                                        modifier = Modifier.clickable {
-                                            ratingStars.intValue = 4
-                                        }
-                                    )
-                                    Image(
-                                        colorFilter = if (ratingStars.intValue >= 5) ColorFilter.tint(Indigo) else ColorFilter.tint(
-                                            Gray) ,
-                                        imageVector = Icons.TwoTone.Star,
-                                        contentDescription = null,
-                                        modifier = Modifier.clickable {
-                                            ratingStars.intValue = 5
-                                        }
-                                    )
+                                    for (i in 1..5) {
+                                        Image(
+                                            colorFilter = if (ratingStars.intValue >= i + 1) ColorFilter.tint(
+                                                MaterialTheme.colorScheme.primary
+                                            ) else ColorFilter.tint(
+                                                MaterialTheme.colorScheme.secondary
+                                            ),
+                                            imageVector = Icons.TwoTone.Star,
+                                            contentDescription = null,
+                                            modifier = Modifier.clickable {
+                                                ratingStars.intValue = i + 1
+                                            }
+                                        )
+                                    }
                                 }
                                 Spacer(modifier = Modifier.height(16.dp))
                                 DestinologyTextInput(
@@ -231,5 +191,5 @@ fun DestinologyPlaceDetailsScreen(navController: NavController, navBackStackEntr
 @Preview
 @Composable
 fun PreviewPlaceDetails() {
-    DestinologyPlaceDetailsScreen(navController = rememberNavController(), navBackStackEntry = "" )
+    DestinologyPlaceDetailsScreen(navController = rememberNavController(), navBackStackEntry = "")
 }

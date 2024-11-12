@@ -1,7 +1,6 @@
 package com.ch2_ps397.destinology.ui.components.cards
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,6 +18,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.twotone.Refresh
 import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,14 +29,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ch2_ps397.destinology.core.model.MItinerary
-import com.ch2_ps397.destinology.ui.theme.Black
-import com.ch2_ps397.destinology.ui.theme.Gray
-import com.ch2_ps397.destinology.ui.theme.Indigo
-import com.ch2_ps397.destinology.ui.theme.VeryLightGray
-import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
-fun ItineraryPlaceCard(placeName:String, price: Int, rating: Float, category: String, regeneratePlace: () -> Unit) {
+fun ItineraryPlaceCard(
+    placeName: String,
+    price: Int,
+    rating: Float,
+    category: String,
+    regeneratePlace: () -> Unit
+) {
     Card(
         modifier = Modifier
             .widthIn(max = 300.dp)
@@ -44,7 +45,6 @@ fun ItineraryPlaceCard(placeName:String, price: Int, rating: Float, category: St
     ) {
         Column(
             modifier = Modifier
-                .background(White)
                 .clickable {
 
                 }
@@ -66,19 +66,18 @@ fun ItineraryPlaceCard(placeName:String, price: Int, rating: Float, category: St
                         .width(32.dp)
                         .height(32.dp)
                         .clip(CircleShape)
-                        .background(VeryLightGray)
                         .clickable {
                         }
                 ) {
                     Image(
                         imageVector = Icons.TwoTone.Refresh,
                         contentDescription = "Share",
-                        colorFilter = ColorFilter.tint(Gray)
+                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary)
                     )
                 }
             }
             Column {
-                Text(text = "Category", fontSize = 12.sp, color = Gray)
+                Text(text = "Category", fontSize = 12.sp)
                 Text(text = category)
             }
             Spacer(modifier = Modifier.height(20.dp))
@@ -94,16 +93,16 @@ fun ItineraryPlaceCard(placeName:String, price: Int, rating: Float, category: St
                         imageVector = Icons.Default.Star,
                         contentDescription = "Itinerary place",
                         modifier = Modifier.size(16.dp),
-                        colorFilter = ColorFilter.tint(Indigo)
+                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary)
                     )
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text(text = rating.toString(), color = Gray )
+                    Text(text = rating.toString())
                 }
                 Spacer(modifier = Modifier.width(24.dp))
                 if (price == 0) {
                     DestinologyLabel(status = true, text = "Gratis")
                 } else {
-                    Text(text = "IDR $price", color = Black, fontWeight = FontWeight.Bold)
+                    Text(text = "IDR $price", fontWeight = FontWeight.Bold)
                 }
             }
         }
@@ -118,7 +117,7 @@ fun ItineraryPlaceTimeline(hours: Int, mItinerary: MItinerary, regeneratePlace: 
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.fillMaxWidth()
     ) {
-        Text(text = "$hours.00 $timeConvention", color = Gray, fontSize = 14.sp)
+        Text(text = "$hours.00 $timeConvention", fontSize = 14.sp)
         Spacer(modifier = Modifier.width(8.dp))
         ItineraryPlaceCard(
             placeName = mItinerary.placeName,

@@ -8,16 +8,14 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
@@ -28,12 +26,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import com.ch2_ps397.destinology.ui.theme.Gray
-import com.ch2_ps397.destinology.ui.theme.Indigo
-import com.ch2_ps397.destinology.ui.theme.IndigoLight
-import com.ch2_ps397.destinology.ui.theme.LightGray
-import com.ch2_ps397.destinology.ui.theme.VeryLightGray
-import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
 fun DestinologyTextInput(
@@ -54,13 +46,6 @@ fun DestinologyTextInput(
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType, imeAction = imeAction),
         keyboardActions = onActions,
         enabled = enabled,
-        colors = TextFieldDefaults.colors(
-            focusedContainerColor = White,
-            cursorColor = Indigo,
-            disabledContainerColor = VeryLightGray,
-            errorContainerColor = Color.Red,
-            unfocusedContainerColor = VeryLightGray,
-            ),
         modifier = modifier
             .fillMaxWidth()
             .background(Color.White)
@@ -73,18 +58,12 @@ fun PasswordVisibility(passwordVisibility: MutableState<Boolean>) {
     val isVisible = passwordVisibility.value
     IconButton(
         onClick = { passwordVisibility.value = !isVisible },
-        colors = IconButtonDefaults.iconButtonColors(
-            contentColor = Indigo,
-            containerColor = IndigoLight,
-            disabledContainerColor = LightGray,
-            disabledContentColor = Gray
-        ),
         modifier = Modifier.size(24.dp)
     ) {
         Image(
-            imageVector = if (isVisible) Icons.Default.Face else  Icons.Default.Close,
+            imageVector = if (isVisible) Icons.Default.Face else Icons.Default.Close,
             contentDescription = "Password visibility",
-            colorFilter = ColorFilter.tint(Indigo),
+            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
             modifier = Modifier.size(16.dp)
         )
 
@@ -101,36 +80,24 @@ fun DestinologyPasswordInput(
     imeAction: ImeAction = ImeAction.Done,
     onAction: KeyboardActions = KeyboardActions.Default
 ) {
-    val visualTransformation = if(passwordVisibility.value) VisualTransformation.None
+    val visualTransformation = if (passwordVisibility.value) VisualTransformation.None
     else PasswordVisualTransformation()
 
     TextField(
         shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
         value = passwordState.value,
         onValueChange = { passwordState.value = it },
-        label = { Text(text = labelId)},
+        label = { Text(text = labelId) },
         modifier = modifier
             .fillMaxWidth(),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Password,
-            imeAction = imeAction),
-        visualTransformation =  visualTransformation,
+            imeAction = imeAction
+        ),
+        visualTransformation = visualTransformation,
         trailingIcon = { PasswordVisibility(passwordVisibility) },
         keyboardActions = onAction,
         enabled = enabled,
-        colors = TextFieldDefaults.colors(
-            focusedLabelColor = Indigo,
-            focusedContainerColor = White,
-            cursorColor = Indigo,
-            disabledContainerColor = White,
-            unfocusedContainerColor = White,
-            selectionColors = TextSelectionColors(
-                backgroundColor = IndigoLight,
-                handleColor = Indigo
-            ),
-            unfocusedIndicatorColor = Gray,
-            focusedIndicatorColor = Indigo
-        ),
         supportingText = {
             Text(text = "Minimal 8 karakter. Perhatikan huruf besar & kecil, serta harus mengandung angka dan simbol.")
         }
@@ -157,20 +124,6 @@ fun DestinologyTextInputFilled(
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType, imeAction = imeAction),
         keyboardActions = onActions,
         enabled = enabled,
-        colors = TextFieldDefaults.colors(
-            focusedLabelColor = Indigo,
-            focusedContainerColor = White,
-            cursorColor = Indigo,
-            disabledContainerColor = White,
-            unfocusedContainerColor = White,
-            selectionColors = TextSelectionColors(
-                backgroundColor = IndigoLight,
-                handleColor = Indigo
-            ),
-            unfocusedIndicatorColor = Gray,
-            focusedIndicatorColor = Indigo
-
-        ),
         modifier = modifier
             .fillMaxWidth()
             .background(Color.White)

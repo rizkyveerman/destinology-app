@@ -1,7 +1,6 @@
 package com.ch2_ps397.destinology.ui.screen.plan
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,6 +10,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -22,16 +22,13 @@ import androidx.navigation.NavController
 import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.components.cards.DestinologyItineraryCard
 import com.ch2_ps397.destinology.ui.components.scaffold.DestinologyBottomBarNavigation
-import com.ch2_ps397.destinology.ui.theme.Indigo
-import com.ch2_ps397.destinology.ui.theme.VeryLightGray
-import com.ch2_ps397.destinology.ui.theme.White
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DestinologyPlanScreen(navController: NavController) {
     Scaffold(
         topBar = {
-            TopAppBar(title = { 
+            TopAppBar(title = {
                 Text(text = "My Itinerary")
             })
         },
@@ -41,27 +38,25 @@ fun DestinologyPlanScreen(navController: NavController) {
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { navController.navigate(DestinologyScreens.DestinologyRecommendationScreen.name) },
-                containerColor = Indigo,
-                contentColor = White,
             ) {
                 Image(
                     imageVector = Icons.Default.Add,
                     contentDescription = "New itinerary",
                     colorFilter = ColorFilter.tint(
-                        White
+                        MaterialTheme.colorScheme.onPrimary
                     )
                 )
             }
         },
-        modifier = Modifier.background(VeryLightGray)
     ) { innerPadding ->
-        Box(modifier = Modifier
-            .fillMaxSize()
-            .padding(innerPadding)) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        ) {
             LazyColumn(
                 contentPadding = PaddingValues(top = 16.dp),
                 modifier = Modifier
-                    .background(VeryLightGray)
                     .padding(horizontal = 16.dp)
             ) {
                 for (i in 1..7) {
@@ -72,7 +67,7 @@ fun DestinologyPlanScreen(navController: NavController) {
                                 title = "Itinerary 1",
                                 rating = 4.6f
                             ) {
-                                navController.navigate(DestinologyScreens.DestinologyPlanDetailScreen.name+ "/1")
+                                navController.navigate(DestinologyScreens.DestinologyPlanDetailScreen.name + "/1")
                             }
                         }
                     }

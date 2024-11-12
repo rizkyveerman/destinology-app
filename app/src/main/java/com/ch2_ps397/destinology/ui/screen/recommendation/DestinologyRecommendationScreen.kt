@@ -1,6 +1,5 @@
 package com.ch2_ps397.destinology.ui.screen.recommendation
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -45,8 +44,6 @@ import com.ch2_ps397.destinology.ui.components.cards.ItineraryDayCard
 import com.ch2_ps397.destinology.ui.components.cards.ItineraryPlaceTimeline
 import com.ch2_ps397.destinology.ui.components.form.DestinationInputForm
 import com.ch2_ps397.destinology.ui.components.imagery.ImageBackground
-import com.ch2_ps397.destinology.ui.theme.VeryLightGray
-import com.ch2_ps397.destinology.ui.theme.White
 
 @Composable
 fun DestinologyRecommendationScreen(
@@ -69,35 +66,47 @@ fun DestinologyRecommendationScreen(
     destinologyRecommendationViewModel
         .resource.collectAsState(initial = Resource.Loading)
         .value.let { resource ->
-            when(resource) {
+            when (resource) {
                 is Resource.Idle -> {
                     DestinologyGenerateItineraryScreen { city, duration, budget ->
-                        destinologyRecommendationViewModel.generateNewItinerary(city, duration, budget)
+                        destinologyRecommendationViewModel.generateNewItinerary(
+                            city,
+                            duration,
+                            budget
+                        )
                     }
                 }
+
                 is Resource.Loading -> {
                 }
+
                 is Resource.Success -> {
                     DestinologySucessRecommend(navController, data = resource.data)
                 }
+
                 is Resource.Error -> {
                     DestinologyGenerateItineraryScreen { city, duration, budget ->
-                        destinologyRecommendationViewModel.generateNewItinerary(city, duration, budget)
+                        destinologyRecommendationViewModel.generateNewItinerary(
+                            city,
+                            duration,
+                            budget
+                        )
                     }
                 }
             }
 
-    }
+        }
 }
 
 
 @Composable
 fun DestinologyGenerateItineraryScreen(
     onGenerate: (
-    selectedCity: String,
-    selectedDuration: Int,
-    selectedBudget: Int
-) -> Unit) {
+        selectedCity: String,
+        selectedDuration: Int,
+        selectedBudget: Int
+    ) -> Unit
+) {
 
     var selectedCity by rememberSaveable {
         mutableStateOf("Yogyakarta")
@@ -119,7 +128,6 @@ fun DestinologyGenerateItineraryScreen(
         Column {
             Text(
                 text = "Choose your preferred\ndestination and style to\nget started",
-                color = White,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
                 fontSize = 16.sp,
@@ -180,7 +188,6 @@ fun DestinologySucessRecommend(navController: NavController, data: List<MItinera
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(VeryLightGray)
                 .padding(innerPadding)
         ) {
             Row(
@@ -221,6 +228,7 @@ fun DestinologySucessRecommend(navController: NavController, data: List<MItinera
                             }
                         }
                     }
+
                     2 -> {
                         LazyColumn(
                             modifier = Modifier.fillMaxWidth()
@@ -235,6 +243,7 @@ fun DestinologySucessRecommend(navController: NavController, data: List<MItinera
                             }
                         }
                     }
+
                     3 -> {
                         LazyColumn(
                             modifier = Modifier.fillMaxWidth()
