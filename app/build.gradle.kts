@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.ch2_ps397.destinology"
+    namespace = "com.feelsgoodlab.destinology"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.ch2_ps397.destinology"
+        applicationId = "com.feelsgoodlab.destinology"
         minSdk = 28
         targetSdk = 35
         versionCode = 1
@@ -55,7 +55,6 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.constraintlayout)
     androidTestImplementation(platform(libs.androidx.compose.bom))
 
     // Coroutine

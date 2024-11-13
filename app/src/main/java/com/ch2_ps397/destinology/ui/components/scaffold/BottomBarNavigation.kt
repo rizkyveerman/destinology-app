@@ -17,8 +17,6 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.ch2_ps397.destinology.navigation.DestinologyBottomNavigationItem
-import com.ch2_ps397.destinology.navigation.DestinologyScreens
 
 
 @Composable
@@ -30,52 +28,6 @@ fun DestinologyBottomBarNavigation(
 
     NavigationBar(
     ) {
-        val navigationItems = listOf(
-            DestinologyBottomNavigationItem(
-                title = "My Plan",
-                icon = Icons.TwoTone.DateRange,
-                screen = DestinologyScreens.DestinologyPlanScreen
-            ),
-            DestinologyBottomNavigationItem(
-                title = "Scan",
-                icon = Icons.TwoTone.AddCircle,
-                screen = DestinologyScreens.DestinologyCameraScreen
-            ),
-            DestinologyBottomNavigationItem(
-                title = "Discovery",
-                icon = Icons.TwoTone.Search,
-                screen = DestinologyScreens.DestinologyDiscoveryScreen
-            ),
-            DestinologyBottomNavigationItem(
-                title = "Profile",
-                icon = Icons.TwoTone.AccountCircle,
-                screen = DestinologyScreens.DestinologyUserProfileScreen
-            ),
-        )
 
-        navigationItems.map { item ->
-            NavigationBarItem(
-                selected = currentRoute == item.screen.name,
-                onClick = {
-                    navController.navigate(item.screen.name) {
-                        popUpTo(navController.graph.findStartDestination().id)
-                        restoreState = true
-                        launchSingleTop = true
-                    }
-                },
-                icon = {
-                    Image(
-                        imageVector = item.icon,
-                        contentDescription = item.title,
-                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary)
-                    )
-                },
-                label = {
-                    Text(text = item.title)
-                },
-                alwaysShowLabel = false
-            )
-
-        }
     }
 }

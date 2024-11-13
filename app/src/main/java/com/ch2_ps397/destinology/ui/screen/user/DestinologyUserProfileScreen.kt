@@ -1,7 +1,6 @@
 package com.ch2_ps397.destinology.ui.screen.user
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,6 +18,7 @@ import androidx.compose.material.icons.twotone.Place
 import androidx.compose.material.icons.twotone.Settings
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -36,7 +36,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
-import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.components.button.SmallButton
 import com.ch2_ps397.destinology.ui.components.scaffold.DestinologyBottomBarNavigation
 
@@ -53,9 +52,6 @@ fun DestinologyUserProfileScreen(navController: NavController) {
                     Image(
                         imageVector = Icons.TwoTone.Settings,
                         contentDescription = "Options",
-                        modifier = Modifier.clickable {
-                            navController.navigate(DestinologyScreens.DestinologySettingScreen.name)
-                        }
                     )
                 },
             )
@@ -156,7 +152,7 @@ fun DestinologyUserProfileScreen(navController: NavController) {
                     fontSize = 16.sp,
                 )
             }
-            Divider()
+            HorizontalDivider()
             LazyColumn(
                 verticalArrangement = Arrangement.Center,
                 modifier = Modifier

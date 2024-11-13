@@ -25,7 +25,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.ch2_ps397.destinology.R
-import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.components.cards.DestinologyDiscoveryCategoryCard
 import com.ch2_ps397.destinology.ui.components.cards.DestinologyPlaceCard
 import com.ch2_ps397.destinology.ui.components.scaffold.DestinologyBottomBarNavigation
@@ -121,7 +120,6 @@ fun DestinologyDiscoveryScreen(navController: NavController) {
                                         title = "Candi Borobudur",
                                         rating = 4.6f
                                     ) {
-                                        navController.navigate(DestinologyScreens.DestinologyPlaceDetailsScreen.name + "/1")
                                     }
                                     Spacer(modifier = Modifier.width(16.dp))
                                 }

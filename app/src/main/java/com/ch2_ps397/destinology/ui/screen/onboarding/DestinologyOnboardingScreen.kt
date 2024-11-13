@@ -1,14 +1,15 @@
 package com.ch2_ps397.destinology.ui.screen.onboarding
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,26 +18,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import com.ch2_ps397.destinology.navigation.DestinologyScreens
-import com.ch2_ps397.destinology.ui.components.button.DestinologyPrimaryButton
 
 @Composable
-fun DestinologyOnboardingScreen(navController: NavController) {
-    Box(
-        contentAlignment = Alignment.BottomCenter,
+fun DestinologyOnboardingScreen(onNavigateToAuth: () -> Unit) {
+    Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-            .padding(16.dp, 16.dp, 16.dp, 64.dp)
-    ) {
-        DestinologyOnboardingContent(navController = navController)
-    }
-}
-
-@Composable
-fun DestinologyOnboardingContent(navController: NavController) {
-    Column(
+            .padding(horizontal = 16.dp, vertical = 24.dp),
         verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -48,12 +36,9 @@ fun DestinologyOnboardingContent(navController: NavController) {
             lineHeight = 48.sp
         )
         Spacer(modifier = Modifier.height(32.dp))
-        DestinologyPrimaryButton(enabled = true, text = "Get Started") {
-            navController.navigate(DestinologyScreens.DestinologyUserLoginScreen.name) {
-                popUpTo(navController.graph.id) {
-                    inclusive = true
-                }
-            }
-        }
+        Button(
+            onClick = { onNavigateToAuth() },
+            modifier = Modifier.fillMaxWidth()
+        ) { Text("Get Started") }
     }
 }

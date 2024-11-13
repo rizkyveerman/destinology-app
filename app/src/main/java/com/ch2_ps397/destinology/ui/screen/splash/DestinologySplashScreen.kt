@@ -15,7 +15,6 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.ch2_ps397.destinology.core.di.Injection
-import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.ViewModelFactory
 import kotlinx.coroutines.delay
 
@@ -51,17 +50,9 @@ fun DestinologySplashScreen(
             LaunchedEffect(key1 = true) {
                 delay(2000L)
                 if (token.isNullOrEmpty()) {
-                    navController.navigate(DestinologyScreens.DestionologyOnboardingScreen.name) {
-                        popUpTo(navController.graph.id) {
-                            inclusive = true
-                        }
-                    }
+                    // TODO Go to Login Screen
                 } else {
-                    navController.navigate(DestinologyScreens.DestinologyPlanScreen.name) {
-                        popUpTo(navController.graph.id) {
-                            inclusive = true
-                        }
-                    }
+                   // TODO Go to Home Screen
                 }
 
             }

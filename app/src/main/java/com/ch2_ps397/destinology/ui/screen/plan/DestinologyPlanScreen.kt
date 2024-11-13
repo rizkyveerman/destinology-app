@@ -19,7 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.components.cards.DestinologyItineraryCard
 import com.ch2_ps397.destinology.ui.components.scaffold.DestinologyBottomBarNavigation
 
@@ -37,7 +36,9 @@ fun DestinologyPlanScreen(navController: NavController) {
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { navController.navigate(DestinologyScreens.DestinologyRecommendationScreen.name) },
+                onClick = {
+                    // TODO Recommendation Screen
+                }
             ) {
                 Image(
                     imageVector = Icons.Default.Add,
@@ -67,7 +68,6 @@ fun DestinologyPlanScreen(navController: NavController) {
                                 title = "Itinerary 1",
                                 rating = 4.6f
                             ) {
-                                navController.navigate(DestinologyScreens.DestinologyPlanDetailScreen.name + "/1")
                             }
                         }
                     }

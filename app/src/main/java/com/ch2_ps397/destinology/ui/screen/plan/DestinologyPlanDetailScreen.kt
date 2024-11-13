@@ -24,7 +24,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.ch2_ps397.destinology.core.model.MItinerary
-import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.components.cards.ItineraryDayCard
 import com.ch2_ps397.destinology.ui.components.scaffold.DestinologyAppBarNavigationIcon
 
@@ -44,11 +43,7 @@ fun DestinologyPlanDetailScreen(navController: NavController, navBackStackEntry:
                 },
                 navigationIcon = {
                     DestinologyAppBarNavigationIcon {
-                        navController.navigate(DestinologyScreens.DestinologyPlanScreen.name) {
-                            popUpTo(navController.graph.id) {
-                                inclusive = true
-                            }
-                        }
+
                     }
                 }
             )

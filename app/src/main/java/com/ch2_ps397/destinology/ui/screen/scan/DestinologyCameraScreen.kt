@@ -50,8 +50,6 @@ import com.ch2_ps397.destinology.core.utils.Resource
 import com.ch2_ps397.destinology.ui.ViewModelFactory
 import com.ch2_ps397.destinology.ui.components.camera.CameraPreview
 import com.ch2_ps397.destinology.ui.components.cards.DestinologyCardDialog
-import com.ch2_ps397.destinology.ui.screen.user.CustomDialogPosition
-import com.ch2_ps397.destinology.ui.screen.user.customDialogModifier
 
 @Composable
 fun DestinologyCameraScreen(
@@ -179,7 +177,6 @@ fun DestinologyCameraScreen(
                             contentAlignment = Alignment.Center,
                             modifier = Modifier
                                 .fillMaxSize()
-                                .customDialogModifier(CustomDialogPosition.TOP)
                         ) {
                             DestinologyCardDialog(showDialog = showDialog) { showDialog = false }
                         }

@@ -36,7 +36,6 @@ import androidx.navigation.NavController
 import com.ch2_ps397.destinology.core.di.Injection
 import com.ch2_ps397.destinology.core.model.MItinerary
 import com.ch2_ps397.destinology.core.utils.Resource
-import com.ch2_ps397.destinology.navigation.DestinologyScreens
 import com.ch2_ps397.destinology.ui.ViewModelFactory
 import com.ch2_ps397.destinology.ui.components.button.DestinologyFloatingButton
 import com.ch2_ps397.destinology.ui.components.button.DestinologyPrimaryButton
@@ -175,12 +174,8 @@ fun DestinologySucessRecommend(navController: NavController, data: List<MItinera
                     Text(text = "Gunakan", modifier = Modifier.padding(16.dp))
                 }
             ) {
+                //TODO Go to Trip Plan Screen
                 //TODO save this plan to ROOM
-                navController.navigate(DestinologyScreens.DestinologyPlanScreen.name) {
-                    popUpTo(navController.graph.id) {
-                        inclusive = true
-                    }
-                }
             }
         },
         floatingActionButtonPosition = FabPosition.End,
